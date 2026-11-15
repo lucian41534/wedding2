@@ -130,4 +130,12 @@ fs.writeFileSync(path.join(OUT, '시안비교.html'), `<!DOCTYPE html>
 <body><header><h1>WEDDING INVITATION · FONT DRAFTS</h1><p>각 시안은 폴더별 독립 패키지입니다 (index.html + config.js + images/). 가로 스크롤로 비교하세요.</p></header>
 <main>${cards}
 </main></body></html>`);
-console.log('done');
+// 최신 확정 시안 바로가기 (폴더에서 더블클릭으로 열기 · 도메인에서도 동작)
+const latest = variants[0];
+fs.writeFileSync(path.join(OUT, '최신시안.html'), `<!DOCTYPE html>
+<html lang="ko"><head><meta charset="UTF-8" />
+<meta http-equiv="refresh" content="0; url=${encodeURI(latest.dir)}/index.html" />
+<title>최신 시안 · ${latest.name}</title></head>
+<body><a href="${encodeURI(latest.dir)}/index.html">최신 시안 열기 · ${latest.name}</a></body></html>
+`);
+console.log('done · 최신시안 →', latest.dir);
