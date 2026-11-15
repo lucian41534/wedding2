@@ -38,16 +38,33 @@
   .lg .lg-small, .lg .lg-ring { font-family: var(--f-label); letter-spacing: .2em; }
   .lg .lg-wide { letter-spacing: .12em; }
   .lg .lg-ring { text-anchor: start; }
+  .sec-h { max-width: 1200px; margin: 24px auto 0; padding: 0 24px; font-weight: 500; font-size: 15px; }
+  .tile img { max-height: 120px; max-width: 100%; }
+  .tile.dark img, .hero-mock img { filter: invert(1) brightness(1.08); }
+  .hero-mock img { height: 48px; max-width: 120px; object-fit: contain; }
 </style>
 </head>
 <body>
 <header>
   <h1>Logo Drafts</h1>
-  <p>이니셜 없이 상징·타이포로 만든 로고 시안 8종입니다 (Marcellus 기준). 마음에 드는 키를 <code>config.js</code> → <code>logo: '키'</code> 에 넣으면 인트로, 첫 화면 상단, 원형 배지 중앙에 함께 적용됩니다.<br>
+  <p>이니셜 없는 로고 시안입니다. 위는 OpenAI 이미지 생성본, 아래는 코드로 그린 SVG입니다. 마음에 드는 키를 <code>config.js</code> → <code>logo: '키'</code> 에 넣으면 인트로, 첫 화면 상단, 원형 배지 중앙에 함께 적용됩니다.<br>
      각 카드: 밝은 배경 / 어두운 배경 / 첫 화면 상단 실제 크기</p>
 </header>
+<h3 class="sec-h">AI 생성 (OpenAI) · <code>logo: 'logo/이름.png'</code></h3>
+<div class="grid" id="gridAi"></div>
+<h3 class="sec-h">코드 SVG · <code>logo: '키'</code></h3>
 <div class="grid" id="grid"></div>
 <script>
+  var AI = { ginkgo: '은행잎', cosmos: '코스모스', arch: '꽃 아치', doves: '마주 보는 비둘기', laurel: '월계관', rings: '두 개의 링', sprig: '가을 가지와 열매', stream: '달과 물결' };
+  var gAi = document.getElementById('gridAi');
+  Object.keys(AI).forEach(function (k) {
+    var src = 'assets/logo/' + k + '.png', img = '<img src="' + src + '" alt="" />', el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = '<div class="tiles"><div class="tile">' + img + '</div><div class="tile dark">' + img + '</div></div>' +
+      '<div class="hero-mock"><span>Two hearts &amp;<br>one promise</span>' + img + '<span>The wedding<br>invitation</span></div>' +
+      '<div class="meta"><div><h2>' + k.charAt(0).toUpperCase() + k.slice(1) + '</h2><p>' + AI[k] + '</p></div><code>logo/' + k + '.png</code></div>';
+    gAi.appendChild(el);
+  });
   var W = window.WEDDING, LG = window.WEDDING_LOGOS, grid = document.getElementById('grid');
   Object.keys(LG.list).forEach(function (key) {
     var L = LG.list[key], el = document.createElement('article');

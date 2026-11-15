@@ -97,11 +97,18 @@
     return { year: D.year, month: D.month, day: D.day, dot: p(D.day) + ' . ' + p(D.month) + ' . ' + D.year };
   }
 
-  /* 로고 SVG 문자열. attrs 로 width/height/x/y 등을 덧붙일 수 있음 */
-  function render(key, W, attrs) {
+  /* 로고 마크업. key 가 이미지 경로('logo/ginkgo.png')면 이미지 로고(AI 생성본),
+     아니면 위 SVG 로고. inSvg=true 이면 SVG 안에 넣을 <image> 로 반환 */
+  function isImg(key) { return /\.(png|svg|jpe?g|webp)$/i.test(key || ''); }
+  function render(key, W, attrs, inSvg) {
+    if (isImg(key)) {
+      return inSvg
+        ? '<image class="lg-img" href="' + key + '" ' + (attrs || '') + ' preserveAspectRatio="xMidYMid meet"/>'
+        : '<img class="lg lg-img" src="' + key + '" alt="" />';
+    }
     var L = LOGOS[key] || LOGOS.ginkgo;
     return '<svg class="lg lg-' + key + '" viewBox="' + L.vb + '" ' + (attrs || '') + ' aria-hidden="true">' + L.draw(opts(W)) + '</svg>';
   }
 
-  window.WEDDING_LOGOS = { list: LOGOS, render: render };
+  window.WEDDING_LOGOS = { list: LOGOS, render: render, isImg: isImg };
 })();

@@ -11,3 +11,6 @@ node_modules/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# AI 로고 원본(1024px) — 변환본 assets/logo 만 추적
+assets/logo-ai/

@@ -98,6 +98,11 @@ for (const v of variants) {
   fs.writeFileSync(path.join(dir, 'index.html'), html);
   fs.writeFileSync(path.join(dir, 'config.js'), config);
   fs.writeFileSync(path.join(dir, 'logos.js'), logos);
+  const logoSrc = path.join(OUT, 'assets', 'logo');
+  if (fs.existsSync(logoSrc)) {
+    fs.mkdirSync(path.join(dir, 'logo'), { recursive: true });
+    fs.readdirSync(logoSrc).forEach((f) => fs.copyFileSync(path.join(logoSrc, f), path.join(dir, 'logo', f)));
+  }
   fs.writeFileSync(path.join(dir, 'images', 'README.txt'), imagesReadme);
 }
 

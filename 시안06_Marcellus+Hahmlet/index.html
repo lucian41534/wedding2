@@ -165,12 +165,14 @@
     .intro-inner > * { opacity: 0; animation: introIn 1400ms cubic-bezier(.22,1,.36,1) forwards; }
     .intro-inner > *:nth-child(2) { animation-delay: 300ms; }
     .intro-inner > *:nth-child(3) { animation-delay: 550ms; }
-    .intro .logo svg { height: 92px; }
+    .intro .logo > * { height: 92px; }
     .intro-names { font-size: 30px; }
 
     /* 로고 (logos.js) */
     .logo { display: block; color: currentColor; line-height: 0; }
-    .logo svg, svg.lg { display: block; width: auto; overflow: visible; }
+    .logo svg, svg.lg, .logo img { display: block; width: auto; overflow: visible; }
+    /* 이미지 로고(검은 잉크)는 어두운 배경에서 반전 */
+    .intro .lg-img, .hero .lg-img { filter: invert(1) brightness(1.08); }
     .lg text { font-family: var(--f-display); font-weight: var(--display-weight); fill: currentColor; text-anchor: middle; }
     .lg .lg-small, .lg .lg-ring { font-family: var(--f-label); letter-spacing: 0.2em; }
     .lg .lg-wide { letter-spacing: 0.12em; }
@@ -195,7 +197,7 @@
     }
     .hero-top .label { font-size: 9.5px; letter-spacing: 0.22em; }
     .hero-top .label:first-child { text-align: right; }
-    .hero-top .logo svg { height: 48px; max-width: 120px; }
+    .hero-top .logo > * { height: 48px; max-width: 120px; object-fit: contain; }
     .hero-bottom { position: relative; z-index: 2; text-align: center; }
     .wordmark { margin: 0 0 26px; font-size: clamp(46px, 14vw, 66px); line-height: 0.92; }
     .wordmark span { display: block; }
@@ -422,7 +424,7 @@
       }
       .hero-top { grid-template-columns: 1fr auto 1fr; gap: 28px; }
       .hero-top .label { font-size: 11px; }
-      .hero-top .logo svg { height: 64px; max-width: 160px; }
+      .hero-top .logo > * { height: 64px; max-width: 160px; }
       .wordmark { font-size: clamp(64px, 6.4vw, 110px); }
       .wordmark span { display: inline; }
       .wordmark .amp { display: inline; font-size: 0.5em; margin: 0 0.25em; vertical-align: 0.35em; }
@@ -434,7 +436,7 @@
       .gallery .ph.is-loaded:hover { opacity: 0.85; }
       .map-links a:hover, .map-links button:hover { background: rgba(17,17,17,.05); }
       .line-btn:hover, .copy-btn:hover, .icon-btn:hover { background: rgba(255,255,255,.08); }
-      .intro .logo svg { height: 120px; }
+      .intro .logo > * { height: 120px; }
       .intro-names { font-size: 40px; }
     }
     @media (min-width: 1440px) {
@@ -663,7 +665,7 @@
     /* ── 로고 ── */
     var LG = window.WEDDING_LOGOS;
     $$('[data-logo]').forEach(function (el) { el.innerHTML = LG.render(W.logo, W); });
-    $$('[data-logo-badge]').forEach(function (el) { el.innerHTML = LG.render(W.logo, W, 'x="58" y="58" width="84" height="84"'); });
+    $$('[data-logo-badge]').forEach(function (el) { el.innerHTML = LG.render(W.logo, W, 'x="58" y="58" width="84" height="84"', true); });
 
     $$('[data-bind]').forEach(function (el) { var v = get(el.dataset.bind); if (v != null) el.textContent = v; });
     $$('[data-bind-html]').forEach(function (el) { var v = get(el.dataset.bindHtml); if (v != null) el.innerHTML = v; });
@@ -930,17 +932,27 @@
         mapReady = true;
         var c = $('canvas', mapBox); if (c) c.remove();
         // 주소로 좌표 보정 (NCP에서 Geocoding API 사용 설정 시)
-        if (M.useGeocoder && nm.Service && nm.Service.geocode) {
-          nm.Service.geocode({ query: W.venue.address }, function (status, res) {
+        var tries = 0;
+        (function geo() {
+          if (!M.useGeocoder) return;
+          if (!(nm.Service && nm.Service.geocode)) { if (++tries < 100) setTimeout(geo, 100); return; }
+          nm.Service.geocode({ query: M.geocodeQuery || W.venue.address }, function (status, res) {
             if (status !== nm.Service.Status.OK) return;
             var a = res.v2 && res.v2.addresses && res.v2.addresses[0]; if (!a) return;
             var p = new nm.LatLng(+a.y, +a.x); map.setCenter(p); marker.setPosition(p);
           });
-        }
+        })();
       };
       var sc = document.createElement('script');
       sc.src = 'https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=' + encodeURIComponent(M.naverClientId) +
-               (M.useGeocoder ? '&submodules=geocoder' : '') + '&callback=__onNaverMap';
+               (M.useGeocoder ? '&submodules=geocoder' : '');
+      sc.onload = function () {
+        var n = 0;
+        (function ready() {
+          if (window.naver && naver.maps && naver.maps.Map) window.__onNaverMap();
+          else if (++n < 100) setTimeout(ready, 50);
+        })();
+      };
       sc.onerror = function () { mapMsg = '네이버 지도 스크립트 로드 실패'; drawMapPlaceholder(); };
       drawMapPlaceholder();
       document.head.appendChild(sc);

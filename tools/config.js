@@ -25,14 +25,15 @@ window.WEDDING = {
   /* ── 예식 장소 ───────────────────────────────── */
   venue: {
     name: '엘뷔하우스',
-    address: '서울 중구 다산로46길 17 청계천 두산위브더제니스'
+    address: '서울 중구 다산로46길 17 청계천 두산위브더제니스 B1'
   },
 
   /* ── 교통 안내 (title·body 둘 다 채운 항목만 표시, 비우면 섹션 숨김) ── */
   transport: [
-    { title: 'Subway', body: '' },   // 예: '2·6호선 신당역 ○번 출구 도보 ○분'
-    { title: 'Bus',    body: '' },
-    { title: 'Parking', body: '' }
+    { title: 'Subway',  body: '2·6호선 신당역 11-1, 11번 출구\n지하 1층에서 건물로 바로 연결됩니다.\n(2호선 이용 시 6호선 신당역 11번 출구 방면)' },
+    { title: 'Bus',     body: '신당역 1번 출구 정류장 하차 후 도보 6분' },
+    { title: 'Parking', body: '건물 지하 3층 전용 주차장 이용' },
+    { title: 'Tel',     body: '엘뷔하우스 02-2232-6000' }
   ],
 
   /* ── 연락처 & 계좌 ───────────────────────────── */
@@ -67,18 +68,21 @@ window.WEDDING = {
      3) Web 서비스 URL에 실제 도메인 / http://localhost:포트 등록
      4) 발급된 Client ID 를 아래에 입력                          */
   map: {
-    naverClientId: '',           // ← 여기에 Client ID
+    naverClientId: '1dty3fappe',           // ← 여기에 Client ID
     useGeocoder: true,           // 주소로 좌표 자동 보정 (Geocoding 미사용 시 false)
     lat: 37.5696, lng: 127.0196, // 기본 좌표 (근사값 — 지도에서 확인 후 수정 권장)
     zoom: 16,
     mono: true,                  // 지도 흑백 처리
-    searchQuery: '엘뷔하우스'     // 네이버지도/카카오맵 버튼 검색어
+    searchQuery: '엘뷔하우스',    // 네이버지도/카카오맵 버튼 검색어
+    geocodeQuery: '서울 중구 다산로46길 17'  // 좌표 보정용 주소 (층·동 제외)
   },
 
   /* ── 로고 ─────────────────────────────────────
-     'ginkgo' | 'cosmos' | 'stream' | 'sunrise' | 'rings' | 'knot' | 'datemark' | 'wordmark'
+     · AI 생성 이미지: 'logo/ginkgo.png' | 'logo/cosmos.png' | 'logo/arch.png' | 'logo/doves.png'
+                       'logo/laurel.png' | 'logo/rings.png' | 'logo/sprig.png' | 'logo/stream.png'
+     · 코드 SVG     : 'ginkgo' | 'cosmos' | 'stream' | 'sunrise' | 'rings' | 'knot' | 'datemark' | 'wordmark'
      (루트의 로고시안.html 에서 비교)                     */
-  logo: 'ginkgo',
+  logo: 'logo/ginkgo.png',
 
   /* ── 문구 ───────────────────────────────────── */
   badgeText: 'FROM THIS DAY FORWARD · WE WALK AS ONE · 16 . 10 . 2027 · ',
