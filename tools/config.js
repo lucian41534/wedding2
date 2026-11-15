@@ -76,9 +76,9 @@ window.WEDDING = {
   },
 
   /* ── 로고 ─────────────────────────────────────
-     'arch' | 'seal' | 'rule' | 'diamond' | 'frame' | 'stack' | 'crest' | 'oval'
+     'ginkgo' | 'cosmos' | 'stream' | 'sunrise' | 'rings' | 'knot' | 'datemark' | 'wordmark'
      (루트의 로고시안.html 에서 비교)                     */
-  logo: 'arch',
+  logo: 'ginkgo',
 
   /* ── 문구 ───────────────────────────────────── */
   badgeText: 'FROM THIS DAY FORWARD · WE WALK AS ONE · 16 . 10 . 2027 · ',

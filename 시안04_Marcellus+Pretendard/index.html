@@ -127,6 +127,31 @@
     .ph img { object-fit: cover; opacity: 0; transition: opacity 900ms ease; }
     .ph.is-loaded img { opacity: 1; }
     .ph.is-loaded canvas { opacity: 0; transition: opacity 900ms ease; }
+    /* 패럴랙스: 액자 안에서 사진이 느리게 이동 (JS가 --py / --ps 갱신) */
+    .ph > img, .ph > canvas { transform: translate3d(0, var(--py, 0px), 0) scale(var(--ps, 1.16)); will-change: transform; }
+    .ph[data-float] { will-change: transform; }
+    /* 사진 위 오버레이 문구 */
+    .ph-cap {
+      position: absolute; inset: 0; z-index: 3; margin: 0;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 26px 24px; color: #fff; pointer-events: none;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.55) 100%);
+    }
+    .ph-cap .label { opacity: .85; margin-bottom: 10px; }
+    .ph-cap .display { font-size: clamp(28px, 8vw, 40px); line-height: 1.04; }
+    .ph-cap .cap-kr { margin-top: 12px; font-size: 13.5px; opacity: .88; }
+    .gallery .ph::after {
+      content: attr(data-label); position: absolute; left: 14px; bottom: 12px; z-index: 3;
+      font-family: var(--f-label); font-size: 9px; letter-spacing: .22em; color: rgba(255,255,255,.85);
+    }
+    .float-nav {
+      position: fixed; right: 16px; bottom: calc(env(safe-area-inset-bottom) + 16px); z-index: 60;
+      padding: 13px 18px; background: rgba(17,17,17,.88); color: var(--on-ink); border: 1px solid rgba(242,241,238,.28);
+      font-family: var(--f-label); font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity 300ms ease, transform 300ms ease;
+    }
+    .float-nav.show { opacity: 1; transform: none; pointer-events: auto; }
     body.mono .ph img { filter: grayscale(1) contrast(1.06); }
 
     /* ─── 인트로 ─── */
@@ -204,10 +229,11 @@
     .duo-word .display { font-size: clamp(26px, 8.2vw, 40px); margin-bottom: 20px; white-space: nowrap; }
     .duo-word .rule-row { color: var(--ink); }
     .duo-photo { width: 100%; aspect-ratio: 4 / 5; }
+    .duo-photo .ph-cap { padding-bottom: 92px; }
 
     /* ─── BADGE ROW ─── */
     .badge-row { display: grid; grid-template-columns: 1fr 1fr; background: var(--paper); }
-    .badge-row .ph { aspect-ratio: 3 / 4; }
+    .badge-row .ph { aspect-ratio: 3 / 4; z-index: 2; margin: -72px 0 0 18px; box-shadow: 0 24px 50px rgba(0,0,0,.28); }
     .badge-wrap { display: grid; place-items: center; padding: 18px; }
     .badge { width: 100%; max-width: 200px; overflow: visible; }
     .badge .ring { transform-origin: 100px 100px; animation: spin 40s linear infinite; }
@@ -363,6 +389,8 @@
       transition-delay: var(--d, 0ms);
     }
     .reveal.in { opacity: 1; transform: none; }
+    .gallery .ph.reveal { transform: translate3d(0, 24px, 0) scale(.94); }
+    .gallery .ph.reveal.in { transform: none; }
     .hero-bottom > *, .hero-top { opacity: 0; animation: introIn 1400ms cubic-bezier(.22,1,.36,1) forwards; }
     body.is-locked .hero-bottom > *, body.is-locked .hero-top { animation-play-state: paused; }
     .hero-bottom > *:nth-child(2) { animation-delay: 200ms; }
@@ -488,12 +516,18 @@
         <p class="display"><span data-bind="groom.en"></span> <span class="amp">&amp;</span> <span data-bind="bride.en"></span></p>
         <div class="rule-row"><span>Our autumn</span><i></i><span>Our forever</span></div>
       </div>
-      <figure class="ph duo-photo reveal" data-slot="couple"></figure>
+      <figure class="ph duo-photo" data-slot="couple" data-label-y="0.38" data-speed="0.22">
+        <figcaption class="ph-cap">
+          <span class="label">Our day</span>
+          <p class="display">The day we begin<br />our forever.</p>
+          <p class="cap-kr">소중한 하루의 시작, 함께해 주세요.</p>
+        </figcaption>
+      </figure>
     </section>
 
     <!-- 04. PHOTO + CIRCLE BADGE -->
     <section class="badge-row">
-      <figure class="ph reveal" data-slot="detail"></figure>
+      <figure class="ph" data-slot="detail" data-float="-0.12" data-speed="0.1"></figure>
       <div class="badge-wrap reveal" style="--d:150ms">
         <svg class="badge" viewBox="0 0 200 200" aria-hidden="true">
           <defs><path id="circ" d="M20,100 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
@@ -570,12 +604,12 @@
     <!-- 09. BILLBOARD -->
     <section class="billboard">
       <div class="bb-frame reveal">
-        <figure class="ph" data-slot="closing.0"></figure>
+        <figure class="ph" data-slot="closing.0" data-float="0.06"></figure>
         <div class="bb-center">
           <p class="display"><span data-bind="groom.en"></span><br /><span data-bind="bride.en"></span></p>
           <p class="label">Wedding · <span data-bind="date.year"></span></p>
         </div>
-        <figure class="ph" data-slot="closing.1"></figure>
+        <figure class="ph" data-slot="closing.1" data-float="-0.06"></figure>
       </div>
       <p class="display bb-tag reveal" data-bind-html="closingTag"></p>
       <div class="bb-actions"><button class="line-btn" type="button" id="shareBtn">Share · 링크 복사</button></div>
@@ -590,6 +624,7 @@
     <button class="lb-btn lb-next" type="button" data-lb="next" aria-label="다음">›</button>
     <span class="lb-btn lb-count"></span>
   </div>
+  <a class="float-nav" id="floatNav" href="#location">Location · 오시는 길</a>
   <div class="toast" id="toast" role="status"></div>
 
   <script>
@@ -736,6 +771,7 @@
       var f = document.createElement('figure');
       f.className = 'ph reveal' + ((W.photos.galleryWide || []).indexOf(i) > -1 ? ' wide' : '');
       f.dataset.slot = 'gallery.' + i; f.dataset.index = i;
+      f.dataset.label = 'MOMENT ' + String(i + 1).padStart(2, '0');
       f.style.setProperty('--d', (i % 2) * 120 + 'ms');
       gal.appendChild(f);
     });
@@ -917,6 +953,45 @@
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
     $$('.reveal').forEach(function (el) { io.observe(el); });
+
+    /* ── 패럴랙스 / 히어로 / 플로팅 버튼 (초안 모션) ── */
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var desktop = window.matchMedia('(min-width: 1024px)');
+    var heroEl = $('.hero'), heroPh = $('.hero > .ph'), heroBottom = $('.hero-bottom'), heroShade = $('.hero-shade');
+    var floatNav = $('#floatNav'), locEl = $('#location');
+    var ticking = false;
+    function motion() {
+      ticking = false;
+      var vh = innerHeight, y = scrollY;
+      slots.forEach(function (f) {
+        var r = f.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        if (f === heroPh) {
+          var hp = desktop.matches ? 0 : Math.min(y / vh, 1);
+          f.style.setProperty('--py', (hp * vh * 0.35).toFixed(1) + 'px');
+          f.style.setProperty('--ps', (1.06 + hp * 0.1).toFixed(3));
+          return;
+        }
+        var p = (r.top + r.height / 2 - vh / 2) / vh;           // -1 ~ 1 (화면 중앙 = 0)
+        var sp = parseFloat(f.dataset.speed || '0.16');
+        f.style.setProperty('--py', (-p * sp * r.height).toFixed(1) + 'px');
+        if (f.dataset.float) f.style.transform = 'translate3d(0,' + (p * parseFloat(f.dataset.float) * vh).toFixed(1) + 'px,0)';
+      });
+      if (!desktop.matches) {
+        var k = Math.min(y / (vh * 0.7), 1);
+        heroBottom.style.transform = 'translate3d(0,' + (-k * 60).toFixed(1) + 'px,0)';
+        heroBottom.style.opacity = (1 - k).toFixed(3);
+        heroShade.style.opacity = (1 + k * 0.6).toFixed(3);
+      } else { heroBottom.style.transform = ''; heroBottom.style.opacity = ''; }
+      var lr = locEl.getBoundingClientRect();
+      floatNav.classList.toggle('show', !desktop.matches && y > vh * 0.8 && (lr.top > vh || lr.bottom < 0));
+    }
+    function onMotion() { if (!ticking) { ticking = true; requestAnimationFrame(motion); } }
+    if (!reduce) {
+      window.addEventListener('scroll', onMotion, { passive: true });
+      window.addEventListener('resize', onMotion);
+      motion();
+    }
 
     var progress = $('.progress');
     window.addEventListener('scroll', function () {

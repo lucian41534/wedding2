@@ -1,90 +1,92 @@
 /* ============================================================
-   로고(모노그램) 시안 모음 — config.js 의 logo 값으로 선택
-   'arch' | 'seal' | 'rule' | 'diamond' | 'frame' | 'stack' | 'crest' | 'oval'
+   로고 시안 모음 — config.js 의 logo 값으로 선택 (이니셜 없음)
+   'ginkgo' | 'cosmos' | 'stream' | 'sunrise' | 'rings' | 'knot' | 'datemark' | 'wordmark'
    텍스트는 --f-display 폰트, 선은 현재 글자색(currentColor)을 따릅니다.
    ============================================================ */
 (function () {
-  var uid = 0;
-  var S = 'fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"';
+  var S = 'fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round"';
   function t(x, y, size, str, extra) {
     return '<text x="' + x + '" y="' + y + '" font-size="' + size + '"' + (extra ? ' ' + extra : '') + '>' + str + '</text>';
   }
-  var ROMAN = [['M', 1000], ['CM', 900], ['D', 500], ['CD', 400], ['C', 100], ['XC', 90], ['L', 50], ['XL', 40], ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1]];
-  function roman(n) { var s = ''; ROMAN.forEach(function (r) { while (n >= r[1]) { s += r[0]; n -= r[1]; } }); return s; }
+  function path(d, extra) { return '<path ' + S + ' d="' + d + '"' + (extra ? ' ' + extra : '') + '/>'; }
+  var MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
   var LOGOS = {
-    arch: {
-      name: 'Arch', desc: '웨딩 아치 프레임 안에 이니셜을 세로로',
-      vb: '0 0 80 104',
-      draw: function (o) {
-        return '<path ' + S + ' d="M12,100 V42 A28,28 0 0 1 68,42 V100"/>' +
-               '<path ' + S + ' d="M4,100 H76"/>' +
-               t(40, 58, 24, o.a) + t(40, 72, 10, '&amp;', 'class="lg-amp"') + t(40, 93, 24, o.b);
+    ginkgo: {
+      name: 'Ginkgo', desc: '은행잎 한 장 · 서울의 가을, 10월의 상징',
+      vb: '0 0 100 100',
+      draw: function () {
+        return path('M50,62 C40,52 22,43 12,31 Q20,14 44,12 L50,28 L56,12 Q80,14 88,31 C78,43 60,52 50,62 Z') +
+               path('M50,62 L30,24 M50,62 L41,17 M50,62 L59,17 M50,62 L70,24', 'opacity=".45"') +
+               path('M50,62 Q49,80 45,96');
       }
     },
-    seal: {
-      name: 'Seal', desc: '두 겹의 원 · 둘레에 이름과 날짜',
-      vb: '0 0 120 120',
-      draw: function (o) {
-        var id = 'lgring' + (++uid);
-        return '<defs><path id="' + id + '" d="M18,60 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"/></defs>' +
-               '<circle ' + S + ' cx="60" cy="60" r="57"/><circle ' + S + ' cx="60" cy="60" r="35"/>' +
-               '<text font-size="7.2" class="lg-ring"><textPath href="#' + id + '" textLength="262" lengthAdjust="spacing">' +
-                 o.A + ' &amp; ' + o.B + ' · THE WEDDING DAY · ' + o.dot + ' · </textPath></text>' +
-               t(47, 69, 24, o.a) + t(60, 66, 9, '&amp;', 'class="lg-amp"') + t(73, 69, 24, o.b);
+    cosmos: {
+      name: 'Cosmos', desc: '코스모스 한 송이 · 가을 들꽃의 담백함',
+      vb: '0 0 100 100',
+      draw: function () {
+        var s = '';
+        for (var a = 0; a < 360; a += 45) {
+          s += '<ellipse ' + S + ' cx="50" cy="31" rx="7.5" ry="15" transform="rotate(' + a + ' 50 50)"/>';
+        }
+        return s + '<circle ' + S + ' cx="50" cy="50" r="5"/>';
       }
     },
-    rule: {
-      name: 'Rule', desc: '세로 헤어라인으로 나눈 이니셜 · 하단 날짜',
-      vb: '0 0 140 64',
-      draw: function (o) {
-        return t(46, 40, 36, o.a) + t(94, 40, 36, o.b) +
-               '<path ' + S + ' d="M70,8 V48"/>' +
-               t(70, 61, 6.5, o.dot, 'class="lg-small"');
+    stream: {
+      name: 'Stream', desc: '원 안의 세 물결 · 청계천 곁에서의 시작',
+      vb: '0 0 100 100',
+      draw: function () {
+        return '<circle ' + S + ' cx="50" cy="50" r="44"/>' +
+               path('M26,40 q6,-5 12,0 t12,0 t12,0 t12,0') +
+               path('M18,52 q8,-6 16,0 t16,0 t16,0 t16,0') +
+               path('M26,64 q6,-5 12,0 t12,0 t12,0 t12,0');
       }
     },
-    diamond: {
-      name: 'Diamond', desc: '마름모 안에 대각선으로 엇갈린 이니셜',
-      vb: '0 0 90 90',
-      draw: function (o) {
-        return '<path ' + S + ' d="M45,2 L88,45 L45,88 L2,45 Z"/>' +
-               t(36, 46, 26, o.a) + t(55, 66, 26, o.b) +
-               '<path ' + S + ' d="M30,60 L60,30" opacity=".55"/>';
+    sunrise: {
+      name: 'Sunrise', desc: '수평선 위로 떠오르는 해 · 새로운 출발',
+      vb: '0 0 100 90',
+      draw: function () {
+        var r = '';
+        for (var a = 202.5; a < 360; a += 22.5) {
+          var rad = a * Math.PI / 180, c = Math.cos(rad), s = Math.sin(rad);
+          r += 'M' + (50 + 28 * c).toFixed(2) + ',' + (60 + 28 * s).toFixed(2) + ' L' + (50 + 38 * c).toFixed(2) + ',' + (60 + 38 * s).toFixed(2) + ' ';
+        }
+        return path('M28,60 A22,22 0 0 1 72,60') + path(r) +
+               path('M6,60 H94') + path('M22,69 H78', 'opacity=".6"') + path('M36,77 H64', 'opacity=".35"');
       }
     },
-    frame: {
-      name: 'Frame', desc: '모서리만 남긴 사각 프레임 · 에디토리얼',
-      vb: '0 0 110 90',
-      draw: function (o) {
-        var c = 'M2,16 V2 H16 M94,2 H108 V16 M108,74 V88 H94 M16,88 H2 V74';
-        return '<path ' + S + ' d="' + c + '"/>' +
-               t(55, 50, 28, o.a + '<tspan font-size="12" dx="4" dy="-6" class="lg-amp">&amp;</tspan><tspan dx="4" dy="6">' + o.b + '</tspan>') +
-               t(55, 70, 6.5, roman(o.year), 'class="lg-small"');
+    rings: {
+      name: 'Rings', desc: '맞물린 두 개의 링 · 작은 반짝임',
+      vb: '0 0 100 90',
+      draw: function () {
+        return '<circle ' + S + ' cx="38" cy="52" r="23"/><circle ' + S + ' cx="62" cy="52" r="23"/>' +
+               path('M62,14 Q63,21 70,22 Q63,23 62,30 Q61,23 54,22 Q61,21 62,14 Z');
       }
     },
-    stack: {
-      name: 'Stack', desc: '두 이름을 쌓은 워드마크 · 가운데 앰퍼샌드',
-      vb: '0 0 200 84',
+    knot: {
+      name: 'Knot', desc: '한 줄로 이어진 매듭 · 끝없이 이어지는 약속',
+      vb: '0 0 100 80',
       draw: function (o) {
-        return t(100, 28, 22, o.A, 'class="lg-wide"') +
-               '<path ' + S + ' d="M54,44 H90 M110,44 H146"/>' + t(100, 48, 11, '&amp;', 'class="lg-amp"') +
-               t(100, 76, 22, o.B, 'class="lg-wide"');
+        return path('M50,38 C38,20 14,20 14,38 C14,56 38,56 50,38 C62,20 86,20 86,38 C86,56 62,56 50,38 Z') +
+               t(50, 74, 7, o.dot, 'class="lg-small"');
       }
     },
-    crest: {
-      name: 'Crest', desc: '이니셜 아래 이중 라인과 로마 숫자 날짜',
-      vb: '0 0 130 84',
+    datemark: {
+      name: 'Datemark', desc: '날짜 자체를 마크로 · 16 OCT 2027',
+      vb: '0 0 100 100',
       draw: function (o) {
-        return t(65, 38, 30, o.a + ' <tspan font-size="14" class="lg-amp">&amp;</tspan> ' + o.b) +
-               '<path ' + S + ' d="M22,50 H108 M34,54 H96"/>' +
-               t(65, 72, 7, roman(o.day) + ' · ' + roman(o.month) + ' · ' + roman(o.year), 'class="lg-small"');
+        return path('M16,16 H34 M66,16 H84') + t(50, 19, 9, MON[o.month - 1], 'class="lg-small"') +
+               t(50, 68, 48, String(o.day)) +
+               t(50, 90, 9, String(o.year), 'class="lg-small"');
       }
     },
-    oval: {
-      name: 'Oval (기존)', desc: '타원 안 대각선 이니셜 · 처음 시안',
-      vb: '0 0 60 86',
+    wordmark: {
+      name: 'Wordmark', desc: '‘Wedding Day’ 타이포 · 가운데 작은 마름모',
+      vb: '0 0 160 66',
       draw: function (o) {
-        return '<ellipse ' + S + ' cx="30" cy="43" rx="28.5" ry="41.5"/>' + t(22, 44, 30, o.a) + t(38, 68, 30, o.b);
+        return t(80, 28, 20, 'Wedding Day') +
+               path('M30,42 H74 M86,42 H130') + path('M80,38 L84,42 L80,46 L76,42 Z') +
+               t(80, 60, 6.5, o.dot, 'class="lg-small"');
       }
     }
   };
@@ -92,17 +94,12 @@
   function opts(W) {
     var D = W.date;
     var p = function (n) { return String(n).padStart(2, '0'); };
-    return {
-      a: (W.groom.en || ' ')[0], b: (W.bride.en || ' ')[0],
-      A: W.groom.en, B: W.bride.en,
-      year: D.year, month: D.month, day: D.day,
-      dot: p(D.day) + '.' + p(D.month) + '.' + D.year
-    };
+    return { year: D.year, month: D.month, day: D.day, dot: p(D.day) + ' . ' + p(D.month) + ' . ' + D.year };
   }
 
   /* 로고 SVG 문자열. attrs 로 width/height/x/y 등을 덧붙일 수 있음 */
   function render(key, W, attrs) {
-    var L = LOGOS[key] || LOGOS.arch;
+    var L = LOGOS[key] || LOGOS.ginkgo;
     return '<svg class="lg lg-' + key + '" viewBox="' + L.vb + '" ' + (attrs || '') + ' aria-hidden="true">' + L.draw(opts(W)) + '</svg>';
   }
 
