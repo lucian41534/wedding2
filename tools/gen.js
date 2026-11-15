@@ -75,6 +75,7 @@ og.jpg             카카오톡 공유 썸네일     1200x630 (index.html 의 og
 - 용량은 장당 300~600KB 정도로 압축 권장 (긴 변 1600px 내외).
 `;
 
+let latestHtml = '';
 for (const v of variants) {
   const x = v.vars;
   const vars = [
@@ -93,6 +94,7 @@ for (const v of variants) {
     .split('{{VARIANT}}').join(v.name)
     .replace('{{FONT_LINK}}', v.link)
     .replace('{{FONT_VARS}}', vars);
+  if (v === variants[0]) latestHtml = html;
   const dir = path.join(OUT, v.dir);
   fs.mkdirSync(path.join(dir, 'images'), { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
@@ -130,6 +132,17 @@ fs.writeFileSync(path.join(OUT, '시안비교.html'), `<!DOCTYPE html>
 <body><header><h1>WEDDING INVITATION · FONT DRAFTS</h1><p>각 시안은 폴더별 독립 패키지입니다 (index.html + config.js + images/). 가로 스크롤로 비교하세요.</p></header>
 <main>${cards}
 </main></body></html>`);
+// 사이트 루트(yoonjijun.life) = 확정 시안. 주소가 바뀌지 않도록 리다이렉트 대신 루트에 직접 생성
+// 경로만 루트 기준으로 보정: 로고 assets/logo/, 견본 assets/sample/, 실제 사진 images/
+fs.writeFileSync(path.join(OUT, 'index.html'), latestHtml);
+fs.writeFileSync(path.join(OUT, 'logos.js'), logos);
+fs.writeFileSync(path.join(OUT, 'config.js'), config
+  .replace("sampleDir: '../assets/sample/'", "sampleDir: 'assets/sample/'")
+  .replace(/logo: 'logo\//, "logo: 'assets/logo/"));
+fs.mkdirSync(path.join(OUT, 'images'), { recursive: true });
+fs.writeFileSync(path.join(OUT, 'images', 'README.txt'), imagesReadme);
+fs.writeFileSync(path.join(OUT, 'images', '.gitkeep'), '');
+
 // 최신 확정 시안 바로가기 (폴더에서 더블클릭으로 열기 · 도메인에서도 동작)
 const latest = variants[0];
 fs.writeFileSync(path.join(OUT, '최신시안.html'), `<!DOCTYPE html>

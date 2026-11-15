@@ -6,7 +6,9 @@
 ## 구조
 
 ```
-├─ index.html                → 시안비교.html 로 이동
+├─ index.html / config.js    사이트 첫 화면 = 확정 시안 (yoonjijun.life) · gen.js 가 생성
+├─ 최신시안.html              로컬에서 더블클릭으로 확정 시안 열기
+├─ assets/                   로고(logo) · 흑백 견본 사진(sample)
 ├─ 시안비교.html              시안을 휴대폰 프레임으로 나란히 비교
 ├─ 로고시안.html              로고 8종 비교 (config.js → logo 로 선택)
 ├─ 혼주배치시안.html          혼주 표기 방식 3종 비교

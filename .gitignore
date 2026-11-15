@@ -16,3 +16,8 @@ desktop.ini
 assets/logo-ai/
 # AI 견본 사진 원본 — 흑백 변환본 assets/sample 만 추적
 assets/sample-raw/
+
+# 루트(배포본) 실제 사진
+images/*
+!images/README.txt
+!images/.gitkeep
