@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>혼주 표기 배치 시안</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Jost:wght@400;500&family=Noto+Serif+KR:wght@300;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --f-display: 'Bodoni Moda', serif; --f-label: 'Jost', sans-serif; --f-kr: 'Noto Serif KR', serif;
+    --paper: #F2F1EE; --ink: #111; --muted: rgba(17,17,17,.56); --line: rgba(17,17,17,.16);
+    --on-ink: #F2F1EE; --on-ink-muted: rgba(242,241,238,.58); --line-ink: rgba(242,241,238,.2);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #1b1b1b; color: var(--on-ink); font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; }
+  header { padding: 40px 32px 0; max-width: 1240px; margin: 0 auto; }
+  header h1 { margin: 0 0 10px; font-weight: 400; font-size: 14px; letter-spacing: .2em; }
+  header p { margin: 0; color: var(--on-ink-muted); font-size: 13px; line-height: 1.7; }
+  main { display: flex; gap: 36px; overflow-x: auto; padding: 32px; max-width: 1240px; margin: 0 auto; }
+  article { flex: none; width: 360px; }
+  .tag { display: inline-block; font-size: 11px; letter-spacing: .12em; padding: 4px 10px; border: 1px solid var(--line-ink); margin-bottom: 10px; }
+  .tag.rec { background: var(--on-ink); color: var(--ink); border-color: var(--on-ink); }
+  article h2 { margin: 0 0 6px; font-size: 16px; font-weight: 600; }
+  article > p { margin: 0 0 18px; font-size: 13px; line-height: 1.7; color: var(--on-ink-muted); min-height: 66px; }
+  .notes { margin: 18px 0 0; padding: 0; list-style: none; font-size: 12.5px; line-height: 1.8; color: var(--on-ink-muted); }
+  .notes li::before { content: "— "; }
+
+  /* 폰 프레임 */
+  .phone { width: 360px; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 8px #2a2a2a; background: var(--paper); color: var(--ink);
+           font-family: var(--f-kr); font-weight: 300; letter-spacing: -0.01em; word-break: keep-all; }
+  .phone p { margin: 0; }
+  .sec { padding: 64px 30px; }
+  .ink { background: var(--ink); color: var(--on-ink); }
+  .label { font-family: var(--f-label); font-size: 10px; letter-spacing: .26em; text-transform: uppercase; }
+  .display { font-family: var(--f-display); font-weight: 400; line-height: 1; }
+  .amp { font-style: italic; }
+  h3 { margin: 0 0 20px; font-family: var(--f-display); font-weight: 400; font-size: 21px; }
+  .body { font-size: 14px; line-height: 2; color: rgba(17,17,17,.8); }
+  .body + .body { margin-top: 16px; }
+  .muted { color: var(--muted); }
+  .rule { height: 1px; background: var(--line); margin: 34px 0 24px; }
+  .ink .rule { background: var(--line-ink); }
+  .center { text-align: center; }
+
+  /* A */
+  .sign { margin-top: 22px; font-size: 14px; }
+  .sign b { font-weight: 500; letter-spacing: .04em; }
+  .names-big { margin-top: 30px; font-size: 30px; letter-spacing: .01em; }
+  .names-kr { margin-top: 10px; font-size: 14px; }
+  .host { font-size: 13px; line-height: 1.9; }
+  .host .label { display: block; color: var(--muted); font-size: 9px; margin-bottom: 6px; }
+
+  /* 연락처 */
+  .party { padding: 18px 0; border-top: 1px solid var(--line-ink); display: flex; justify-content: space-between; align-items: center; }
+  .party:last-child { border-bottom: 1px solid var(--line-ink); }
+  .party .label { color: var(--on-ink-muted); font-size: 9px; }
+  .party .nm { margin-top: 4px; font-size: 15px; font-weight: 500; letter-spacing: .04em; }
+  .btns { display: flex; gap: 6px; }
+  .btns i { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line-ink); display: block; }
+  .group { margin-top: 26px; }
+  .group:first-of-type { margin-top: 0; }
+  .group > .label { display: block; color: var(--on-ink-muted); margin-bottom: 8px; font-size: 9px; }
+
+  /* C */
+  .blocks { display: grid; gap: 30px; text-align: center; }
+  .blocks .label { color: var(--muted); font-size: 9px; }
+  .blocks .nm { margin-top: 8px; font-size: 19px; font-weight: 500; letter-spacing: .06em; }
+  .blocks .cap { margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+  .blocks .en { margin-top: 6px; font-family: var(--f-display); font-size: 13px; letter-spacing: .14em; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>혼주 표기 배치 시안 · 신랑 측 혼주 없음 / 신부 측 혼주 있음</h1>
+  <p>초대 문구 섹션과 연락처 섹션 두 곳만 바뀝니다. 나머지 화면은 그대로입니다. 부모님 성함 자리는 ○○○로 비워 두었습니다.</p>
+</header>
+<main>
+
+  <!-- A -->
+  <article>
+    <span class="tag rec">A · 추천</span>
+    <h2>두 사람이 초대하는 형식</h2>
+    <p>초대의 주체를 두 사람으로 두고, 신부 측 혼주는 ‘함께 모시는 분’으로 한 번만 표기합니다. 한쪽에만 부모님 줄이 생기는 구조가 아니어서 비어 보이는 자리가 없습니다.</p>
+    <div class="phone">
+      <section class="sec">
+        <h3>Invitation</h3>
+        <p class="body">서로 다른 길을 걸어온 두 사람이<br>이제 같은 곳을 바라보며<br>함께 걷기로 약속합니다.</p>
+        <p class="body">가을이 가장 깊어지는 날,<br>저희의 첫걸음을 가까이에서<br>축복해 주시면 오래도록 간직하겠습니다.</p>
+        <p class="sign"><b>현준 · 하윤지</b> <span class="muted">드림</span></p>
+        <div class="rule"></div>
+        <p class="host"><span class="label">With</span>신부 측 혼주 &nbsp;하○○ · ○○○</p>
+      </section>
+      <section class="sec ink">
+        <h3>Contact</h3>
+        <div class="group">
+          <span class="label">신랑 · 신부</span>
+          <div class="party"><div><p class="label">Groom</p><p class="nm">현준</p></div><div class="btns"><i></i><i></i></div></div>
+          <div class="party"><div><p class="label">Bride</p><p class="nm">하윤지</p></div><div class="btns"><i></i><i></i></div></div>
+        </div>
+        <div class="group">
+          <span class="label">신부 측 혼주</span>
+          <div class="party"><div><p class="label">Father</p><p class="nm">하○○</p></div><div class="btns"><i></i><i></i></div></div>
+          <div class="party"><div><p class="label">Mother</p><p class="nm">○○○</p></div><div class="btns"><i></i><i></i></div></div>
+        </div>
+      </section>
+    </div>
+    <ul class="notes">
+      <li>요즘 많이 쓰는 형식이라 자연스럽습니다</li>
+      <li>연락처를 ‘신랑·신부’와 ‘신부 측 혼주’ 두 묶음으로 나눠 좌우 비교가 생기지 않습니다</li>
+      <li>‘With’ 줄을 빼고 연락처에만 표기해도 됩니다</li>
+    </ul>
+  </article>
+
+  <!-- B -->
+  <article>
+    <span class="tag">B</span>
+    <h2>본문은 이름만, 혼주는 연락처에만</h2>
+    <p>초대 문구 섹션에는 두 사람 이름만 대칭으로 둡니다. 부모님 성함은 연락처 섹션에서만, 신부 측 묶음 안에 보입니다. 가장 담백한 방식입니다.</p>
+    <div class="phone">
+      <section class="sec center">
+        <h3>Invitation</h3>
+        <p class="body">서로 다른 길을 걸어온 두 사람이<br>이제 같은 곳을 바라보며<br>함께 걷기로 약속합니다.</p>
+        <p class="display names-big">Hyunjun <span class="amp">&amp;</span> Yunji</p>
+        <p class="names-kr">현준 · 하윤지</p>
+      </section>
+      <section class="sec ink">
+        <h3>Contact</h3>
+        <div class="group">
+          <span class="label">신랑 측</span>
+          <div class="party"><div><p class="label">Groom</p><p class="nm">현준</p></div><div class="btns"><i></i><i></i></div></div>
+        </div>
+        <div class="group">
+          <span class="label">신부 측</span>
+          <div class="party"><div><p class="label">Bride</p><p class="nm">하윤지</p></div><div class="btns"><i></i><i></i></div></div>
+          <div class="party"><div><p class="label">Father</p><p class="nm">하○○</p></div><div class="btns"><i></i><i></i></div></div>
+          <div class="party"><div><p class="label">Mother</p><p class="nm">○○○</p></div><div class="btns"><i></i><i></i></div></div>
+        </div>
+      </section>
+    </div>
+    <ul class="notes">
+      <li>본문 화면은 완전히 대칭입니다</li>
+      <li>연락처에서는 신랑 측 1명, 신부 측 3명으로 줄 수가 다르지만, 목록이라 어색함이 적습니다</li>
+      <li>혼주를 꼭 ‘○○의 딸’ 형식으로 쓰고 싶다면 맞지 않습니다</li>
+    </ul>
+  </article>
+
+  <!-- C -->
+  <article>
+    <span class="tag">C</span>
+    <h2>전통 표기 유지 · 세로 블록</h2>
+    <p>‘○○의 딸’ 표기를 살리는 방식입니다. 좌우로 나란히 놓으면 빈칸이 드러나기 때문에, 위아래 블록으로 나눠 신랑 블록에는 영문 이름을 넣어 무게를 맞췄습니다.</p>
+    <div class="phone">
+      <section class="sec">
+        <h3 class="center">Invitation</h3>
+        <p class="body center">서로 다른 길을 걸어온 두 사람이<br>이제 같은 곳을 바라보며<br>함께 걷기로 약속합니다.</p>
+        <div class="rule"></div>
+        <div class="blocks">
+          <div><p class="label">Groom</p><p class="nm">현준</p><p class="en">HYUNJUN</p></div>
+          <div><p class="label">Bride</p><p class="nm">하윤지</p><p class="cap">하○○ · ○○○의 딸</p></div>
+        </div>
+      </section>
+      <section class="sec ink">
+        <h3>Contact</h3>
+        <div class="party"><div><p class="label">Groom · 신랑</p><p class="nm">현준</p></div><div class="btns"><i></i><i></i></div></div>
+        <div class="party"><div><p class="label">Bride · 신부</p><p class="nm">하윤지</p></div><div class="btns"><i></i><i></i></div></div>
+        <div class="party"><div><p class="label">Bride's parents · 혼주</p><p class="nm">하○○ · ○○○</p></div><div class="btns"><i></i><i></i></div></div>
+      </section>
+    </div>
+    <ul class="notes">
+      <li>어른들께 익숙한 표기가 남습니다</li>
+      <li>두 블록의 형식이 달라서, 눈여겨보면 차이가 보이긴 합니다</li>
+      <li>혼주 연락처는 대표 번호 하나로 합쳤습니다</li>
+    </ul>
+  </article>
+
+</main>
+</body>
+</html>
