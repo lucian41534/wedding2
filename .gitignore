@@ -1,0 +1,13 @@
+# 실제 사진은 개인정보 — 커밋하지 않음 (README / .gitkeep 만 추적)
+시안*/images/*
+!시안*/images/README.txt
+!시안*/images/.gitkeep
+
+# 로컬 개발 설정
+.claude/
+node_modules/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

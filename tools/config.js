@@ -1,0 +1,80 @@
+/* ============================================================
+   모바일 청첩장 설정 파일 — 이 파일만 수정하면 됩니다.
+   ============================================================ */
+window.WEDDING = {
+
+  /* ── 신랑 · 신부 ─────────────────────────────── */
+  groom: {
+    name: '현준',          // 한글 이름 (성 포함하려면 '○현준')
+    en: 'HYUNJUN',         // 영문 표기 (워드마크·모노그램 첫 글자에 사용)
+    parents: '',           // 예: '김○○ · 이○○'  (비워두면 숨김)
+    relation: '아들'
+  },
+  bride: {
+    name: '하윤지',
+    en: 'YUNJI',
+    parents: '',
+    relation: '딸'
+  },
+
+  /* ── 예식 일시 (24시간제) ─────────────────────── */
+  date: { year: 2027, month: 10, day: 16, hour: 12, minute: 0 },
+
+  /* ── 예식 장소 ───────────────────────────────── */
+  venue: {
+    name: '엘뷔하우스',
+    address: '서울 중구 다산로46길 17 청계천 두산위브더제니스'
+  },
+
+  /* ── 교통 안내 (title·body 둘 다 채운 항목만 표시, 비우면 섹션 숨김) ── */
+  transport: [
+    { title: 'Subway', body: '' },   // 예: '2·6호선 신당역 ○번 출구 도보 ○분'
+    { title: 'Bus',    body: '' },
+    { title: 'Parking', body: '' }
+  ],
+
+  /* ── 연락처 & 계좌 ───────────────────────────── */
+  contacts: [
+    { role: 'Groom · 신랑측', name: '현준',   phone: '010-9958-4246', bank: '농협', account: '352-1086-3259-03', holder: '현준' },
+    { role: 'Bride · 신부측', name: '하윤지', phone: '010-9563-4963', bank: '신한', account: '110-383-291928',   holder: '하윤지' }
+    // 혼주 추가 예: { role: 'Groom\'s Father', name: '○○○', phone: '010-...', bank: '', account: '' }
+  ],
+
+  /* ── 사진 ─────────────────────────────────────
+     - dir 폴더 안의 파일명만 적으면 됩니다. (예: 'hero.jpg')
+     - 외부 스토리지 URL(https://...)을 그대로 넣어도 됩니다.
+     - 파일이 없거나 비어 있으면 캔버스 견본이 대신 표시됩니다.
+     - 초점 위치 조정: { src: 'hero.jpg', pos: '50% 30%' }   */
+  photos: {
+    dir: 'images/',
+    hero:   'hero.jpg',          // 첫 화면 전체 (세로 9:16 권장)
+    couple: 'couple.jpg',        // 워드마크 아래 (4:5)
+    detail: 'detail.jpg',        // 원형 배지 옆 (3:4, 소품·반지·잔 등 디테일 컷)
+    closing: ['closing-01.jpg', 'closing-02.jpg'],   // 마지막 빌보드 좌/우 (2:3)
+    gallery: [
+      'gallery-01.jpg', 'gallery-02.jpg', 'gallery-03.jpg', 'gallery-04.jpg',
+      'gallery-05.jpg', 'gallery-06.jpg', 'gallery-07.jpg', 'gallery-08.jpg'
+    ],
+    galleryWide: [0, 7]          // 가로로 넓게(2칸) 보여줄 갤러리 순번 (0부터)
+  },
+  photoMono: true,               // true: 레퍼런스처럼 흑백 처리 / false: 원본 컬러
+
+  /* ── 네이버 지도 (NCP Maps) ────────────────────
+     1) https://console.ncloud.com → AI·NAVER API(Maps) → Application 등록
+     2) Dynamic Map (+ 좌표 자동보정 원하면 Geocoding) 체크
+     3) Web 서비스 URL에 실제 도메인 / http://localhost:포트 등록
+     4) 발급된 Client ID 를 아래에 입력                          */
+  map: {
+    naverClientId: '',           // ← 여기에 Client ID
+    useGeocoder: true,           // 주소로 좌표 자동 보정 (Geocoding 미사용 시 false)
+    lat: 37.5696, lng: 127.0196, // 기본 좌표 (근사값 — 지도에서 확인 후 수정 권장)
+    zoom: 16,
+    mono: true,                  // 지도 흑백 처리
+    searchQuery: '엘뷔하우스'     // 네이버지도/카카오맵 버튼 검색어
+  },
+
+  /* ── 문구 ───────────────────────────────────── */
+  badgeText: 'FROM THIS DAY FORWARD · WE WALK AS ONE · 16 . 10 . 2027 · ',
+  closingTag: 'One day.<br>One promise.<br>Forever.',
+  introMs: 2600
+};
