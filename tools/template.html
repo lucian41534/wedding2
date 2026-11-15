@@ -754,6 +754,10 @@
       img.alt = ''; img.decoding = 'async';
       img.style.objectPosition = entry.pos;
       img.onload = function () { fig.appendChild(img); requestAnimationFrame(function () { fig.classList.add('is-loaded'); }); };
+      // images/ 에 실제 사진이 없으면 견본 사진(sampleDir)으로 대체
+      var fallback = W.photos.sampleDir && !/^(https?:|data:|blob:)/.test(entry.src)
+        ? W.photos.sampleDir + entry.src.split('/').pop() : '';
+      img.onerror = function () { if (fallback && img.src.indexOf(fallback) < 0) { fig.dataset.sample = '1'; img.src = fallback; } };
       img.src = entry.src;
     }
 

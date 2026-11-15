@@ -50,6 +50,7 @@ window.WEDDING = {
      - 초점 위치 조정: { src: 'hero.jpg', pos: '50% 30%' }   */
   photos: {
     dir: 'images/',
+    sampleDir: '../assets/sample/',   // images/ 에 없는 사진은 흑백 견본(AI 생성)으로 표시. 끄려면 ''
     hero:   'hero.jpg',          // 첫 화면 전체 (세로 9:16 권장)
     couple: 'couple.jpg',        // 워드마크 아래 (4:5)
     detail: 'detail.jpg',        // 원형 배지 옆 (3:4, 소품·반지·잔 등 디테일 컷)
@@ -82,7 +83,7 @@ window.WEDDING = {
                        'logo/laurel.png' | 'logo/rings.png' | 'logo/sprig.png' | 'logo/stream.png'
      · 코드 SVG     : 'ginkgo' | 'cosmos' | 'stream' | 'sunrise' | 'rings' | 'knot' | 'datemark' | 'wordmark'
      (루트의 로고시안.html 에서 비교)                     */
-  logo: 'logo/ginkgo.png',
+  logo: 'logo/rings.png',
 
   /* ── 문구 ───────────────────────────────────── */
   badgeText: 'FROM THIS DAY FORWARD · WE WALK AS ONE · 16 . 10 . 2027 · ',
