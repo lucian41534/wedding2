@@ -3,11 +3,20 @@ const path = require('path');
 const OUT = path.resolve(__dirname, '..');
 const tpl = fs.readFileSync(path.join(__dirname, 'template.html'), 'utf8');
 const config = fs.readFileSync(path.join(__dirname, 'config.js'), 'utf8');
+const logos = fs.readFileSync(path.join(__dirname, 'logos.js'), 'utf8');
 
 const G = (q) => `  <link href="https://fonts.googleapis.com/css2?${q}&display=swap" rel="stylesheet" />`;
 const PRETENDARD = '  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet" />';
 
 const variants = [
+  {
+    dir: '시안06_Marcellus+Hahmlet',
+    name: 'Marcellus + 함렛 (+ Jost) · 확정',
+    mood: '확정 조합 — 영문 Marcellus, 국문 함렛 (시안05 국문)',
+    link: G('family=Marcellus&family=Jost:wght@400;500&family=Hahmlet:wght@300;500'),
+    vars: { display: "'Marcellus', serif", label: "'Jost', sans-serif", kr: "'Hahmlet', serif",
+            dw: 400, dt: '0.04em', lw: 500, kw: 300, ks: 500, kt: '-0.02em', amp: 'normal' }
+  },
   {
     dir: '시안01_BodoniModa+NotoSerifKR',
     name: 'Bodoni Moda + Noto Serif KR (+ Jost)',
@@ -88,6 +97,7 @@ for (const v of variants) {
   fs.mkdirSync(path.join(dir, 'images'), { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
   fs.writeFileSync(path.join(dir, 'config.js'), config);
+  fs.writeFileSync(path.join(dir, 'logos.js'), logos);
   fs.writeFileSync(path.join(dir, 'images', 'README.txt'), imagesReadme);
 }
 

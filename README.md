@@ -7,12 +7,15 @@
 
 ```
 ├─ index.html                → 시안비교.html 로 이동
-├─ 시안비교.html              5개 시안을 휴대폰 프레임으로 나란히 비교
+├─ 시안비교.html              시안을 휴대폰 프레임으로 나란히 비교
+├─ 로고시안.html              로고 8종 비교 (config.js → logo 로 선택)
+├─ 혼주배치시안.html          혼주 표기 방식 3종 비교
 ├─ 시안01_BodoniModa+NotoSerifKR/
 │   ├─ index.html            청첩장 본문
-│   ├─ config.js             이름·날짜·장소·연락처·계좌·사진 파일명·지도 키
+│   ├─ config.js             이름·날짜·장소·연락처·계좌·사진 파일명·지도 키·로고
+│   ├─ logos.js              로고 SVG 모음
 │   └─ images/               사진 넣는 곳 (git 에는 올라가지 않음)
-├─ 시안02 ~ 시안05/           (동일 구조, 폰트만 다름)
+├─ 시안02 ~ 시안06/           (동일 구조, 폰트만 다름 · 06 이 확정 조합)
 ├─ tools/                    시안 생성기 (template.html + config.js + gen.js)
 └─ drafts/                   이전 초안
 ```
@@ -24,8 +27,15 @@
 | 03 | Italiana (+ Tenor Sans) | 고운바탕 |
 | 04 | Marcellus | Pretendard |
 | 05 | Gilda Display (+ Jost) | 함렛 |
+| **06 (확정)** | **Marcellus (+ Jost)** | **함렛** |
 
 모두 무료 폰트(Google Fonts / Pretendard, SIL OFL)이며 CDN 으로 불러옵니다.
+
+## 화면 대응
+
+- 모바일(~599px): 한 줄 세로 스크롤
+- 태블릿(600~1023px): 600px 중앙 정렬
+- PC(1024px~): 왼쪽 첫 화면 사진 고정 + 오른쪽 본문 스크롤
 
 ## 수정 방법
 

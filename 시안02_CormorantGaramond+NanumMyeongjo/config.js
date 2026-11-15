@@ -5,13 +5,15 @@ window.WEDDING = {
 
   /* ── 신랑 · 신부 ─────────────────────────────── */
   groom: {
-    name: '현준',          // 한글 이름 (성 포함하려면 '○현준')
-    en: 'HYUNJUN',         // 영문 표기 (워드마크·모노그램 첫 글자에 사용)
+    name: '현준',          // 한글 성명 (성 현 · 이름 준)
+    given: '준',           // 이름만 (D-day 문구 등)
+    en: 'JUN',             // 영문 이름 (워드마크·로고 이니셜). 성까지 쓰려면 'HYEON JUN'
     parents: '',           // 예: '김○○ · 이○○'  (비워두면 숨김)
     relation: '아들'
   },
   bride: {
     name: '하윤지',
+    given: '윤지',
     en: 'YUNJI',
     parents: '',
     relation: '딸'
@@ -72,6 +74,11 @@ window.WEDDING = {
     mono: true,                  // 지도 흑백 처리
     searchQuery: '엘뷔하우스'     // 네이버지도/카카오맵 버튼 검색어
   },
+
+  /* ── 로고 ─────────────────────────────────────
+     'arch' | 'seal' | 'rule' | 'diamond' | 'frame' | 'stack' | 'crest' | 'oval'
+     (루트의 로고시안.html 에서 비교)                     */
+  logo: 'arch',
 
   /* ── 문구 ───────────────────────────────────── */
   badgeText: 'FROM THIS DAY FORWARD · WE WALK AS ONE · 16 . 10 . 2027 · ',
