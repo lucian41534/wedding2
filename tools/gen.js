@@ -119,6 +119,7 @@ const cards = variants.map((v) => `
 fs.writeFileSync(path.join(OUT, '시안비교.html'), `<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>청첩장 폰트 시안 비교</title>
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
 <style>
   body { margin: 0; background: #111; color: #F2F1EE; font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; }
   header { padding: 40px 32px 8px; } header h1 { margin: 0 0 8px; font-weight: 400; letter-spacing: .2em; font-size: 14px; }
@@ -134,7 +135,7 @@ fs.writeFileSync(path.join(OUT, '시안비교.html'), `<!DOCTYPE html>
 </main></body></html>`);
 // 사이트 루트(yoonjijun.life) = 확정 시안. 주소가 바뀌지 않도록 리다이렉트 대신 루트에 직접 생성
 // 경로만 루트 기준으로 보정: 로고 assets/logo/, 견본 assets/sample/, 실제 사진 images/
-fs.writeFileSync(path.join(OUT, 'index.html'), latestHtml);
+fs.writeFileSync(path.join(OUT, 'index.html'), latestHtml.split('../assets/').join('assets/'));
 fs.writeFileSync(path.join(OUT, 'logos.js'), logos);
 fs.writeFileSync(path.join(OUT, 'config.js'), config
   .replace("sampleDir: '../assets/sample/'", "sampleDir: 'assets/sample/'")

@@ -61,7 +61,10 @@ window.WEDDING = {
     ],
     galleryWide: [0, 7]          // 가로로 넓게(2칸) 보여줄 갤러리 순번 (0부터)
   },
-  photoMono: true,               // true: 레퍼런스처럼 흑백 처리 / false: 원본 컬러
+  /* 사진 필터 (루트의 필터시안.html 에서 비교)
+     흑백: 'mono' | 'trix' | 'hp5' | 'platinum' | 'selenium' | 'split' | 'sepia'
+     컬러: 'muted' | 'warm-film' | 'none'(원본)                          */
+  photoFilter: 'mono',
 
   /* ── 네이버 지도 (NCP Maps) ────────────────────
      1) https://console.ncloud.com → AI·NAVER API(Maps) → Application 등록

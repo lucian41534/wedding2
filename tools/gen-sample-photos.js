@@ -9,7 +9,10 @@ const OUT = path.resolve(__dirname, '..', 'assets', 'sample-raw');
 const MODEL = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
 const TALL = '1024x1536', WIDE = '1536x1024';
 
-const BASE = 'Black-and-white editorial wedding photograph, shot on 35mm film, fine grain, soft natural light, ' +
+// SAMPLE_COLOR=1 이면 컬러 원본(필터 비교용)을 '<키>-color.png' 로 생성
+const COLOR = !!process.env.SAMPLE_COLOR;
+const BASE = (COLOR ? 'Natural color editorial wedding photograph with soft warm daylight and true skin tones, shot on 35mm color film, '
+                    : 'Black-and-white editorial wedding photograph, shot on 35mm film, ') + 'fine grain, soft natural light, ' +
   'elegant and timeless, high-end fashion magazine aesthetic, candid and romantic. ' +
   'A fictional Korean couple: the bride has a sleek low bun and a minimalist satin column dress with a long sheer veil; ' +
   'the groom wears a classic black tuxedo with a bow tie. No text, no watermark. ';
@@ -39,7 +42,7 @@ async function gen(key) {
   });
   const j = await res.json();
   if (!res.ok) throw new Error(key + ': ' + (j.error && j.error.message || res.status));
-  fs.writeFileSync(path.join(OUT, key + '.png'), Buffer.from(j.data[0].b64_json, 'base64'));
+  fs.writeFileSync(path.join(OUT, key + (COLOR ? '-color' : '') + '.png'), Buffer.from(j.data[0].b64_json, 'base64'));
   return key;
 }
 

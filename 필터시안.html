@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>사진 필터 시안</title>
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@400;500&family=Hahmlet:wght@300;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/filters.css" />
+<style>
+  :root { --paper: #F2F1EE; --ink: #111; --muted: rgba(17,17,17,.56); --line: rgba(17,17,17,.14); }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: 'Hahmlet', serif; font-weight: 300; }
+  header { max-width: 1240px; margin: 0 auto; padding: 48px 24px 8px; }
+  h1 { margin: 0 0 10px; font-family: 'Marcellus', serif; font-weight: 400; font-size: 28px; letter-spacing: .04em; }
+  header p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
+  code { font-family: Consolas, monospace; font-size: 12.5px; background: rgba(17,17,17,.06); padding: 2px 6px; }
+  .list { max-width: 1240px; margin: 0 auto; padding: 28px 24px 80px; display: grid; gap: 28px; }
+  .row { border-top: 1px solid var(--line); padding-top: 18px; }
+  .meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+  .meta h2 { margin: 0; font-family: 'Marcellus', serif; font-weight: 400; font-size: 19px; }
+  .meta p { margin: 4px 0 0; font-size: 13px; color: var(--muted); }
+  .shots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .ph { position: relative; aspect-ratio: 3 / 4; overflow: hidden; background: #222; margin: 0; }
+  .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ph figcaption { position: absolute; left: 8px; bottom: 6px; z-index: 3; font: 500 9px 'Jost', sans-serif; letter-spacing: .18em; color: rgba(255,255,255,.85); }
+  @media (max-width: 760px) { .shots { grid-template-columns: repeat(3, 1fr); } .shots .ph:nth-child(n+4) { display: none; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="pf-split" color-interpolation-filters="sRGB">
+    <feColorMatrix type="saturate" values="0" />
+    <feComponentTransfer>
+      <feFuncR type="table" tableValues="0.03 0.33 0.67 1" />
+      <feFuncG type="table" tableValues="0.03 0.31 0.62 0.98" />
+      <feFuncB type="table" tableValues="0.09 0.34 0.58 0.92" />
+    </feComponentTransfer>
+  </filter>
+</svg>
+<header>
+  <h1>Photo Filters</h1>
+  <p>청첩장 사이트에서 사진 위에 바로 거는 필터입니다. 사진 파일은 그대로 두고 화면에서만 적용됩니다. 마음에 드는 키를 <code>config.js</code> → <code>photoFilter: '키'</code> 에 넣으세요.<br>
+     앞 3장은 흑백 견본, 뒤 2장은 컬러 원본(무료 이미지, 내일 넣을 실제 사진과 같은 조건) — 컬러 필터는 컬러 원본에서 차이가 보입니다.</p>
+</header>
+<div class="list" id="list"></div>
+<script>
+  var SHOTS = [
+    ['assets/sample/hero.jpg', 'B&W'], ['assets/sample/couple.jpg', 'B&W'], ['assets/sample/gallery-05.jpg', 'B&W'],
+    ['https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80', 'COLOR'],
+    ['https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=700&q=80', 'COLOR']
+  ];
+  var FILTERS = [
+    ['mono', 'Mono (현재)', '기본 흑백 · 대비 살짝'],
+    ['trix', 'Tri-X', '깊은 검정, 강한 대비, 굵은 입자 · 다큐멘터리/에디토리얼'],
+    ['hp5', 'HP5 Matte', '대비를 낮추고 검정을 띄운 부드러운 흑백 · 따뜻한 분위기'],
+    ['platinum', 'Platinum', '흑백에 아주 옅은 웜 실버 · 고급 인화지 느낌'],
+    ['selenium', 'Selenium', '살짝 차가운 흑백 · 단단하고 모던'],
+    ['split', 'Split Tone', '그림자는 차갑게, 하이라이트는 따뜻하게 · 은은한 색'],
+    ['sepia', 'Sepia', '빈티지 앨범 · 갈색 톤이 분명'],
+    ['muted', 'Muted Color', '채도를 크게 뺀 빛바랜 컬러 필름 · 컬러가 일부 남음'],
+    ['warm-film', 'Warm Film', 'Portra 계열의 따뜻하고 부드러운 컬러'],
+    ['none', 'Original', '필터 없음']
+  ];
+  var list = document.getElementById('list');
+  FILTERS.forEach(function (f) {
+    var row = document.createElement('section');
+    row.className = 'row'; row.dataset.filter = f[0];
+    row.innerHTML = '<div class="meta"><div><h2>' + f[1] + '</h2><p>' + f[2] + '</p></div><code>' + f[0] + '</code></div>' +
+      '<div class="shots">' + SHOTS.map(function (s) {
+        return '<figure class="ph is-loaded"><img src="' + s[0] + '" alt="" loading="lazy" /><i class="grain"></i><figcaption>' + s[1] + '</figcaption></figure>';
+      }).join('') + '</div>';
+    list.appendChild(row);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+/* ============================================================
+   사진 필터 프리셋 — config.js 의 photoFilter 로 선택 (필터시안.html 에서 비교)
+   data-filter 를 가진 요소(청첩장은 <body>) 안의 사진에 적용됩니다.
+   --pf: CSS filter / --grain: 필름 입자 농도 / --lift: 검정 띄우기(매트)
+   ============================================================ */
+[data-filter="none"]       { --pf: none; }
+[data-filter="mono"]       { --pf: grayscale(1) contrast(1.06); }
+/* Kodak Tri-X 느낌: 깊은 검정, 강한 대비, 굵은 입자 */
+[data-filter="trix"]       { --pf: grayscale(1) contrast(1.34) brightness(.94); --grain: .32; }
+/* Ilford HP5 매트: 대비 낮추고 검정을 살짝 띄운 부드러운 흑백 */
+[data-filter="hp5"]        { --pf: grayscale(1) contrast(.86) brightness(1.05); --grain: .2; --lift: .07; }
+/* 플래티넘(웜 실버): 흑백에 아주 옅은 따뜻한 기운 */
+[data-filter="platinum"]   { --pf: grayscale(1) sepia(.22) contrast(1.04) brightness(1.02); --grain: .12; }
+/* 셀레늄(쿨 톤): 차갑고 단단한 흑백 */
+[data-filter="selenium"]   { --pf: grayscale(1) sepia(.32) hue-rotate(175deg) saturate(.55) contrast(1.08); --grain: .12; }
+/* 스플릿 톤: 그림자는 차갑게, 하이라이트는 따뜻하게 (SVG 필터 #pf-split) */
+[data-filter="split"]      { --pf: url(#pf-split) contrast(1.04); --grain: .14; }
+/* 세피아: 빈티지 앨범 */
+[data-filter="sepia"]      { --pf: grayscale(1) sepia(.62) contrast(.98) brightness(1.02); --grain: .18; --lift: .04; }
+/* 뮤트 컬러: 채도를 크게 뺀 빛바랜 컬러 필름 (컬러가 일부 남음) */
+[data-filter="muted"]      { --pf: saturate(.42) contrast(.95) brightness(1.04) sepia(.06); --grain: .12; --lift: .05; }
+/* 웜 필름: Portra 계열의 따뜻하고 부드러운 컬러 */
+[data-filter="warm-film"]  { --pf: saturate(.82) sepia(.16) contrast(1.05) brightness(1.02); --grain: .12; }
+
+[data-filter] .ph img, [data-filter] .lightbox img, [data-filter] img.pf { filter: var(--pf, none); }
+
+/* 입자 / 매트 레이어 (JS 가 .ph 안에 <i class="grain"> 를 넣음) */
+.ph .grain {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  opacity: var(--grain, 0); mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5  0 0 0 0 .5  0 0 0 0 .5  0 0 0 1.6 -.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+[data-filter] .ph.is-loaded::before {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: rgba(255, 255, 255, var(--lift, 0)); mix-blend-mode: screen;
+}
+.ph:not(.is-loaded) .grain { display: none; }
