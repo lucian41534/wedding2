@@ -771,7 +771,7 @@
       img.alt = ''; img.decoding = 'async';
       img.style.objectPosition = entry.pos;
       if (!fig.querySelector('.grain')) { var gr = document.createElement('i'); gr.className = 'grain'; fig.appendChild(gr); }
-      img.onload = function () { fig.appendChild(img); requestAnimationFrame(function () { fig.classList.add('is-loaded'); }); };
+      img.onload = function () { fig.appendChild(img); setTimeout(function () { fig.classList.add('is-loaded'); }, 30); };
       // images/ 에 실제 사진이 없으면 견본 사진(sampleDir)으로 대체
       var fallback = W.photos.sampleDir && !/^(https?:|data:|blob:)/.test(entry.src)
         ? W.photos.sampleDir + entry.src.split('/').pop() : '';
