@@ -82,14 +82,18 @@ window.WEDDING = {
   },
 
   /* ── 로고 ─────────────────────────────────────
-     · AI 생성 이미지: 'logo/ginkgo.png' | 'logo/cosmos.png' | 'logo/arch.png' | 'logo/doves.png'
-                       'logo/laurel.png' | 'logo/rings.png' | 'logo/sprig.png' | 'logo/stream.png'
+     · AI 생성 이미지: 'assets/logo/ginkgo.png' | 'assets/logo/cosmos.png' | 'assets/logo/arch.png' | 'assets/logo/doves.png'
+                       'assets/logo/laurel.png' | 'assets/logo/rings.png' | 'assets/logo/sprig.png' | 'assets/logo/stream.png'
      · 코드 SVG     : 'ginkgo' | 'cosmos' | 'stream' | 'sunrise' | 'rings' | 'knot' | 'datemark' | 'wordmark'
      (루트의 로고시안.html 에서 비교)                     */
   logo: 'assets/logo/rings.png',
 
   /* ── 문구 ───────────────────────────────────── */
-  badgeText: 'FROM THIS DAY FORWARD · WE WALK AS ONE · 16 . 10 . 2027 · ',
+  badgeTop: 'FROM THIS DAY FORWARD',     // 원형 배지 위쪽 호 (고정)
+  badgeBottom: 'WE WALK AS ONE',         // 원형 배지 아래쪽 호 (고정)
+  // 배지 가운데에 차례로 팝업되는 웨딩 심볼 (첫 번째 = 현재 로고)
+  symbols: ['assets/logo/rings.png', 'assets/logo/doves.png', 'assets/logo/laurel.png', 'assets/logo/cosmos.png', 'assets/logo/arch.png'],
+  symbolMs: 2400,
   closingTag: 'One day.<br>One promise.<br>Forever.',
   introMs: 2600
 };
