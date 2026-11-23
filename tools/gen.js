@@ -139,6 +139,7 @@ fs.writeFileSync(path.join(OUT, 'index.html'), latestHtml.split('../assets/').jo
 fs.writeFileSync(path.join(OUT, 'logos.js'), logos);
 fs.writeFileSync(path.join(OUT, 'config.js'), config
   .replace("sampleDir: '../assets/sample/'", "sampleDir: 'assets/sample/'")
+  .replace("dir: '../assets/photos/", "dir: 'assets/photos/")
   .replace(/'logo\//g, "'assets/logo/"));
 fs.mkdirSync(path.join(OUT, 'images'), { recursive: true });
 fs.writeFileSync(path.join(OUT, 'images', 'README.txt'), imagesReadme);

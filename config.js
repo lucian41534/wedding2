@@ -49,23 +49,42 @@ window.WEDDING = {
      - 파일이 없거나 비어 있으면 캔버스 견본이 대신 표시됩니다.
      - 초점 위치 조정: { src: 'hero.jpg', pos: '50% 30%' }   */
   photos: {
-    dir: 'images/',
-    sampleDir: 'assets/sample/',   // images/ 에 없는 사진은 흑백 견본(AI 생성)으로 표시. 끄려면 ''
-    hero:   'hero.jpg',          // 첫 화면 전체 (세로 9:16 권장)
-    couple: 'couple.jpg',        // 워드마크 아래 (4:5)
-    detail: 'detail.jpg',        // 원형 배지 옆 (3:4, 소품·반지·잔 등 디테일 컷)
-    closing: ['closing-01.jpg', 'closing-02.jpg'],   // 마지막 빌보드 좌/우 (2:3)
-    gallery: [
-      'gallery-01.jpg', 'gallery-02.jpg', 'gallery-03.jpg', 'gallery-04.jpg',
-      'gallery-05.jpg', 'gallery-06.jpg', 'gallery-07.jpg', 'gallery-08.jpg'
+    dir: 'assets/photos/web/',      // 웹용 변환본 (tools/make-photo-demo.py 로 생성)
+    sampleDir: 'assets/sample/',   // 파일이 없을 때 흑백 견본으로 대체. 끄려면 ''
+    hero:   { src: '6-color.jpg', filter: 'none' },
+    couple: { src: '2-color.jpg', filter: 'none' },
+    detail: { src: '12-color.jpg', filter: 'none' },
+    closing: [
+      '43.jpg',
+      '39.jpg'
     ],
-    galleryWide: [0, 7],         // 가로로 넓게(2칸) 보여줄 갤러리 순번 (0부터)
-    colorExt: ['png']            // 이 확장자 사진은 필터 없이 원본 색 그대로 (보정 완료본)
+    gallery: [
+      { src: '5-color.jpg', filter: 'none' },
+      '19.jpg',
+      '29.jpg',
+      { src: '8-color.jpg', filter: 'none' },
+      '35.jpg',
+      '36.jpg',
+      '44.jpg',
+      '23.jpg',
+      '13.jpg',
+      '16.jpg',
+      '17.jpg',
+      '40.jpg',
+      '42.jpg',
+      '18.jpg',
+      '38.jpg',
+      '32.jpg',
+      '45.jpg',
+      '21.jpg'
+    ],
+    galleryWide: [0, 6, 13, 17],
+    colorExt: ['png']            // 이 확장자 사진은 필터 없이 원본 색 그대로 (사진별로는 filter:'none')
   },
   /* 사진 필터 (루트의 필터시안.html 에서 비교)
      흑백: 'mono' | 'trix' | 'hp5' | 'platinum' | 'selenium' | 'split' | 'sepia'
      컬러: 'muted' | 'warm-film' | 'none'(원본)                          */
-  photoFilter: 'muted',
+  photoFilter: 'mono',
 
   /* ── 네이버 지도 (NCP Maps) ────────────────────
      1) https://console.ncloud.com → AI·NAVER API(Maps) → Application 등록
