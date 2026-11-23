@@ -8,13 +8,13 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 SRC, DONE, OUT = 'assets/photos', 'assets/photos/완료', 'assets/photos/web'
 PLAN = {
-  'hero': '6.png', 'couple': '2.png', 'detail': '12.png',
+  'hero': '40.JPG', 'couple': '5.png', 'detail': '19.jpg',
   'closing': ['43.JPG', '39.JPG'],
-  'gallery': ['5.png', '19.jpg', '29.jpg', '8.png', '35.jpg', '36.jpg', '44.JPG',
-              '23.jpg', '13.jpg', '16.jpg', '17.jpg', '40.JPG', '42.JPG', '18.jpg',
-              '38.JPG', '32.jpg', '45.JPG', '21.jpg'],
+  'gallery': ['2.png', '29.jpg', '35.jpg', '6.png', '36.jpg', '44.JPG',
+              '23.jpg', '12.png', '13.jpg', '16.jpg', '17.jpg', '8.png',
+              '42.JPG', '18.jpg', '38.JPG', '32.jpg', '45.JPG', '21.jpg'],
 }
-WIDE = [0, 6, 13, 17]
+WIDE = [5, 13, 17]
 os.makedirs(OUT, exist_ok=True)
 for f in os.listdir(OUT): os.remove(os.path.join(OUT, f))
 def conv(name):

@@ -51,26 +51,26 @@ window.WEDDING = {
   photos: {
     dir: 'assets/photos/web/',      // 웹용 변환본 (tools/make-photo-demo.py 로 생성)
     sampleDir: 'assets/sample/',   // 파일이 없을 때 흑백 견본으로 대체. 끄려면 ''
-    hero:   { src: '6-color.jpg', filter: 'none' },
-    couple: { src: '2-color.jpg', filter: 'none' },
-    detail: { src: '12-color.jpg', filter: 'none' },
+    hero:   '40.jpg',
+    couple: { src: '5-color.jpg', filter: 'none' },
+    detail: '19.jpg',
     closing: [
       '43.jpg',
       '39.jpg'
     ],
     gallery: [
-      { src: '5-color.jpg', filter: 'none' },
-      '19.jpg',
+      { src: '2-color.jpg', filter: 'none' },
       '29.jpg',
-      { src: '8-color.jpg', filter: 'none' },
       '35.jpg',
+      { src: '6-color.jpg', filter: 'none' },
       '36.jpg',
       '44.jpg',
       '23.jpg',
+      { src: '12-color.jpg', filter: 'none' },
       '13.jpg',
       '16.jpg',
       '17.jpg',
-      '40.jpg',
+      { src: '8-color.jpg', filter: 'none' },
       '42.jpg',
       '18.jpg',
       '38.jpg',
@@ -78,7 +78,7 @@ window.WEDDING = {
       '45.jpg',
       '21.jpg'
     ],
-    galleryWide: [0, 6, 13, 17],
+    galleryWide: [5, 13, 17],
     colorExt: ['png']            // 이 확장자 사진은 필터 없이 원본 색 그대로 (사진별로는 filter:'none')
   },
   /* 사진 필터 (루트의 필터시안.html 에서 비교)
