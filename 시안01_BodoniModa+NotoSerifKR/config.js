@@ -59,7 +59,8 @@ window.WEDDING = {
       'gallery-01.jpg', 'gallery-02.jpg', 'gallery-03.jpg', 'gallery-04.jpg',
       'gallery-05.jpg', 'gallery-06.jpg', 'gallery-07.jpg', 'gallery-08.jpg'
     ],
-    galleryWide: [0, 7]          // 가로로 넓게(2칸) 보여줄 갤러리 순번 (0부터)
+    galleryWide: [0, 7],         // 가로로 넓게(2칸) 보여줄 갤러리 순번 (0부터)
+    colorExt: ['png']            // 이 확장자 사진은 필터 없이 원본 색 그대로 (보정 완료본)
   },
   /* 사진 필터 (루트의 필터시안.html 에서 비교)
      흑백: 'mono' | 'trix' | 'hp5' | 'platinum' | 'selenium' | 'split' | 'sepia'

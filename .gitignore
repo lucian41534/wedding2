@@ -21,3 +21,6 @@ assets/sample-raw/
 images/*
 !images/README.txt
 !images/.gitkeep
+
+# 실사진 데모 (로컬 전용)
+사진데모/

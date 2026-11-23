@@ -738,7 +738,10 @@
       if (!v) return null;
       if (typeof v === 'string') v = { src: v };
       var src = /^(https?:|data:|blob:|\/)/.test(v.src) ? v.src : (W.photos.dir || '') + v.src;
-      return { src: src, pos: v.pos || 'center' };
+      // 사진별 필터: { src, filter:'none' } 로 지정하거나, colorExt 확장자(예: png)는 원본 색 유지
+      var ext = (v.src.split('?')[0].split('.').pop() || '').toLowerCase();
+      var filter = v.filter || ((W.photos.colorExt || []).indexOf(ext) > -1 ? 'none' : '');
+      return { src: src, pos: v.pos || 'center', filter: filter };
     }
 
     function drawPlaceholder(fig) {
@@ -794,6 +797,7 @@
       var img = new Image();
       img.alt = ''; img.decoding = 'async';
       img.style.objectPosition = entry.pos;
+      if (entry.filter) fig.dataset.filter = entry.filter; else delete fig.dataset.filter;
       if (!fig.querySelector('.grain')) { var gr = document.createElement('i'); gr.className = 'grain'; fig.appendChild(gr); }
       img.onload = function () { fig.appendChild(img); setTimeout(function () { fig.classList.add('is-loaded'); }, 30); };
       // images/ 에 실제 사진이 없으면 견본 사진(sampleDir)으로 대체
@@ -828,6 +832,7 @@
       var list = galleryLoaded(); if (!list.length) return;
       lbIdx = (i + list.length) % list.length;
       lbImg.src = $('img', list[lbIdx]).src;
+      if (list[lbIdx].dataset.filter) lb.dataset.filter = list[lbIdx].dataset.filter; else delete lb.dataset.filter;
       $('.lb-count', lb).textContent = (lbIdx + 1) + ' / ' + list.length;
       lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false');
     }
