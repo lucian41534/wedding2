@@ -89,8 +89,8 @@ window.WEDDING = {
   logo: 'logo/rings.png',
 
   /* ── 문구 ───────────────────────────────────── */
-  badgeTop: 'FROM THIS DAY FORWARD',     // 원형 배지 위쪽 호 (고정)
-  badgeBottom: 'WE WALK AS ONE',         // 원형 배지 아래쪽 호 (고정)
+  badgeTop: 'From this day forward',     // 배지 위 문구 (왼쪽 정렬)
+  badgeBottom: 'We walk as one',         // 배지 아래 문구 (오른쪽 정렬)
   // 배지 가운데에 차례로 팝업되는 웨딩 심볼 (첫 번째 = 현재 로고)
   symbols: ['logo/rings.png', 'logo/doves.png', 'logo/laurel.png', 'logo/cosmos.png', 'logo/arch.png'],
   symbolMs: 2400,

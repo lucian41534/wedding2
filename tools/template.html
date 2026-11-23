@@ -233,14 +233,17 @@
     /* ─── BADGE ROW ─── */
     .badge-row { display: grid; grid-template-columns: 1fr 1fr; background: var(--paper); }
     .badge-row .ph { aspect-ratio: 3 / 4; z-index: 2; margin: -72px 0 0 18px; box-shadow: 0 24px 50px rgba(0,0,0,.28); }
-    .badge-wrap { display: grid; place-items: center; padding: 18px; }
-    .badge { width: 100%; max-width: 200px; overflow: visible; }
-    /* 둘레 문구: 회전 없이 위·아래 호에 고정 */
-    .badge .ring text {
-      font-family: var(--f-display); font-weight: var(--display-weight);
-      font-size: 10.5px; letter-spacing: 0.22em; fill: var(--ink);
+    /* 직선 타이포 배치: 위 문구는 왼쪽, 아래 문구는 오른쪽 (곡선 문구 없음) */
+    .badge-wrap {
+      display: grid; grid-template-rows: auto 1fr auto; gap: 14px;
+      padding: 28px 22px 26px 20px; min-height: 100%;
     }
-    .badge .ring circle { fill: var(--ink); }
+    .badge-txt { font-size: 9.5px; letter-spacing: 0.26em; line-height: 1.7; color: var(--ink); }
+    .badge-txt::after { content: ""; display: block; width: 34px; height: 1px; margin-top: 10px; background: currentColor; opacity: .5; }
+    .badge-txt.bot { text-align: right; }
+    .badge-txt.bot::before { content: ""; display: block; width: 34px; height: 1px; margin: 0 0 10px auto; background: currentColor; opacity: .5; }
+    .badge-txt.bot::after { display: none; }
+    .badge { width: 100%; max-width: 132px; overflow: visible; place-self: center; }
     /* 가운데 웨딩 심볼: 하나씩 팝업 → 팝아웃 */
     .badge .sym {
       opacity: 0; transform: scale(.5); transform-box: fill-box; transform-origin: center;
@@ -545,18 +548,9 @@
     <section class="badge-row">
       <figure class="ph" data-slot="detail" data-float="-0.12" data-speed="0.1"></figure>
       <div class="badge-wrap reveal" style="--d:150ms">
-        <svg class="badge" viewBox="0 0 200 200" aria-hidden="true">
-          <defs>
-            <path id="arcTop" d="M28,100 A72,72 0 0 1 172,100" />
-            <path id="arcBot" d="M20,100 A80,80 0 0 0 180,100" />
-          </defs>
-          <g class="ring">
-            <text text-anchor="middle"><textPath href="#arcTop" startOffset="50%" data-bind="badgeTop"></textPath></text>
-            <text text-anchor="middle"><textPath href="#arcBot" startOffset="50%" data-bind="badgeBottom"></textPath></text>
-            <circle cx="16" cy="100" r="1.6" /><circle cx="184" cy="100" r="1.6" />
-          </g>
-          <g data-symbols></g>
-        </svg>
+        <p class="label badge-txt top" data-bind="badgeTop"></p>
+        <svg class="badge" viewBox="0 0 100 100" aria-hidden="true"><g data-symbols></g></svg>
+        <p class="label badge-txt bot" data-bind="badgeBottom"></p>
       </div>
     </section>
 
@@ -691,7 +685,7 @@
     $$('[data-symbols]').forEach(function (el) {
       var list = (W.symbols && W.symbols.length ? W.symbols : [W.logo]);
       el.innerHTML = list.map(function (k) {
-        return LG.render(k, W, 'x="60" y="60" width="80" height="80"', true);
+        return LG.render(k, W, 'x="4" y="4" width="92" height="92"', true);
       }).join('');
       var syms = $$('image, svg', el), i = 0;
       syms.forEach(function (s) { s.setAttribute('class', 'sym'); });
