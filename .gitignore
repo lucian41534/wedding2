@@ -22,3 +22,6 @@ images/*
 !images/README.txt
 !images/.gitkeep
 
+
+# 포토샵 원본 (100MB 초과 · GitHub 업로드 불가)
+assets/photos/PSD/

@@ -49,42 +49,26 @@ window.WEDDING = {
      - 파일이 없거나 비어 있으면 캔버스 견본이 대신 표시됩니다.
      - 초점 위치 조정: { src: 'hero.jpg', pos: '50% 30%' }   */
   photos: {
-    dir: 'assets/photos/web/',      // 웹용 변환본 (tools/make-photo-demo.py 로 생성)
+    // 원본은 assets/photos/web/ 에 두고 → python tools/make-web-photos.py 로 site/ 에 웹용 jpg 생성
+    dir: 'assets/photos/site/',
     sampleDir: 'assets/sample/',   // 파일이 없을 때 흑백 견본으로 대체. 끄려면 ''
-    hero:   '40.jpg',
-    couple: { src: '5-color.jpg', filter: 'none' },
-    detail: '19.jpg',
-    closing: [
-      '43.jpg',
-      '39.jpg'
-    ],
+    hero:   '40.jpg',                 // 최상단
+    couple: '5.jpg',                  // Our day 큰 사진
+    detail: '23.jpg',                 // Our day 아래 겹치는 사진 (배지 옆)
+    closing: ['43.jpg', '39.jpg'],    // 마지막 빌보드 좌/우
+    // 갤러리: 아래 사진들이 galleryCells 칸 안에서 차례로 팝아웃 → 팝인 (순서대로 순환)
     gallery: [
-      { src: '2-color.jpg', filter: 'none' },
-      '29.jpg',
-      '35.jpg',
-      { src: '6-color.jpg', filter: 'none' },
-      '36.jpg',
-      '44.jpg',
-      '23.jpg',
-      { src: '12-color.jpg', filter: 'none' },
-      '13.jpg',
-      '16.jpg',
-      '17.jpg',
-      { src: '8-color.jpg', filter: 'none' },
-      '42.jpg',
-      '18.jpg',
-      '38.jpg',
-      '32.jpg',
-      '45.jpg',
-      '21.jpg'
+      '2.jpg', '20.jpg', '6.jpg', '42.jpg', '12.jpg', '22.jpg', '8.jpg', '13.jpg',
+      '25.jpg', '29.jpg', '36.jpg', '38.jpg', '41.jpg', '44.jpg', '45.jpg'
     ],
-    galleryWide: [5, 13, 17],
-    colorExt: ['png']            // 이 확장자 사진은 필터 없이 원본 색 그대로 (사진별로는 filter:'none')
+    galleryCells: 6,                  // 갤러리 칸 수 (4~6)
+    galleryMs: 1700,                  // 한 칸씩 바뀌는 간격 (ms)
+    mono: ['20', '22', '25', '42', '43']   // 흑백으로 보여줄 사진 번호 (나머지는 원본 색)
   },
-  /* 사진 필터 (루트의 필터시안.html 에서 비교)
+  /* 사진 필터 (기본값 · mono 목록 외 사진에 적용. 루트의 필터시안.html 에서 비교)
      흑백: 'mono' | 'trix' | 'hp5' | 'platinum' | 'selenium' | 'split' | 'sepia'
      컬러: 'muted' | 'warm-film' | 'none'(원본)                          */
-  photoFilter: 'mono',
+  photoFilter: 'none',
 
   /* ── 네이버 지도 (NCP Maps) ────────────────────
      1) https://console.ncloud.com → AI·NAVER API(Maps) → Application 등록
@@ -109,8 +93,18 @@ window.WEDDING = {
   logo: 'assets/logo/rings.png',
 
   /* ── 문구 ───────────────────────────────────── */
-  badgeTop: 'From this day forward',     // 배지 위 문구 (왼쪽 정렬)
-  badgeBottom: 'We walk as one',         // 배지 아래 문구 (오른쪽 정렬)
+  // Our day (워드마크 아래 큰 사진 위 문구)
+  ourDay: {
+    ruleL: 'Every road',
+    ruleR: 'Leads here',
+    label: 'Our day',
+    title: 'All our roads<br>lead to this day.',
+    kr: '비 내리던 횡단보도에서<br>네온이 번지던 밤거리까지,<br>함께 걸어온 모든 길이 이 하루로 이어집니다.'
+  },
+  badgeTop: 'Hand in hand,<br>rain or shine',   // 배지 위 문구 (왼쪽 정렬)
+  badgeBottom: 'Season after<br>season',        // 배지 아래 문구 (오른쪽 정렬)
+  // 섹션 제목 옆 라인 일러스트 (기본: logo/<이름>.png · 전부 끄려면 illustrations: false)
+  illustrations: { laurel: 'assets/logo/laurel.png', cosmos: 'assets/logo/cosmos.png', arch: 'assets/logo/arch.png', doves: 'assets/logo/doves.png' },
   // 배지 가운데에 차례로 팝업되는 웨딩 심볼 (첫 번째 = 현재 로고)
   symbols: ['assets/logo/rings.png', 'assets/logo/doves.png', 'assets/logo/laurel.png', 'assets/logo/cosmos.png', 'assets/logo/arch.png'],
   symbolMs: 2400,
