@@ -10,9 +10,17 @@ const PRETENDARD = '  <link href="https://cdn.jsdelivr.net/gh/orioncactus/preten
 
 const variants = [
   {
+    dir: '시안07_Anton+Hahmlet',
+    name: 'Anton + 함렛 (+ Archivo) · 확정 · B안',
+    mood: '확정 — B안(버밀리언 포스터) + 영문 Anton, 국문 함렛',
+    link: G('family=Anton&family=Archivo:wght@400;500&family=Hahmlet:wght@300;500'),
+    vars: { display: "'Anton', sans-serif", label: "'Archivo', sans-serif", kr: "'Hahmlet', serif",
+            dw: 400, dt: '0em', lw: 500, kw: 300, ks: 500, kt: '-0.02em', amp: 'normal' }
+  },
+  {
     dir: '시안06_Marcellus+Hahmlet',
-    name: 'Marcellus + 함렛 (+ Jost) · 확정',
-    mood: '확정 조합 — 영문 Marcellus, 국문 함렛 (시안05 국문)',
+    name: 'Marcellus + 함렛 (+ Jost)',
+    mood: '이전 확정 조합 — 영문 Marcellus, 국문 함렛 (시안05 국문)',
     link: G('family=Marcellus&family=Jost:wght@400;500&family=Hahmlet:wght@300;500'),
     vars: { display: "'Marcellus', serif", label: "'Jost', sans-serif", kr: "'Hahmlet', serif",
             dw: 400, dt: '0.04em', lw: 500, kw: 300, ks: 500, kt: '-0.02em', amp: 'normal' }
@@ -156,7 +164,7 @@ for (const t of typos) {
   const dir = path.join(OUT, t.dir);
   fs.mkdirSync(path.join(dir, 'logo'), { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), latestHtml);
-  fs.writeFileSync(path.join(dir, 'config.js'), config.replace("typo: '',", `typo: '${t.id}',`));
+  fs.writeFileSync(path.join(dir, 'config.js'), config.replace(/typo: '[a-z]*',/, `typo: '${t.id}',`));
   fs.writeFileSync(path.join(dir, 'logos.js'), logos);
   const logoSrc = path.join(OUT, 'assets', 'logo');
   fs.readdirSync(logoSrc).forEach((f) => fs.copyFileSync(path.join(logoSrc, f), path.join(dir, 'logo', f)));

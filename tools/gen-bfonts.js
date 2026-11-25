@@ -57,7 +57,7 @@ module.exports = function ({ OUT, tpl, config, logos, G }) {
   const BDIR = '타이포B_폰트';
   const dir = path.join(OUT, BDIR);
   fs.mkdirSync(path.join(dir, 'logo'), { recursive: true });
-  fs.writeFileSync(path.join(dir, 'config.js'), config.replace("typo: '',", "typo: 'b',"));
+  fs.writeFileSync(path.join(dir, 'config.js'), config.replace(/typo: '[a-z]*',/, "typo: 'b',"));
   fs.writeFileSync(path.join(dir, 'logos.js'), logos);
   const logoSrc = path.join(OUT, 'assets', 'logo');
   fs.readdirSync(logoSrc).forEach((f) => fs.copyFileSync(path.join(logoSrc, f), path.join(dir, 'logo', f)));

@@ -90,7 +90,7 @@ window.WEDDING = {
                        'logo/laurel.png' | 'logo/rings.png' | 'logo/sprig.png' | 'logo/stream.png'
      · 코드 SVG     : 'ginkgo' | 'cosmos' | 'stream' | 'sunrise' | 'rings' | 'knot' | 'datemark' | 'wordmark'
      (루트의 로고시안.html 에서 비교)                     */
-  logo: 'logo/rings.png',
+  logo: 'logo/doodle-umbrella.png',   // 메인 로고 (손그림 03 Umbrella) · 이전: 'logo/rings.png'
 
   /* ── 문구 ───────────────────────────────────── */
   // Our day (워드마크 아래 큰 사진 위 문구)
@@ -106,12 +106,13 @@ window.WEDDING = {
   // 섹션 제목 옆 라인 일러스트 (기본: logo/<이름>.png · 전부 끄려면 illustrations: false)
   illustrations: false,   // 예: { laurel: 'logo/laurel.png', cosmos: 'logo/cosmos.png', arch: 'logo/arch.png', doves: 'logo/doves.png' }
   // 키네틱 타이포 시안: '' 기본 | 'a' 모노 솔리드 | 'b' 버밀리언 포스터 | 'c' 아웃라인→채움 | 'd' 마키 (루트의 타이포시안.html 에서 비교)
-  typo: 'b',
+  typo: 'b',   // 확정: B 버밀리언 포스터
   // Invitation 레이아웃: '1' 포스터 스택 | '2' 세로 타이틀 | '3' 인포 그리드 | '4' 센터 포엠 | '5' 레터 카드 (루트 Invitation시안.html)
   invite: '1',
   inviteStamp: 'logo/doodle-stamp.png',   // 3·5번 레이아웃의 손그림 스탬프
   // 배지 가운데에 차례로 팝업되는 웨딩 심볼 (첫 번째 = 현재 로고)
-  symbols: ['logo/rings.png', 'logo/doves.png', 'logo/laurel.png', 'logo/cosmos.png', 'logo/arch.png'],
+  symbols: ['logo/doodle-sticker.png'],   // 1개면 고정 + 살짝 흔들림 · 여러 개면 팝업 순환
+  closingStamp: 'logo/doodle-stamp.png',   // 마지막 빌보드 모서리 스탬프 (끄려면 '')
   symbolMs: 2400,
   closingTag: 'One day.<br>One promise.<br>Forever.',
   introMs: 2600

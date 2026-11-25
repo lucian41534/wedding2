@@ -166,7 +166,7 @@
     .logo { display: block; color: currentColor; line-height: 0; }
     .logo svg, svg.lg, .logo img { display: block; width: auto; overflow: visible; }
     /* 이미지 로고(검은 잉크)는 어두운 배경에서 반전 */
-    .intro .lg-img, .hero .lg-img, .ink .lg-img { filter: invert(1) brightness(1.08); }
+    .intro .lg-img, .hero .lg-img, .ink .lg-img { filter: brightness(0) invert(1); }
     .lg text { font-family: var(--f-display); font-weight: var(--display-weight); fill: currentColor; text-anchor: middle; }
     .lg .lg-small, .lg .lg-ring { font-family: var(--f-label); letter-spacing: 0.2em; }
     .lg .lg-wide { letter-spacing: 0.12em; }
@@ -256,6 +256,8 @@
       transition: opacity 520ms ease, transform 640ms cubic-bezier(.34, 1.56, .64, 1);
     }
     .badge .sym.on { opacity: 1; transform: scale(1); }
+    .badge.single .sym.on { animation: wob 4.5s ease-in-out infinite; }
+    @keyframes wob { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
     .badge .sym.off { opacity: 0; transform: scale(1.2); transition: opacity 420ms ease, transform 460ms ease-in; }
 
     /* ─── THE DAY (카드 목업) ─── */
@@ -388,6 +390,10 @@
       border-top: 1px solid var(--line-ink); border-bottom: 1px solid var(--line-ink);
     }
     .bb-frame .ph { aspect-ratio: 2 / 3; }
+    .bb-frame { position: relative; }
+    .bb-stamp { position: absolute; z-index: 4; right: 8px; top: -46px; width: 108px; rotate: 10deg; pointer-events: none; background: var(--paper); border-radius: 50%; padding: 7px; box-shadow: 0 10px 24px rgba(0,0,0,.4); }
+    .bb-stamp img { display: block; width: 100%; height: auto; }
+    .bb-stamp:empty { display: none; }
     .bb-center { display: grid; place-content: center; text-align: center; gap: 12px; padding: 10px; }
     .bb-center .display { font-size: clamp(24px, 7.4vw, 34px); line-height: 1.02; }
     .bb-center .label { font-size: 9px; color: var(--on-ink-muted); letter-spacing: 0.2em; }
@@ -499,7 +505,6 @@
     [data-typo="b"] .ph-cap .label, [data-typo="b"] .head p, [data-typo="b"] .day .label,
     [data-typo="b"] .transport dt, [data-typo="b"] .party .label, [data-typo="b"] .cp .label, [data-typo="b"] .cp-amp { color: var(--acc); }
     [data-typo="b"] .ph-cap .display { color: var(--acc); }
-    [data-typo="b"] .badge image { filter: invert(36%) sepia(93%) saturate(2400%) hue-rotate(352deg) brightness(.98); }
     [data-typo="b"] .cal .d.on::before { background: var(--acc); }
     [data-typo="b"] .cal .d.on { color: #fff; }
     [data-typo="b"] .card-back { background: var(--acc); color: #fff; }
@@ -832,6 +837,7 @@
     <!-- 09. BILLBOARD -->
     <section class="billboard">
       <div class="bb-frame reveal">
+        <span class="bb-stamp" data-closing-stamp></span>
         <figure class="ph" data-slot="closing.0" data-float="0.06"></figure>
         <div class="bb-center">
           <p class="display"><span data-bind="groom.en"></span><br /><span data-bind="bride.en"></span></p>
@@ -895,6 +901,7 @@
     /* ── 로고 ── */
     var LG = window.WEDDING_LOGOS;
     $$('[data-logo]').forEach(function (el) { el.innerHTML = LG.render(W.logo, W); });
+    $$('[data-closing-stamp]').forEach(function (el) { if (W.closingStamp) el.innerHTML = '<img src="' + W.closingStamp + '" alt="" />'; });
     $$('[data-inv-stamp]').forEach(function (el) { if (W.inviteStamp) el.innerHTML = '<img src="' + W.inviteStamp + '" alt="" />'; });
     // 섹션 제목 옆 라인 일러스트 (config.illustrations 로 교체 · 끄려면 false)
     $$('[data-illu]').forEach(function (el) {
@@ -910,6 +917,7 @@
       var syms = $$('image, svg', el), i = 0;
       syms.forEach(function (s) { s.setAttribute('class', 'sym'); });
       syms[0].classList.add('on');
+      if (syms.length < 2) el.closest('svg').classList.add('single');
       if (syms.length < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       setInterval(function () {
         if (document.hidden) return;
