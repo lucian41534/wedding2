@@ -108,7 +108,7 @@ window.WEDDING = {
   // 키네틱 타이포 시안: '' 기본 | 'a' 모노 솔리드 | 'b' 버밀리언 포스터 | 'c' 아웃라인→채움 | 'd' 마키 (루트의 타이포시안.html 에서 비교)
   typo: 'd',   // 확정: B 버밀리언 포스터
   // Invitation 레이아웃: '1' 포스터 스택 | '2' 세로 타이틀 | '3' 인포 그리드 | '4' 센터 포엠 | '5' 레터 카드 (루트 Invitation시안.html)
-  invite: '1',
+  invite: '5',   // 확정: 레터 카드
   inviteStamp: 'logo/doodle-stamp.png',   // 3·5번 레이아웃의 손그림 스탬프
   // 배지 가운데에 차례로 팝업되는 웨딩 심볼 (첫 번째 = 현재 로고)
   symbols: ['logo/doodle-sticker.png'],   // 1개면 고정 + 살짝 흔들림 · 여러 개면 팝업 순환
