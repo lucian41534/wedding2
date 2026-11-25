@@ -432,6 +432,90 @@
     .hero-bottom > *:nth-child(2) { animation-delay: 200ms; }
     .hero-bottom > *:nth-child(3) { animation-delay: 380ms; }
 
+
+    /* ═══ 키네틱 타이포 시안 (config.typo: 'a' | 'b' | 'c' | 'd', 비우면 기본) ═══
+       a 모노 솔리드 · b 버밀리언 포스터 · c 아웃라인 → 채움 · d 마키(흐르는 대형 타이포) */
+    .mega-hero { display: none; }
+    [data-typo] .wordmark { display: none; }
+    [data-typo] .illu { display: none; }
+    [data-typo] .mega-hero {
+      display: block; position: absolute; z-index: 2; left: 12px; right: 12px; top: 17%;
+      pointer-events: none; color: var(--tc-hero, #fff);
+    }
+    .mh-line {
+      display: block; white-space: nowrap; overflow: hidden; line-height: .8;
+      font-family: var(--f-display); font-weight: var(--display-weight); letter-spacing: -0.01em;
+      padding: .06em 0 .02em;
+    }
+    .mh-line.r { text-align: right; }
+    .mh-line:nth-child(3) { margin-top: .3em; }
+    [data-typo] .hero-bottom .rule-row { display: none; }
+    .mh-in { display: inline-block; transform: translate3d(var(--dx, 0px), 0, 0); will-change: transform; }
+    .mh-line:nth-child(1) .mh-in { --dx: calc(var(--sx, 0) * -70px); }
+    .mh-line:nth-child(2) .mh-in { --dx: calc(var(--sx, 0) * 90px); }
+    .mh-line:nth-child(3) .mh-in { --dx: calc(var(--sx, 0) * -50px); }
+    .ch { display: inline-block; transform: translate3d(0, 112%, 0) rotate(7deg); transform-origin: 0 100%;
+      transition: transform 1100ms cubic-bezier(.16, 1, .3, 1) calc(var(--i, 0) * 60ms + var(--ld, 0ms)); }
+    .ch.amp { font-style: var(--amp-style); }
+    body:not(.is-locked) .mega-hero .ch, .reveal.in .ch { transform: none; }
+    .mega-hero .mh-line:nth-child(2) { --ld: 180ms; }
+    .mega-hero .mh-line:nth-child(3) { --ld: 360ms; }
+
+    /* 섹션 제목: 화면 끝까지 꽉 차는 대형 타이포 + 작은 설명은 위로 */
+    [data-typo] .head { display: flex; flex-direction: column; margin-bottom: 18px; }
+    [data-typo] .head p { order: -1; margin: 0 0 6px; font-size: 13.5px; }
+    [data-typo] .head h2.mega {
+      width: calc(100% + var(--gutter) * 2); margin: 0 calc(var(--gutter) * -1); padding: .05em 8px 0;
+      overflow: hidden; white-space: nowrap; line-height: .82; position: relative; z-index: 3;
+      color: var(--tc, var(--ink));
+    }
+    [data-typo] .ink .head h2.mega { color: var(--tc-ink, var(--on-ink)); }
+    [data-typo] .about .head h2.mega { width: calc(100% + 48px); margin: 0 -24px; }
+    [data-typo] .gallery-sec .head h2.mega { width: calc(100% + 20px); margin: 0 -10px; }
+    [data-typo] .gallery-sec .head { margin-bottom: -0.9em; font-size: 38px; }
+    [data-typo] .gallery-sec .head p { font-size: 13.5px; }
+    [data-typo] .head h2.mega .mh-in { transform: translate3d(var(--hx, 0px), 0, 0); }
+
+    /* a · 모노 솔리드: 흰/검 단색, 사진 위에서는 반전(difference) */
+    [data-typo="a"] .gallery-sec .head h2.mega,
+    [data-typo="d"] .gallery-sec .head h2.mega { color: #fff; mix-blend-mode: difference; }
+
+    /* b · 버밀리언 포스터: 흑백 사진 + 강한 단색 타이포 */
+    [data-typo="b"] { --tc-hero: #EC4A26; --tc: #EC4A26; --tc-ink: #EC4A26; }
+    [data-typo="b"] .hero .ph img { filter: grayscale(1) contrast(1.12) brightness(1.04); }
+    [data-typo="b"] .hero-shade { opacity: .55; }
+    [data-typo="b"] .hero .rule-row, [data-typo="b"] .hero-kr { color: #fff; }
+    [data-typo="b"] .big-date, [data-typo="b"] .dday-num, [data-typo="b"] .bb-tag { color: #EC4A26; }
+    [data-typo="b"] .mega-hero .mh-line:nth-child(2) { mix-blend-mode: multiply; }
+
+    /* c · 아웃라인 → 채움: 외곽선으로 올라온 뒤 한 줄씩 채워짐 */
+    [data-typo="c"] .ch { color: transparent; -webkit-text-stroke: 1.4px currentColor; }
+    [data-typo="c"] .mega-hero .ch, [data-typo="c"] .head h2.mega .ch { -webkit-text-stroke-color: var(--sc, #fff); }
+    [data-typo="c"] .head h2.mega { --sc: var(--ink); }
+    [data-typo="c"] .ink .head h2.mega { --sc: var(--on-ink); }
+    [data-typo="c"] .mega-hero .ch { transition: transform 1100ms cubic-bezier(.16,1,.3,1) calc(var(--i,0) * 60ms + var(--ld,0ms)), color 900ms ease calc(var(--i,0) * 60ms + var(--ld,0ms) + 1000ms); }
+    body[data-typo="c"]:not(.is-locked) .mega-hero .mh-line:not(:nth-child(2)) .ch { color: #fff; }
+    [data-typo="c"] .head h2.mega .ch { -webkit-text-stroke-width: 1.2px; }
+
+    /* d · 마키: 대형 타이포가 좌우로 계속 흐름 */
+    [data-typo="d"] .mega-hero { left: 0; right: 0; top: 16%; mix-blend-mode: difference; }
+    [data-typo="d"] .mh-line { font-size: 31vw; }
+    [data-typo="d"] .mh-line:nth-child(2) { font-size: 24vw; }
+    [data-typo="d"] .mh-line:nth-child(3) { font-size: 18vw; }
+    .track { display: inline-flex; gap: .28em; animation: marq var(--ms, 26s) linear infinite; }
+    .track i { font-style: normal; opacity: .5; }
+    .mh-line:nth-child(2) .track, .ink .head .track { animation-direction: reverse; }
+    .mh-line:nth-child(3) .track { --ms: 20s; }
+    [data-typo="d"] .head h2.mega { font-size: 26vw; }
+    [data-typo="d"] .head h2.mega .track { --ms: 30s; }
+    @keyframes marq { to { transform: translate3d(-50%, 0, 0); } }
+    @media (min-width: 1024px) {
+      [data-typo="d"] .mh-line { font-size: 15vw; }
+      [data-typo="d"] .mh-line:nth-child(2) { font-size: 11vw; }
+      [data-typo="d"] .mh-line:nth-child(3) { font-size: 8vw; }
+      [data-typo="d"] .head h2.mega { font-size: 160px; }
+    }
+
     @keyframes introIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
     @keyframes cue { 0%, 100% { opacity: .25; transform: translateX(-50%) scaleY(.7); } 50% { opacity: 1; transform: translateX(-50%) scaleY(1); } }
 
@@ -513,6 +597,11 @@
     <section class="hero" id="top">
       <figure class="ph" data-slot="hero" data-label-y="0.4"></figure>
       <div class="hero-shade"></div>
+      <div class="mega-hero" aria-hidden="true">
+        <span class="mh-line" data-fit="0.62"><span class="mh-in" data-split data-bind="groom.en"></span></span>
+        <span class="mh-line r" data-fit="1"><span class="mh-in" data-split>&amp; <span data-bind="bride.en"></span></span></span>
+        <span class="mh-line" data-fit="0.74"><span class="mh-in" data-split data-bind="date.euro"></span></span>
+      </div>
       <div class="hero-top">
         <span class="label">Two hearts &amp;<br />one promise</span>
         <span class="logo" data-logo></span>
@@ -1079,6 +1168,49 @@
     }
     initMap();
 
+
+    /* ── 키네틱 타이포 시안 ── */
+    var TY = W.typo || '';
+    if (TY) {
+      document.body.dataset.typo = TY;
+      $$('.head h2').forEach(function (h) {
+        h.classList.add('mega');
+        h.innerHTML = '<span class="mh-in" data-split>' + h.textContent + '</span>';
+      });
+      if (TY === 'd') {
+        $$('[data-split]').forEach(function (el) {
+          var u = '<span>' + el.textContent.trim() + '</span><i>/</i>';
+          var rep = new Array(5).join(u);
+          el.innerHTML = '<span class="track">' + rep + rep + '</span>';
+        });
+      } else {
+        $$('[data-split]').forEach(function (el) {
+          var t = el.textContent; el.textContent = '';
+          Array.from(t).forEach(function (c, i) {
+            var s = document.createElement('span');
+            s.className = 'ch' + (c === '&' ? ' amp' : '');
+            s.style.setProperty('--i', i);
+            s.textContent = c === ' ' ? '\u00a0' : c;
+            el.appendChild(s);
+          });
+        });
+        var fitTypo = function () {
+          $$('.mh-line, .head h2.mega').forEach(function (l) {
+            var inn = $('.mh-in', l); if (!inn) return;
+            l.style.fontSize = '100px';
+            var w = inn.getBoundingClientRect().width;
+            var cs = getComputedStyle(l);
+            var tw = (l.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight)) * parseFloat(l.dataset.fit || 1);
+            if (w) l.style.fontSize = Math.min(100 * tw / w, l.matches('h2') ? 190 : 400).toFixed(1) + 'px';
+          });
+        };
+        fitTypo();
+        (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fitTypo);
+        window.addEventListener('resize', fitTypo);
+      }
+    }
+    var megaHeads = $$('.head h2.mega');
+
     /* ── 스크롤 모션 ── */
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
@@ -1114,6 +1246,14 @@
         heroBottom.style.opacity = (1 - k).toFixed(3);
         heroShade.style.opacity = (1 + k * 0.6).toFixed(3);
       } else { heroBottom.style.transform = ''; heroBottom.style.opacity = ''; }
+      if (TY) {
+        heroEl.style.setProperty('--sx', Math.min(y / vh, 1.4).toFixed(3));
+        megaHeads.forEach(function (h) {
+          var r = h.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > vh) return;
+          h.style.setProperty('--hx', (((r.top + r.height / 2) / vh - 0.5) * 60).toFixed(1) + 'px');
+        });
+      }
       var lr = locEl.getBoundingClientRect();
       floatNav.classList.toggle('show', !desktop.matches && y > vh * 0.8 && (lr.top > vh || lr.bottom < 0));
     }

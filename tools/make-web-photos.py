@@ -13,9 +13,15 @@ os.makedirs(OUT, exist_ok=True)
 for f in os.listdir(OUT):
     os.remove(os.path.join(OUT, f))
 total = 0
+# 같은 번호가 여러 개면 png(보정본) 우선
+pick = {}
 for name in sorted(os.listdir(SRC)):
     if not name.lower().endswith(EXT):
         continue
+    b = os.path.splitext(name)[0]
+    if b not in pick or name.lower().endswith('.png'):
+        pick[b] = name
+for name in sorted(pick.values()):
     im = ImageOps.exif_transpose(Image.open(os.path.join(SRC, name)))
     if im.mode in ('RGBA', 'LA', 'P'):
         im = im.convert('RGBA')

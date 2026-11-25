@@ -104,7 +104,9 @@ window.WEDDING = {
   badgeTop: 'Hand in hand,<br>rain or shine',   // 배지 위 문구 (왼쪽 정렬)
   badgeBottom: 'Season after<br>season',        // 배지 아래 문구 (오른쪽 정렬)
   // 섹션 제목 옆 라인 일러스트 (기본: logo/<이름>.png · 전부 끄려면 illustrations: false)
-  illustrations: { laurel: 'logo/laurel.png', cosmos: 'logo/cosmos.png', arch: 'logo/arch.png', doves: 'logo/doves.png' },
+  illustrations: false,   // 예: { laurel: 'logo/laurel.png', cosmos: 'logo/cosmos.png', arch: 'logo/arch.png', doves: 'logo/doves.png' }
+  // 키네틱 타이포 시안: '' 기본 | 'a' 모노 솔리드 | 'b' 버밀리언 포스터 | 'c' 아웃라인→채움 | 'd' 마키 (루트의 타이포시안.html 에서 비교)
+  typo: '',
   // 배지 가운데에 차례로 팝업되는 웨딩 심볼 (첫 번째 = 현재 로고)
   symbols: ['logo/rings.png', 'logo/doves.png', 'logo/laurel.png', 'logo/cosmos.png', 'logo/arch.png'],
   symbolMs: 2400,
