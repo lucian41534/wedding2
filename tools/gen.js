@@ -194,3 +194,6 @@ fs.writeFileSync(path.join(OUT, '최신시안.html'), `<!DOCTYPE html>
 <body><a href="${encodeURI(latest.dir)}/index.html">최신 시안 열기 · ${latest.name}</a></body></html>
 `);
 console.log('done · 최신시안 →', latest.dir);
+
+// B안 폰트 시안
+console.log('B 폰트 시안', require('./gen-bfonts.js')({ OUT, tpl, config, logos, G }), '종');
