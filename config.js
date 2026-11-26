@@ -59,7 +59,7 @@ window.WEDDING = {
     // 갤러리: 아래 사진들이 galleryCells 칸 안에서 차례로 팝아웃 → 팝인 (순서대로 순환)
     gallery: [
       '2.jpg', '20.jpg', '6.jpg', '42.jpg', '12.jpg', '22.jpg', '8.jpg', '13.jpg',
-      '25.jpg', '29.jpg', '36.jpg', '38.jpg', '41.jpg', '44.jpg', '45.jpg'
+      '25.jpg', '29.jpg', '18.jpg', '35.jpg', '36.jpg', '38.jpg', '41.jpg', '44.jpg', '45.jpg'
     ],
     galleryCells: 6,                  // 갤러리 칸 수 (4~6)
     galleryMs: 1700,                  // 한 칸씩 바뀌는 간격 (ms)
