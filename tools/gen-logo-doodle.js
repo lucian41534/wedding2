@@ -25,7 +25,16 @@ const P = {
   cake:     [BLACK, 'A tall three-tier wedding cake with tiny frosting dots and a little doodle couple figure standing on top, a few confetti dots around.'],
   dance:    [RED,   'The bride and groom spinning in a dance, her dress flaring out, swirl motion lines and a few music notes and stars around them.'],
   letter:   [RED,   'An envelope with a heart seal, slightly opened with a little card peeking out, three small flowers growing from behind it, playful.'],
-  walk:     [BLACK, 'A couple seen from behind walking away hand in hand on a city street at night, tiny crayon-drawn neon sign shapes and street lamps around, a crescent moon.']
+  walk:     [BLACK, 'A couple seen from behind walking away hand in hand on a city street at night, tiny crayon-drawn neon sign shapes and street lamps around, a crescent moon.'],
+  // ── Invitation 시안용 소품 ──
+  'inv-envelope': [RED, 'An open envelope seen from the front, a folded letter card popping out of it upward, three small hearts and little sparkle strokes bursting out of the envelope.'],
+  'inv-route':    [RED, 'A wide horizontal scene: a tiny house on the far left and another tiny house on the far right, a long wobbly dotted path winding from each house and meeting in the middle at a big heart, a few tiny trees along the path.'],
+  'inv-autumn':   [RED, 'A loose scattered sprinkle of falling autumn leaves: ginkgo leaves and small maple leaves of different sizes tumbling down, with tiny motion strokes, spread over the whole square.'],
+  'inv-bouquet':  [RED, 'A hand-tied wedding bouquet of simple five-petal flowers and cosmos with long stems wrapped by a ribbon bow with long flowing ribbon tails.'],
+  'inv-scribble': [RED, 'Hand-lettered brush script words "you are invited!" written casually, with a looping underline swash and two tiny stars, nothing else.'],
+  'inv-peek':     [RED, 'The groom and the bride peeking over a straight horizontal edge line, only their heads, eyes and little hands visible above the line, the bride with a veil, a tiny heart floating between them, playful.'],
+  'inv-walkline': [RED, 'A very wide horizontal strip: a long straight wobbly ground line across the whole width, a tiny couple walking hand in hand on the right part of the line, small footprints dotted behind them, a little heart above them.'],
+  'inv-ticket':   [RED, 'A hand-drawn admission ticket with a wobbly outline, notched round cut-outs on both sides and a dashed perforation line near the right end, hand-lettered "ADMIT TWO" in the middle and a small star, empty otherwise.']
 };
 
 async function gen(key) {
@@ -33,7 +42,7 @@ async function gen(key) {
   const res = await fetch('https://api.openai.com/v1/images/generations', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + process.env.OPENAI_API_KEY },
-    body: JSON.stringify({ model: MODEL, prompt: BASE(ink) + 'Subject: ' + subject, size: '1024x1024', quality: 'high', output_format: 'png', n: 1 })
+    body: JSON.stringify({ model: MODEL, prompt: BASE(ink) + 'Subject: ' + subject, size: /route|walkline|ticket/.test(key) ? '1536x1024' : '1024x1024', quality: 'high', output_format: 'png', n: 1 })
   });
   const j = await res.json();
   if (!res.ok) throw new Error(key + ': ' + (j.error && j.error.message || res.status));

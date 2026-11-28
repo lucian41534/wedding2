@@ -609,6 +609,133 @@
     [data-invite="5"] .inv-sign { display: block; margin-top: 22px; text-align: right; font-size: 34px; color: var(--acc, var(--ink)); }
     [data-invite="5"] .couple { margin-top: 24px; }
 
+    /* ── Invitation 시안 6~13 (손그림 소품 · assets/logo/inv-*.png) ── */
+    .inv-art, .inv-ribbon, .inv-mast, .inv-mega, .inv-photo, .inv-stub { display: none; }
+    .inv-art:not(:empty) { display: block; pointer-events: none; }
+    .inv-art img { display: block; width: 100%; height: auto; }
+    .about-block { position: relative; }
+    .inv-mega .mh-line { line-height: .82; text-transform: uppercase; color: var(--acc, var(--ink)); }
+    .inv-mega .mh-line:nth-child(2) { text-align: right; }
+    .inv-mast b { display: block; font-size: 40px; line-height: 1; letter-spacing: -.01em; text-align: center; }
+    .inv-stub .display { display: block; font-size: 40px; line-height: 1; text-transform: uppercase; }
+    @keyframes ribbon { to { transform: translateX(-50%); } }
+    .inv-ribbon span { display: inline-block; animation: ribbon 18s linear infinite; }
+    .inv-ribbon.r2 span { animation-direction: reverse; }
+
+    /* 6 · 봉투: 버밀리언 바탕, 손글씨 "you are invited!" + 카드 아래 봉투 */
+    [data-invite="6"] .about { background: var(--acc, var(--ink)); padding-top: 52px; }
+    [data-invite="6"] .about .head { display: none; }
+    [data-invite="6"] .inv-art-top { width: 74%; margin: 0 auto -18px; position: relative; z-index: 2; rotate: -4deg; }
+    [data-invite="6"] .inv-art-top img { filter: brightness(0) invert(1); }
+    [data-invite="6"] .inv-body, [data-invite="6"] .couple, [data-invite="6"] .inv-dear { position: relative; z-index: 1; }
+    [data-invite="6"] .about-block > .inv-dear { display: block; background: #FBFAF7; margin: 0; padding: 40px 24px 14px; color: var(--acc); font-size: 12px; }
+    [data-invite="6"] .inv-body { background: #FBFAF7; padding: 0 24px; }
+    [data-invite="6"] .couple { background: #FBFAF7; margin: 0; padding: 22px 24px 30px; border-top: 0; }
+    [data-invite="6"] .inv-art-bottom { width: 46%; margin: -36px auto 0; position: relative; z-index: 2; }
+    [data-invite="6"] .inv-art-bottom img { filter: brightness(0) invert(1) drop-shadow(0 10px 18px rgba(0,0,0,.18)); }
+
+    /* 7 · 티켓: 손그림 ADMIT TWO + 절취선 있는 버밀리언 티켓 */
+    [data-invite="7"] .about { background: var(--paper-2); }
+    [data-invite="7"] .about .head { display: none; }
+    [data-invite="7"] .inv-art-top { width: 62%; margin: 0 auto 22px; rotate: -5deg; }
+    [data-invite="7"] .about-block { background: var(--acc, var(--ink)); color: #fff; padding: 30px 24px 0; border-radius: 6px; }
+    [data-invite="7"] .about-block .kr-body { color: rgba(255,255,255,.95); }
+    [data-invite="7"] .inv-meta { display: block; margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.35); }
+    [data-invite="7"] .inv-meta .label, [data-invite="7"] .cp .label, [data-invite="7"] .cp-en, [data-invite="7"] .cp-amp, [data-invite="7"] .inv-date { color: #fff; }
+    [data-invite="7"] .inv-date { font-size: 64px; }
+    [data-invite="7"] .couple { border-top-color: rgba(255,255,255,.35); }
+    [data-invite="7"] .inv-stub {
+      display: flex; justify-content: space-between; align-items: center; position: relative;
+      margin: 28px -24px 0; padding: 18px 24px 20px; border-top: 2px dashed rgba(255,255,255,.7);
+    }
+    [data-invite="7"] .inv-stub::before, [data-invite="7"] .inv-stub::after {
+      content: ''; position: absolute; top: -15px; width: 28px; height: 28px; border-radius: 50%; background: var(--paper-2);
+    }
+    [data-invite="7"] .inv-stub::before { left: -14px; } [data-invite="7"] .inv-stub::after { right: -14px; }
+    [data-invite="7"] .inv-stub .label { color: #fff; }
+    [data-invite="7"] .about-block { max-width: 340px; }
+    [data-invite="7"] .inv-art-top { position: absolute; left: 50%; top: -112px; translate: -50% 0; width: 200px; margin: 0; }
+    [data-invite="7"] .about { padding-top: 150px; }
+    [data-invite="7"] .inv-art-top img { filter: none; }
+
+    /* 8 · 메가 타이포: WE'RE GETTING MARRIED 가 화면을 채우고 낙엽이 흩날림 */
+    [data-invite="8"] .about { overflow: hidden; }
+    [data-invite="8"] .about .head { display: none; }
+    [data-invite="8"] .inv-mega { display: block; margin: 0 -8px 26px; }
+    [data-invite="8"] .inv-art-bg { position: absolute; inset: -40px -60px auto; opacity: .3; z-index: 0; }
+    [data-invite="8"] .inv-mega, [data-invite="8"] .inv-meta, [data-invite="8"] .inv-body, [data-invite="8"] .couple { position: relative; z-index: 1; }
+    [data-invite="8"] .inv-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px; padding: 12px 0; border-top: 2px solid var(--acc, var(--ink)); border-bottom: 1px solid var(--line); }
+    [data-invite="8"] .inv-meta > .label:first-child { display: none; }
+    [data-invite="8"] .inv-date { font-size: 34px; margin: 0; }
+    [data-invite="8"] .kr-body { font-size: 18px; }
+    [data-invite="8"] .about-block { max-width: none; }
+
+    /* 9 · 두 집에서 하나의 길: 이름 → 손그림 길 → 날짜 → 본문 */
+    [data-invite="9"] .about .head { display: none; }
+    [data-invite="9"] .about-block { display: flex; flex-direction: column; max-width: none; }
+    [data-invite="9"] .couple { order: 1; margin: 0; padding: 0; border: 0; }
+    [data-invite="9"] .cp-amp { visibility: hidden; }
+    [data-invite="9"] .cp-kr { font-size: clamp(40px, 12vw, 54px); }
+    [data-invite="9"] .inv-art-route { order: 2; margin: 10px -12px 0; }
+    [data-invite="9"] .inv-meta { order: 3; display: block; text-align: center; margin: 6px 0 30px; }
+    [data-invite="9"] .inv-date { font-size: 72px; }
+    [data-invite="9"] .inv-body { order: 4; text-align: center; }
+
+    /* 10 · 빼꼼: 버밀리언 카드 위로 두 사람이 빼꼼 */
+    [data-invite="10"] .about { padding-top: 130px; }
+    [data-invite="10"] .about .head { display: none; }
+    [data-invite="10"] .about-block { background: var(--acc, var(--ink)); padding: 40px 24px 30px; border-radius: 28px 28px 6px 6px; }
+    [data-invite="10"] .inv-art-top { position: absolute; left: 6%; right: 6%; bottom: calc(100% - 6px); }
+    [data-invite="10"] .inv-meta { display: block; text-align: center; margin-bottom: 26px; }
+    [data-invite="10"] .inv-date { font-size: 60px; }
+    [data-invite="10"] .about-block, [data-invite="10"] .about-block .kr-body,
+    [data-invite="10"] .about-block .label, [data-invite="10"] .cp-en, [data-invite="10"] .cp-amp, [data-invite="10"] .inv-date { color: #fff; }
+    [data-invite="10"] .kr-body { text-align: center; }
+    [data-invite="10"] .couple { border-top-color: rgba(255,255,255,.4); }
+
+    /* 11 · 콜라주: 테이프 붙인 폴라로이드 + 카드 + 꽃다발 */
+    [data-invite="11"] .about { background: var(--paper-2); overflow: hidden; }
+    [data-invite="11"] .about .head { display: none; }
+    [data-invite="11"] .inv-photo { display: block; width: 66%; aspect-ratio: 4 / 5; margin: 0 0 -60px 4%; rotate: -5deg; z-index: 2;
+      border: 10px solid #fff; border-bottom-width: 38px; box-shadow: 0 18px 40px rgba(0,0,0,.2); }
+    [data-invite="11"] .about-block::before { content: ''; position: absolute; z-index: 4; top: -12px; left: 28%; width: 96px; height: 28px; rotate: -2deg; background: rgba(236,74,38,.6); }
+    [data-invite="11"] .inv-art-top { position: absolute; z-index: 3; right: -24px; top: 10px; width: 46%; rotate: 12deg; }
+    [data-invite="11"] .inv-dear, [data-invite="11"] .inv-body, [data-invite="11"] .couple { background: #FBFAF7; position: relative; z-index: 1; }
+    [data-invite="11"] .about-block > .inv-dear { display: block; margin: 0; padding: 82px 24px 14px; color: var(--acc); font-size: 12px; }
+    [data-invite="11"] .inv-body { padding: 0 24px; }
+    [data-invite="11"] .couple { margin: 0; padding: 22px 24px 28px; border-top: 0; }
+    [data-invite="11"] .inv-stamp { display: block; position: absolute; z-index: 3; left: -14px; bottom: -84px; width: 100px; rotate: -10deg; }
+    [data-invite="11"] .about { padding-bottom: 110px; }
+
+    /* 12 · 신문: THE JUN & YUNJI TIMES 1면 */
+    [data-invite="12"] .about { background: #F4F0E6; }
+    [data-invite="12"] .about .head { display: none; }
+    [data-invite="12"] .about-block { max-width: none; }
+    [data-invite="12"] .inv-mast { display: block; text-align: center; padding-bottom: 10px; border-bottom: 3px double var(--ink); }
+    [data-invite="12"] .inv-mast .label { display: block; font-size: 10.5px; color: var(--muted); }
+    [data-invite="12"] .inv-mast b { margin: 8px 0; font-size: clamp(28px, 8.6vw, 44px); white-space: nowrap; }
+    [data-invite="12"] .inv-mega { display: block; margin: 18px 0 10px; }
+    [data-invite="12"] .inv-mega .mh-line { color: var(--ink); text-align: left; }
+    [data-invite="12"] .inv-mega .mh-line:nth-child(3) { color: var(--acc, var(--ink)); }
+    [data-invite="12"] .inv-photo { display: block; aspect-ratio: 3 / 2; margin: 6px 0 16px; }
+    [data-invite="12"] .inv-body { columns: 2; column-gap: 18px; column-rule: 1px solid var(--line); padding-top: 14px; border-top: 1px solid var(--ink); }
+    [data-invite="12"] .kr-body { font-size: 14.5px; line-height: 1.85; break-inside: avoid; }
+    [data-invite="12"] .couple { border-top: 3px double var(--ink); }
+
+    /* 13 · 리본: 교차하는 SAVE THE DATE 띠 + 한 줄 걷는 두 사람 */
+    [data-invite="13"] .about { overflow: hidden; padding-top: 150px; }
+    [data-invite="13"] .about .head { display: none; }
+    [data-invite="13"] .inv-ribbon {
+      display: block; position: absolute; top: -118px; left: -40%; right: -40%; z-index: 2; overflow: hidden; white-space: nowrap;
+      background: var(--acc, var(--ink)); color: #fff; padding: 12px 0 9px; rotate: -7deg;
+      font-family: var(--f-display); font-size: 30px; letter-spacing: .02em; line-height: 1;
+    }
+    [data-invite="13"] .inv-ribbon.r2 { top: -72px; rotate: 5deg; background: var(--ink); z-index: 1; font-size: 22px; }
+    [data-invite="13"] .inv-meta { display: block; text-align: center; margin-bottom: 26px; }
+    [data-invite="13"] .inv-date { font-size: 60px; }
+    [data-invite="13"] .kr-body { text-align: center; }
+    [data-invite="13"] .inv-art-bottom { margin: 30px -12px 0; }
+
     /* 본문 타자 효과: 화면에 들어오면 한 글자씩 타이핑, 벗어나면 거꾸로 지워짐 */
     .tw .c { opacity: 0; transition: opacity 60ms linear; transition-delay: calc((var(--n, 0) - var(--i, 0)) * 6ms); }
     .tw.on .c { opacity: 1; transition-delay: calc(var(--i, 0) * 22ms); }
@@ -638,6 +765,7 @@
       }
       .hero-top .label { font-size: 11px; }
       .hero-top .logo > * { height: 64px; max-width: 160px; }
+      [data-typo] .mega-hero { top: 6%; left: 40px; right: 40px; }
       .wordmark { font-size: clamp(64px, 6.4vw, 110px); }
       .wordmark span { display: inline; }
       .wordmark .amp { display: inline; font-size: 0.5em; margin: 0 0.25em; vertical-align: 0.35em; }
@@ -693,8 +821,8 @@
       <figure class="ph" data-slot="hero" data-label-y="0.4"></figure>
       <div class="hero-shade"></div>
       <div class="mega-hero" aria-hidden="true">
-        <span class="mh-line" data-fit="0.5" data-max="0.13"><span class="mh-in" data-split data-bind="groom.en"></span></span>
-        <span class="mh-line r" data-fit="0.84" data-max="0.11"><span class="mh-in" data-split>&amp; <span data-bind="bride.en"></span></span></span>
+        <span class="mh-line" data-fit="0.66"><span class="mh-in" data-split data-bind="groom.en"></span></span>
+        <span class="mh-line r" data-fit="1"><span class="mh-in" data-split>&amp; <span data-bind="bride.en"></span></span></span>
       </div>
       <div class="hero-top">
         <span class="logo" data-logo></span>
@@ -711,7 +839,22 @@
     <!-- 02. INVITATION -->
     <section class="sec about" id="invitation">
       <div class="about-block reveal">
+        <span class="inv-art inv-art-bg" data-inv-art="bg" aria-hidden="true"></span>
+        <div class="inv-ribbon" aria-hidden="true"><span>SAVE THE DATE &nbsp;✺&nbsp; <b data-bind="date.euro"></b> &nbsp;✺&nbsp; JUN &amp; YUNJI &nbsp;✺&nbsp; SAVE THE DATE &nbsp;✺&nbsp; <b data-bind="date.euro"></b> &nbsp;✺&nbsp; JUN &amp; YUNJI &nbsp;✺&nbsp;</span></div>
+        <div class="inv-ribbon r2" aria-hidden="true"><span>WE ARE GETTING MARRIED &nbsp;✺&nbsp; WE ARE GETTING MARRIED &nbsp;✺&nbsp; WE ARE GETTING MARRIED &nbsp;✺&nbsp; WE ARE GETTING MARRIED &nbsp;✺&nbsp;</span></div>
         <div class="head"><h2 class="display">Invitation</h2><span class="illu" data-illu="laurel"></span></div>
+        <span class="inv-art inv-art-top" data-inv-art="top" aria-hidden="true"></span>
+        <div class="inv-mast">
+          <span class="label">Vol. 01 · Special edition</span>
+          <b class="display">The Jun &amp; Yunji Times</b>
+          <span class="label"><span data-bind="date.weekdayEn"></span> · <span data-bind="date.euro"></span> · Seoul</span>
+        </div>
+        <div class="inv-mega display" aria-hidden="true">
+          <span class="mh-line" data-fit="1"><span class="mh-in" data-split>We're</span></span>
+          <span class="mh-line" data-fit="1"><span class="mh-in" data-split>getting</span></span>
+          <span class="mh-line" data-fit="1"><span class="mh-in" data-split>married</span></span>
+        </div>
+        <figure class="ph inv-photo" data-slot="invitePhoto"></figure>
         <span class="inv-vert display" aria-hidden="true">Invitation</span>
         <div class="inv-meta">
           <span class="label">We are getting married</span>
@@ -749,6 +892,12 @@
           </div>
         </div>
         <p class="display inv-sign"><span data-bind="groom.en"></span> <span class="amp">&amp;</span> <span data-bind="bride.en"></span></p>
+        <span class="inv-art inv-art-route" data-inv-art="route" aria-hidden="true"></span>
+        <div class="inv-stub">
+          <span class="display">Admit two</span>
+          <span class="label"><span data-bind="date.euro"></span> · <span data-bind="date.timeEn"></span></span>
+        </div>
+        <span class="inv-art inv-art-bottom" data-inv-art="bottom" aria-hidden="true"></span>
       </div>
     </section>
 
@@ -909,6 +1058,8 @@
     var LG = window.WEDDING_LOGOS;
     $$('[data-logo]').forEach(function (el) { el.innerHTML = LG.render(W.logo, W); });
     $$('[data-closing-stamp]').forEach(function (el) { if (W.closingStamp) el.innerHTML = '<img src="' + W.closingStamp + '" alt="" />'; });
+    var invArt = (W.inviteArt || {})[W.invite] || {};
+    $$('[data-inv-art]').forEach(function (el) { var k = invArt[el.dataset.invArt]; if (k) el.innerHTML = '<img src="' + k + '" alt="" />'; });
     $$('[data-inv-stamp]').forEach(function (el) { if (W.inviteStamp) el.innerHTML = '<img src="' + W.inviteStamp + '" alt="" />'; });
     // 섹션 제목 옆 라인 일러스트 (config.illustrations 로 교체 · 끄려면 false)
     $$('[data-illu]').forEach(function (el) {
@@ -1039,7 +1190,7 @@
       img.style.objectPosition = entry.pos;
       if (entry.filter) fig.dataset.filter = entry.filter; else delete fig.dataset.filter;
       if (!fig.querySelector('.grain')) { var gr = document.createElement('i'); gr.className = 'grain'; fig.appendChild(gr); }
-      img.onload = function () { fig.appendChild(img); setTimeout(function () { fig.classList.add('is-loaded'); }, 30); };
+      img.onload = function () { fig.appendChild(img); setTimeout(function () { fig.classList.add('is-loaded'); }, 30); if (fig.dataset.slot === 'hero' && window.__fitTypo) window.__fitTypo(); };
       // images/ 에 실제 사진이 없으면 견본 사진(sampleDir)으로 대체
       var fallback = W.photos.sampleDir && !/^(https?:|data:|blob:)/.test(entry.src)
         ? W.photos.sampleDir + entry.src.split('/').pop() : '';
@@ -1345,7 +1496,22 @@
             if (l.dataset.max) cap = Math.min(cap, $('.hero').clientHeight * parseFloat(l.dataset.max));
             if (w) l.style.fontSize = Math.min(100 * tw / w, cap).toFixed(1) + 'px';
           });
+          // 이름 블록 아래끝이 사진 속 얼굴(머리 끝) 위에서 멈추도록 비율 축소
+          var mh = $('.mega-hero'), hero = $('.hero'), him = $('.hero > .ph img');
+          if (mh && hero && him && him.naturalWidth && W.heroLimit) {
+            var hr = hero.getBoundingClientRect(), Wd = hr.width, Ht = hr.height;
+            var sc = Math.max(Wd / him.naturalWidth, Ht / him.naturalHeight);
+            var py = parseFloat((getComputedStyle(him).objectPosition.split(' ')[1]) || '50') / 100;
+            var imgH = him.naturalHeight * sc, off = (Ht - imgH) * py;
+            var limit = off + imgH * W.heroLimit;            // 히어로 기준 y(px)
+            var mr = mh.getBoundingClientRect(), top = mr.top - hr.top, bot = mr.bottom - hr.top;
+            if (bot > limit && bot > top) {
+              var k = Math.max(0.3, (limit - top) / (bot - top));
+              $$('.mh-line', mh).forEach(function (l) { l.style.fontSize = (parseFloat(l.style.fontSize) * k).toFixed(1) + 'px'; });
+            }
+          }
         };
+        window.__fitTypo = fitTypo;
         fitTypo();
         (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(fitTypo);
         window.addEventListener('resize', fitTypo);
@@ -1389,7 +1555,8 @@
         heroShade.style.opacity = (1 + k * 0.6).toFixed(3);
       } else { heroBottom.style.transform = ''; heroBottom.style.opacity = ''; }
       if (TY) {
-        heroEl.style.setProperty('--sx', Math.min(y / vh, 1.4).toFixed(3));
+        // PC(고정 히어로)에서는 이름이 옆으로 빠지지 않게 드리프트 끔
+        heroEl.style.setProperty('--sx', matchMedia('(min-width: 1024px)').matches ? 0 : Math.min(y / vh, 1.4).toFixed(3));
         megaHeads.forEach(function (h) {
           var r = h.getBoundingClientRect();
           if (r.bottom < 0 || r.top > vh) return;

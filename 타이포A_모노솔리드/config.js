@@ -54,7 +54,8 @@ window.WEDDING = {
     sampleDir: '../assets/sample/',   // 파일이 없을 때 흑백 견본으로 대체. 끄려면 ''
     hero:   '40.jpg',                 // 최상단
     couple: '5.jpg',                  // Our day 큰 사진
-    detail: '23.jpg',                 // Our day 아래 겹치는 사진 (배지 옆)
+    detail: '23.jpg',
+    invitePhoto: '2.jpg',            // Invitation 11·12번 시안의 사진                 // Our day 아래 겹치는 사진 (배지 옆)
     closing: ['43.jpg', '39.jpg'],    // 마지막 빌보드 좌/우
     // 갤러리: 아래 사진들이 galleryCells 칸 안에서 차례로 팝아웃 → 팝인 (순서대로 순환)
     gallery: [
@@ -106,10 +107,21 @@ window.WEDDING = {
   // 섹션 제목 옆 라인 일러스트 (기본: logo/<이름>.png · 전부 끄려면 illustrations: false)
   illustrations: false,   // 예: { laurel: 'logo/laurel.png', cosmos: 'logo/cosmos.png', arch: 'logo/arch.png', doves: 'logo/doves.png' }
   // 키네틱 타이포 시안: '' 기본 | 'a' 모노 솔리드 | 'b' 버밀리언 포스터 | 'c' 아웃라인→채움 | 'd' 마키 (루트의 타이포시안.html 에서 비교)
+  heroLimit: 0.425,   // 메인 이름 타이포 아래 한계선 (히어로 사진 높이 대비 · 얼굴 머리끝 ≈ 0.445)
   typo: 'a',   // 확정: B 버밀리언 포스터
   // Invitation 레이아웃: '1' 포스터 스택 | '2' 세로 타이틀 | '3' 인포 그리드 | '4' 센터 포엠 | '5' 레터 카드 (루트 Invitation시안.html)
   invite: '5',   // 확정: 레터 카드
-  inviteStamp: 'logo/doodle-stamp.png',   // 3·5번 레이아웃의 손그림 스탬프
+  inviteStamp: 'logo/doodle-stamp.png',
+  // Invitation 시안 6~13 손그림 소품 (레이아웃 번호별)
+  inviteArt: {
+    '6':  { top: 'logo/inv-scribble.png', bottom: 'logo/inv-envelope.png' },
+    '7':  { top: 'logo/inv-ticket.png' },
+    '8':  { bg: 'logo/inv-autumn.png' },
+    '9':  { route: 'logo/inv-route.png' },
+    '10': { top: 'logo/inv-peek.png' },
+    '11': { top: 'logo/inv-bouquet.png' },
+    '13': { bottom: 'logo/inv-walkline.png' }
+  },   // 3·5번 레이아웃의 손그림 스탬프
   // 배지 가운데에 차례로 팝업되는 웨딩 심볼 (첫 번째 = 현재 로고)
   symbols: ['logo/doodle-sticker.png'],   // 1개면 고정 + 살짝 흔들림 · 여러 개면 팝업 순환
   closingStamp: 'logo/doodle-stamp.png',   // 마지막 빌보드 모서리 스탬프 (끄려면 '')

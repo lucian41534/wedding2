@@ -8,7 +8,15 @@ module.exports = function ({ OUT }) {
     ['2', 'Vertical Title', '왼쪽에 세로로 선 대형 INVITATION, 오른쪽에 날짜·본문·이름. 포스터 측면 타이포.'],
     ['3', 'Info Grid', '스위스 포스터식 칸 나눔: 날짜 칸 + 손그림 스탬프 칸, 아래 본문과 이름. 레퍼런스의 정보 블록 느낌.'],
     ['4', 'Center Poem', '큰 날짜 아래 본문을 크게 가운데 정렬, 이름은 현준 / & / 하윤지 세로로 크게.'],
-    ['5', 'Letter Card', '살짝 기울어진 종이 카드에 손그림 스탬프, Dear our beloved, 마지막에 서명.']
+    ['5', 'Letter Card', '살짝 기울어진 종이 카드에 손그림 스탬프, Dear our beloved, 마지막에 서명. (현재 적용)'],
+    ['6', 'Envelope', 'NEW · 버밀리언 바탕에 손글씨 you are invited! 와 카드 아래 열린 봉투.'],
+    ['7', 'Ticket', 'NEW · 손그림 ADMIT TWO 아래 절취선 있는 버밀리언 입장권. 날짜를 크게.'],
+    ['8', 'Mega Type', "NEW · WE'RE GETTING MARRIED 가 화면을 꽉 채우고 뒤로 낙엽이 흩날림."],
+    ['9', 'Two Houses', 'NEW · 신랑·신부 이름 아래 두 집에서 이어진 손그림 길이 하트에서 만남, 그 아래 날짜.'],
+    ['10', 'Peek-a-boo', 'NEW · 버밀리언 카드 위 모서리에 두 사람이 빼꼼. 흰 글씨.'],
+    ['11', 'Collage', 'NEW · 테이프 붙인 폴라로이드 사진 + 카드 + 꽃다발 + 스탬프 콜라주.'],
+    ['12', 'Newspaper', 'NEW · THE JUN & YUNJI TIMES 신문 1면. 헤드라인, 사진, 2단 본문.'],
+    ['13', 'Ribbon', 'NEW · 교차하는 SAVE THE DATE 띠가 흐르고, 아래 한 줄 위를 걷는 두 사람.']
   ];
   const src = (n) => encodeURI('타이포B_버밀리언/index.html') + `?invite=${n}&nointro=1#invitation`;
   fs.writeFileSync(path.join(OUT, 'Invitation시안.html'), `<!DOCTYPE html>
@@ -25,7 +33,7 @@ module.exports = function ({ OUT }) {
   h2 { font-size: 14px; font-weight: 600; margin: 22px 0 6px; } p { font-size: 13px; color: rgba(242,241,238,.6); margin: 0 0 10px; line-height: 1.6; }
   a { color: #F2F1EE; font-size: 12px; }
 </style></head>
-<body><header><h1>INVITATION LAYOUT DRAFTS · 5</h1><p>B안(버밀리언 포스터) 기준, 첫 화면 바로 아래 Invitation 섹션만 바꾼 시안입니다. 각 화면은 Invitation 위치에서 시작합니다.<br>적용은 config.js 의 invite 값 한 줄.</p></header>
+<body><header><h1>INVITATION LAYOUT DRAFTS · 13</h1><p>B안(버밀리언 포스터) 기준, 첫 화면 바로 아래 Invitation 섹션만 바꾼 시안입니다. 각 화면은 Invitation 위치에서 시작합니다.<br>적용은 config.js 의 invite 값 한 줄.</p></header>
 <main>${L.map(([n, name, mood]) => `
   <article>
     <iframe src="${src(n)}" title="${name}"></iframe>

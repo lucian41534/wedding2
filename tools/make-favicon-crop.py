@@ -1,4 +1,5 @@
 # 손그림 로고 05 Carry 의 두 얼굴 부분을 크롭해 파비콘 세트 생성 → assets/favicon/
+# 주의: 2026-11-28 logo-ai/doodle-carry.png 원본이 재생성으로 바뀌어 CROP 좌표가 맞지 않음. 현재 파비콘(assets/favicon)은 이전 원본으로 만든 것 — 재실행 금지
 # 버밀리언 타일 + 흰 선 (B안 톤). 작은 크기에서는 선을 굵게.
 import pathlib
 from PIL import Image, ImageDraw, ImageFilter
