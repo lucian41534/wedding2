@@ -113,8 +113,11 @@ window.WEDDING = {
   invite: '15',  // 확정: 봉투에서 꺼내는 편지 (15안)
   // Gallery · Location · Contact 레이아웃 (루트 Gallery시안.html · Location시안.html · Contact시안.html)
   gal: '5',     // 확정: 매거진
-  loc: '0',     // '0' 기존 · 1~8 부록 시안 (Location시안.html)
-  con: '0',     // '0' 기존 · 1~8 부록 시안 (Contact시안.html)
+  loc: '8',     // 확정: 아이콘 목록 레이아웃
+  locTone: 'night',   // 확정: 4안 색 (검정 섹션 · 어두운 지도 · 빛나는 핀)
+  gh: '1',      // Gallery 제목 타이포 (시안/Gallery타이포.html)
+  lh: '1',      // Location 머리 · 장소명 타이포 (시안/Location타이포.html)
+  con: '8',     // 확정: 봉투 종이 칩
   fab: '7',     // 확정: 티켓 (오시는 길)
   badge: '3',   // 확정: 버밀리언
   inviteStamp: 'logo/doodle-stamp.png',

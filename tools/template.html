@@ -859,6 +859,165 @@
     [data-con="16"] .acct-body { background: transparent; border: 1px dashed #888; }
     [data-con="16"] .acct-body .num small { color: #666; } [data-con="16"] .copy-btn { border-color: #2a2a2a; font-family: inherit; }
 
+
+    /* ═══ Location 색: night (4안 색 · 다른 레이아웃에도 적용 가능) ═══ */
+    [data-ltone="night"] #location { background: var(--ink); color: var(--on-ink); --line: var(--line-ink); --muted: var(--on-ink-muted); }
+    [data-ltone="night"] #location .venue-addr { color: var(--on-ink-muted); }
+    [data-ltone="night"] #location .transport dd { color: var(--on-ink); }
+    [data-ltone="night"] #location .map .nmap, [data-ltone="night"] #location .map canvas { filter: grayscale(1) invert(.92) contrast(1.1) !important; }
+    [data-ltone="night"] #location .map-pin { background: var(--acc, #EC4A26); box-shadow: 0 0 0 6px rgba(236,74,38,.3), 0 0 26px 8px rgba(236,74,38,.45); }
+    [data-ltone="night"] #location .map-links, [data-ltone="night"] #location .map-links > * + * { border-color: var(--line-ink); }
+    [data-ltone="night"][data-loc="8"] .map-links > * { background: var(--on-ink); color: var(--ink); }
+    [data-ltone="night"][data-loc="8"] .tr-ic { background: rgba(255,255,255,.07); }
+    [data-ltone="night"][data-loc="8"] .transport > div { border-color: var(--line-ink); }
+
+    /* ═══ Location 머리 · 장소명 타이포 시안 (data-lh) ═══ */
+    .lh-sub { display: none; }
+    /* 2 · 한글 '오시는 길' 을 주인공으로 (얇은 명조) */
+    body[data-lh="2"] #location > .head { grid-template-columns: 1fr; border: 0; padding: 0; }
+    body[data-lh="2"] #location > .head h2 { font-size: 10px !important; letter-spacing: .3em; }
+    body[data-lh="2"] #location > .head h2::before { content: '' !important; }
+    body[data-lh="2"] #location .head-kr { justify-self: start !important; order: 2; margin-top: 10px; font-size: 30px; font-weight: 300; opacity: 1 !important; letter-spacing: -.02em; }
+    body[data-lh="2"] #location .venue-name { font-size: 17px !important; font-weight: 500; }
+    body[data-lh="2"] #location .venue-name::before { content: '— '; color: var(--acc, var(--ink)); }
+    /* 3 · Anton 대문자 블록 */
+    body[data-lh="3"] #location > .head h2 { font-family: var(--f-display) !important; font-size: 30px !important; letter-spacing: .01em; line-height: 1; color: var(--on-ink, #fff); }
+    body[data-lh="3"] #location > .head h2::before { content: '07 ' !important; color: var(--acc, #EC4A26); opacity: 1; }
+    body[data-lh="3"] #location > .head { align-items: end; }
+    body[data-lh="3"] #location .head-kr { font-size: 12px; letter-spacing: .2em; }
+    body[data-lh="3"] #location .venue-name { font-size: 22px !important; font-weight: 600; letter-spacing: -.01em; }
+    /* 4 · 가운데 정렬 + 양옆 줄 */
+    body[data-lh="4"] #location > .head { display: flex !important; flex-direction: column; align-items: center; border: 0; padding: 0; gap: 8px; }
+    body[data-lh="4"] #location > .head h2 { display: flex; align-items: center; gap: 12px; width: 100%; justify-content: center; }
+    body[data-lh="4"] #location > .head h2::before, body[data-lh="4"] #location > .head h2::after { content: '' !important; flex: 1; height: 1px; background: currentColor; opacity: .5; }
+    body[data-lh="4"] #location .head-kr { justify-self: auto; font-size: 13px; letter-spacing: .3em; }
+    body[data-lh="4"] #location .venue { text-align: center; }
+    body[data-lh="4"] #location .venue-name { font-size: 24px !important; font-weight: 400; letter-spacing: .12em; }
+    /* 5 · 큰 번호 07 */
+    body[data-lh="5"] #location > .head { grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 14px; row-gap: 2px; border: 0; padding: 0; align-items: end; }
+    body[data-lh="5"] #location > .head::before { content: '07'; grid-row: 1 / 3; font-family: var(--f-display); font-size: 64px; line-height: .8; color: var(--acc, #EC4A26); }
+    body[data-lh="5"] #location > .head h2 { grid-column: 2; grid-row: 1; }
+    body[data-lh="5"] #location > .head h2::before { content: '' !important; }
+    body[data-lh="5"] #location .head-kr { grid-column: 2; grid-row: 2; justify-self: start !important; font-size: 15px; opacity: .9 !important; }
+    body[data-lh="5"] #location .venue-name { font-size: 21px !important; }
+    /* 6 · 장소명을 크게 (머리는 한 줄 작은 글씨) */
+    body[data-lh="6"] #location > .head { border: 0; padding: 0; margin-bottom: 14px; }
+    body[data-lh="6"] #location > .head h2::before { content: '' !important; }
+    body[data-lh="6"] #location > .head h2::after { content: '  ·  오시는 길'; color: var(--on-ink-muted, currentColor); letter-spacing: .1em; }
+    body[data-lh="6"] #location .head-kr { display: none !important; }
+    body[data-lh="6"] #location .venue-name { font-size: 44px !important; font-weight: 300; letter-spacing: -.03em; line-height: 1.1; }
+    body[data-lh="6"] #location .venue-addr { margin-top: 10px; }
+    /* 7 · 형광펜 밑줄 */
+    body[data-lh="7"] #location > .head h2 { text-transform: lowercase; letter-spacing: .12em; font-size: 13px !important; }
+    body[data-lh="7"] #location > .head h2::before { content: '07. ' !important; }
+    body[data-lh="7"] #location .venue-name { display: inline; font-size: 24px !important; font-weight: 500; padding: 0 2px;
+      background: linear-gradient(transparent 62%, rgba(236,74,38,.85) 62%, rgba(236,74,38,.85) 92%, transparent 92%); }
+    /* 8 · 외곽선 알약 라벨 + 핀 */
+    body[data-lh="8"] #location > .head { border: 0; padding: 0; display: flex !important; align-items: center; gap: 10px; }
+    body[data-lh="8"] #location > .head h2 { padding: 6px 12px 5px; border: 1px solid currentColor; border-radius: 999px; font-size: 10px !important; }
+    body[data-lh="8"] #location > .head h2::before { content: '' !important; }
+    body[data-lh="8"] #location .head-kr { justify-self: auto; font-size: 13px; }
+    body[data-lh="8"] #location .venue-name { font-size: 23px !important; display: flex; align-items: center; gap: 8px; }
+    body[data-lh="8"] #location .venue-name::before { content: ''; width: 12px; height: 12px; border-radius: 50%; background: var(--acc, #EC4A26); box-shadow: 0 0 0 4px rgba(236,74,38,.25); }
+    /* 9 · 타자기 */
+    body[data-lh="9"] #location > .head h2, body[data-lh="9"] #location .head-kr { font-family: 'Courier New', ui-monospace, monospace !important; letter-spacing: .06em; font-size: 12px !important; text-transform: uppercase; }
+    body[data-lh="9"] #location > .head h2::before { content: '[07] ' !important; opacity: 1; }
+    body[data-lh="9"] #location .venue-name { font-size: 22px !important; }
+    body[data-lh="9"] #location .venue-name::after { content: '_'; color: var(--acc, #EC4A26); animation: lhBlink 1s steps(1) infinite; margin-left: 2px; }
+    @keyframes lhBlink { 50% { opacity: 0; } }
+    /* 10 · 넓은 자간 얇은 글씨 */
+    body[data-lh="10"] #location > .head { border-top-width: 0; border-bottom: 1px solid currentColor; padding: 0 0 12px; }
+    body[data-lh="10"] #location > .head h2 { letter-spacing: .6em; font-size: 10px !important; color: var(--on-ink, #fff); }
+    body[data-lh="10"] #location > .head h2::before { content: '' !important; }
+    body[data-lh="10"] #location .head-kr { font-size: 11px; letter-spacing: .4em; }
+    body[data-lh="10"] #location .venue-name { font-size: 26px !important; font-weight: 300; letter-spacing: .24em; }
+
+
+    /* ═══ 섹션별 스크롤 연동 연출 (--sp: 섹션이 들어오는 진행 0→1, --so: 지나가는 진행 0→1) ═══ */
+    /* Our day: 사진이 모서리 둥근 창에서 꽉 찬 화면으로 열림 + 문구가 따라 올라옴 */
+    .duo-photo { clip-path: inset(calc((1 - var(--sp, 1)) * 9%) calc((1 - var(--sp, 1)) * 7%) round calc((1 - var(--sp, 1)) * 28px)); }
+    .duo-photo .ph-cap { translate: 0 calc((1 - var(--sp, 1)) * 70px); }
+    /* Hand in hand: 위·아래 문구가 양옆에서 들어오고 심볼이 돎 */
+    .badge-txt.top { translate: calc((1 - var(--sp, 1)) * -48px) 0; }
+    .badge-txt.bot { translate: calc((1 - var(--sp, 1)) * 48px) 0; }
+    .badge { rotate: calc((var(--so, .5) - .5) * 70deg); }
+    /* The day: 날짜가 옆으로 밀려 들어오고, 카드 두 장이 펼쳐짐 */
+    .day .big-date { translate: calc((1 - var(--sp, 1)) * -26%) 0; }
+    .day-kr { translate: calc((1 - var(--sp, 1)) * 26%) 0; }
+    .card-back { translate: calc((1 - var(--sp, 1)) * -40px) calc((1 - var(--sp, 1)) * 60px); rotate: calc((1 - var(--sp, 1)) * -12deg); }
+    .card-front { translate: 0 calc((1 - var(--sp, 1)) * 110px); rotate: calc((1 - var(--sp, 1)) * 8deg); }
+    .dday { scale: calc(.86 + var(--sp, 1) * .14); }
+    /* Gallery: 네 칸이 서로 다른 속도로 떠오름 */
+    .gallery .gcell { translate: 0 calc((1 - var(--sp, 1)) * var(--gy, 80px)); }
+    .gallery .g0 { --gy: 40px; } .gallery .g1 { --gy: 130px; } .gallery .g2 { --gy: 90px; } .gallery .g3 { --gy: 170px; }
+    /* Location: 지도가 핀 위치에서 원으로 퍼지며 열리고, 교통 안내가 차례로 밀려 들어옴 */
+    #location .map { clip-path: circle(calc(8% + var(--sp, 1) * 80%) at 50% 50%); }
+    #location .transport > div { translate: calc((1 - var(--sp, 1)) * var(--tx, 60px)) 0; }
+    #location .transport > div:nth-child(2) { --tx: 110px; } #location .transport > div:nth-child(3) { --tx: 160px; } #location .transport > div:nth-child(4) { --tx: 210px; }
+    /* Contact: 봉투 칩이 아래에서 기울어진 채 올라와 자리 잡음 */
+    #contact .party { translate: 0 calc((1 - var(--sp, 1)) * 50px); }
+    #contact .party + .party { translate: 0 calc((1 - var(--sp, 1)) * 90px); }
+    #contact .al-row { translate: 0 calc((1 - var(--sp, 1)) * 120px); rotate: calc((1 - var(--sp, 1)) * -10deg); }
+    #contact .al-row + .al-row { rotate: calc((1 - var(--sp, 1)) * 10deg); translate: 0 calc((1 - var(--sp, 1)) * 170px); }
+    /* 마지막: 양쪽 사진이 가운데로 모이고 문구가 커짐 */
+    .bb-frame > .ph:first-of-type { translate: calc((1 - var(--sp, 1)) * -55%) 0; }
+    .bb-frame > .ph:last-of-type { translate: calc((1 - var(--sp, 1)) * 55%) 0; }
+    .bb-center { scale: calc(.8 + var(--sp, 1) * .2); }
+    .bb-tag { translate: 0 calc((1 - var(--sp, 1)) * 60px); }
+    @media (prefers-reduced-motion: reduce) { [data-sp] { --sp: 1 !important; --so: .5 !important; } }
+
+    /* ═══ Gallery 제목 타이포 시안 (data-gh · 1 = 지금 대형 타이포) ═══ */
+    body:not([data-gh="1"]) .gallery-sec .head { display: grid !important; margin-bottom: 22px !important; font-size: inherit !important; }
+    body:not([data-gh="1"]) .gallery-sec .head h2 { margin: 0; padding: 0; width: auto; white-space: nowrap; }
+    body:not([data-gh="1"]) .gallery-sec .head .illu { display: none; }
+    /* 2 · 작은 부록 머리 (Location · Contact 와 같은 결) */
+    body[data-gh="2"] .gallery-sec .head { grid-template-columns: auto 1fr; align-items: baseline; padding-top: 12px; border-top: 1px solid currentColor; }
+    body[data-gh="2"] .gallery-sec .head h2 { font-family: var(--f-label); font-size: 11px; font-weight: 500; letter-spacing: .28em; text-transform: uppercase; color: var(--acc, var(--ink)); }
+    body[data-gh="2"] .gallery-sec .head h2::before { content: '06 — '; opacity: .55; }
+    body[data-gh="2"] .gallery-sec .head p { order: 0 !important; grid-column: 2; justify-self: end; margin: 0 !important; font-size: 12.5px !important; color: var(--muted) !important; }
+    /* 3 · 한글 문장이 주인공 (얇은 명조) */
+    body[data-gh="3"] .gallery-sec .head { grid-template-columns: 1fr; }
+    body[data-gh="3"] .gallery-sec .head h2 { font-family: var(--f-label); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--acc, var(--ink)); }
+    body[data-gh="3"] .gallery-sec .head p { order: 2 !important; margin: 10px 0 0 !important; font-size: 26px !important; font-weight: 300; line-height: 1.35 !important; color: var(--ink) !important; letter-spacing: -.02em; }
+    /* 4 · Anton 한 줄 + 장수 */
+    body[data-gh="4"] .gallery-sec .head { grid-template-columns: 1fr auto; align-items: end; padding-bottom: 10px; border-bottom: 2px solid var(--ink); }
+    body[data-gh="4"] .gallery-sec .head h2 { font-family: var(--f-display); font-size: 44px; line-height: .9; color: var(--acc, var(--ink)); text-transform: uppercase; }
+    body[data-gh="4"] .gallery-sec .head h2::after { content: ''; }
+    body[data-gh="4"] .gallery-sec .head p { order: 0 !important; margin: 0 !important; font-size: 0 !important; }
+    body[data-gh="4"] .gallery-sec .head p::after { content: attr(data-count); font-family: var(--f-label); font-size: 11px; letter-spacing: .2em; color: var(--muted); }
+    /* 5 · 세로로 선 GALLERY (그리드 왼쪽) */
+    body[data-gh="5"] .gallery-sec { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; }
+    body[data-gh="5"] .gallery-sec .head { grid-column: 1; grid-row: 1 / span 2; writing-mode: vertical-rl; rotate: 180deg; margin: 0 !important; display: flex !important; flex-direction: row; gap: 14px; align-items: center; justify-content: flex-end; }
+    body[data-gh="5"] .gallery-sec .head h2 { font-family: var(--f-display); font-size: 40px; line-height: 1; color: var(--acc, var(--ink)); text-transform: uppercase; }
+    body[data-gh="5"] .gallery-sec .head p { margin: 0 !important; font-size: 11px !important; color: var(--muted) !important; letter-spacing: .1em; }
+    body[data-gh="5"] .gallery-sec .gallery { grid-column: 2; }
+    /* 6 · 외곽선 대형 글자가 사진 뒤에 */
+    body[data-gh="6"] .gallery-sec .head { position: relative; height: 70px; margin-bottom: -10px !important; }
+    body[data-gh="6"] .gallery-sec .head h2 { position: absolute; left: -4px; top: -6px; z-index: 0; font-family: var(--f-display); font-size: 120px; line-height: .8; text-transform: uppercase;
+      color: transparent; -webkit-text-stroke: 1.2px var(--acc, var(--ink)); opacity: .9; }
+    body[data-gh="6"] .gallery-sec .head p { position: relative; z-index: 1; justify-self: end; align-self: end; margin: 0 !important; font-size: 12.5px !important; }
+    body[data-gh="6"] .gallery { position: relative; z-index: 1; }
+    /* 7 · 흐르는 띠 */
+    body[data-gh="7"] .gallery-sec .head { grid-template-columns: 1fr; overflow: hidden; margin: 0 -10px 20px !important; padding: 10px 0; background: var(--ink); }
+    body[data-gh="7"] .gallery-sec .head h2 { font-family: var(--f-display); font-size: 30px; line-height: 1; color: var(--acc, #EC4A26); text-transform: uppercase; }
+    body[data-gh="7"] .gallery-sec .head h2 .gh-track { display: inline-block; animation: marq 16s linear infinite; }
+    body[data-gh="7"] .gallery-sec .head p { display: none; }
+    /* 8 · 가운데 명조 + 짧은 줄 */
+    body[data-gh="8"] .gallery-sec .head { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+    body[data-gh="8"] .gallery-sec .head h2 { font-family: var(--f-kr); font-size: 28px; font-weight: 300; letter-spacing: .02em; color: var(--ink); }
+    body[data-gh="8"] .gallery-sec .head h2::after { content: ''; display: block; width: 24px; height: 2px; margin: 12px auto 0; background: var(--acc, var(--ink)); }
+    body[data-gh="8"] .gallery-sec .head p { order: 2 !important; margin: 12px 0 0 !important; font-size: 13px !important; color: var(--muted) !important; }
+    /* 9 · 번호 매긴 목차 줄 */
+    body[data-gh="9"] .gallery-sec .head { grid-template-columns: auto 1fr auto; align-items: center; column-gap: 10px; }
+    body[data-gh="9"] .gallery-sec .head::after { content: ''; grid-column: 2; grid-row: 1; height: 1px; background: currentColor; opacity: .35; }
+    body[data-gh="9"] .gallery-sec .head h2 { grid-column: 1; grid-row: 1; font-family: var(--f-display); font-size: 26px; color: var(--ink); text-transform: uppercase; }
+    body[data-gh="9"] .gallery-sec .head p { grid-column: 3; grid-row: 1; order: 0 !important; margin: 0 !important; font-size: 0 !important; }
+    body[data-gh="9"] .gallery-sec .head p::after { content: 'p. 06'; font-family: var(--f-label); font-size: 11px; letter-spacing: .14em; color: var(--acc, var(--ink)); }
+    /* 10 · 버밀리언 띠지 스티커 */
+    body[data-gh="10"] .gallery-sec .head { grid-template-columns: auto 1fr; align-items: center; column-gap: 12px; }
+    body[data-gh="10"] .gallery-sec .head h2 { padding: 8px 14px 6px; background: var(--acc, #EC4A26); color: #fff; font-family: var(--f-display); font-size: 24px; line-height: 1; text-transform: uppercase; rotate: -3deg; }
+    body[data-gh="10"] .gallery-sec .head p { order: 0 !important; margin: 0 !important; font-size: 13px !important; color: var(--muted) !important; }
+
     /* ═══ 오시는 길 버튼 시안 (data-fab) ═══ */
     .float-nav { display: flex; align-items: center; gap: 8px; }
     .float-nav .fn-ring, .float-nav .fn-ic, .float-nav .fn-stamp, .float-nav .fn-venue, .float-nav .fn-arrow { display: none; }
@@ -1663,13 +1822,16 @@
         document.head.appendChild(ln); setF();
       }
     })();
-    ['typo', 'invite', 'logo', 'gal', 'loc', 'con', 'fab', 'badge'].forEach(function (k) { if (Q.has(k)) W[k] = Q.get(k); });
+    ['typo', 'invite', 'logo', 'gal', 'loc', 'con', 'fab', 'badge', 'locTone', 'lh', 'gh'].forEach(function (k) { if (Q.has(k)) W[k] = Q.get(k); });
     document.body.dataset.invite = W.invite || '1';
     document.body.dataset.gal = W.gal || '1';
     document.body.dataset.loc = W.loc || '0';
     document.body.dataset.con = W.con || '0';
     document.body.dataset.fab = W.fab || '1';
     document.body.dataset.badge = W.badge || '1';
+    document.body.dataset.ltone = W.locTone || '';
+    document.body.dataset.lh = W.lh || '1';
+    document.body.dataset.gh = W.gh || '1';
     var $ = function (s, r) { return (r || document).querySelector(s); };
     var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
     var pad = function (n) { return String(n).padStart(2, '0'); };
@@ -2066,6 +2228,8 @@
         var b = $('.copy-btn', r); b.dataset.copy = c.bank + ' ' + c.account.replace(/\D/g, ''); b.dataset.copyMsg = '계좌번호가 복사되었습니다';
         al.appendChild(r);
       });
+      var ghp = $('#gallerySec .head p'); if (ghp) ghp.dataset.count = pad((W.photos.gallery || []).length) + ' PHOTOS';
+      if (B.gh === '7') { var gh2 = $('#gallerySec .head h2'); if (gh2) gh2.innerHTML = '<span class="gh-track">' + new Array(13).join('Gallery ✺ ') + '</span>'; }
       var lmt = $('.lm-time'); if (lmt) lmt.textContent = pad(W.date.hour) + ':' + pad(W.date.minute);
       ps.forEach(function (x, i) {
         var t = $('.party-top', x); if (t) t.dataset.ini = (W.contacts[i].name || '').slice(-1);
@@ -2215,7 +2379,8 @@
     if (TY) {
       document.body.dataset.typo = TY;
       $$('.head h2').forEach(function (h) {
-        if ((h.closest('#location') && document.body.dataset.loc !== '0') || (h.closest('#contact') && document.body.dataset.con !== '0')) return;
+        if ((h.closest('#location') && document.body.dataset.loc !== '0') || (h.closest('#contact') && document.body.dataset.con !== '0') ||
+            (h.closest('#gallerySec') && document.body.dataset.gh !== '1')) return;
         h.classList.add('mega');
         h.innerHTML = '<span class="mh-in" data-split>' + h.textContent + '</span>';
       });
@@ -2359,9 +2524,20 @@
     var heroEl = $('.hero'), heroPh = $('.hero > .ph'), heroBottom = $('.hero-bottom'), heroShade = $('.hero-shade');
     var floatNav = $('#floatNav'), locEl = $('#location');
     var ticking = false;
+    var spEls = reduce ? [] : ['.duo', '#handinhand', '.day', '#gallerySec', '#location', '#contact', '.billboard'].map(function (q) { return $(q); }).filter(Boolean);
+    spEls.forEach(function (el) { el.setAttribute('data-sp', ''); });
     function motion() {
       ticking = false;
       var vh = innerHeight, y = scrollY;
+      spEls.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top > vh * 1.2 && el._sp === 0) return;
+        var a = Math.min(Math.max((vh - r.top) / (vh * 0.75), 0), 1);
+        a = 1 - Math.pow(1 - a, 3);   // ease-out
+        var o = Math.min(Math.max((vh - r.top) / (vh + r.height), 0), 1);
+        if (el._sp !== +a.toFixed(3)) { el._sp = +a.toFixed(3); el.style.setProperty('--sp', el._sp); }
+        el.style.setProperty('--so', o.toFixed(3));
+      });
       slots.forEach(function (f) {
         var r = f.getBoundingClientRect();
         if (r.bottom < -200 || r.top > vh + 200) return;
