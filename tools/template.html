@@ -1209,40 +1209,19 @@
       .about-block { max-width: 440px; }
     }
 
-    /* ─── 반응형: PC (좌측 고정 히어로 + 우측 스크롤 본문) ─── */
+    /* 넓은 화면: 떠 있는 버튼을 가운데 컬럼 안쪽에 */
+    @media (min-width: 600px) {
+      .float-nav { right: calc(50% - var(--max) / 2 + 16px); }
+    }
+    /* ─── 반응형: PC (모바일과 같은 한 줄 스크롤 · 가운데 컬럼) ─── */
     @media (min-width: 1024px) {
-      body { background: var(--ink); }
-      .page {
-        max-width: none; box-shadow: none; background: var(--ink); overflow: visible;
-        display: grid; grid-template-columns: minmax(0, 1fr) minmax(520px, 600px);
-      }
-      .page > * { grid-column: 2; background-color: var(--paper); }
-      .page > .ink, .page > .billboard { background-color: var(--ink); }
-      .page > .paper-2 { background-color: var(--paper-2); }
-      .hero {
-        grid-column: 1; grid-row: 1 / span 20; align-self: start;
-        position: sticky; top: 0; height: 100vh; max-height: none;
-        padding: 48px 56px 64px;
-      }
-      .hero-top .label { font-size: 11px; }
-      .hero-top .logo > * { height: 64px; max-width: 160px; }
-      [data-typo] .mega-hero { top: 6%; left: 40px; right: 40px; }
-      .wordmark { font-size: clamp(64px, 6.4vw, 110px); }
-      .wordmark span { display: inline; }
-      .wordmark .amp { display: inline; font-size: 0.5em; margin: 0 0.25em; vertical-align: 0.35em; }
-      .hero .rule-row { font-size: 12px; }
-      .hero .rule-row i { width: 96px; }
-      .hero-kr { font-size: 16px; }
-      .scroll-cue { display: none; }
+      body { background: #1A1A1A; }
       .gcell { transition: opacity 300ms ease; }
       .gcell:hover { opacity: 0.88; }
       .map-links a:hover, .map-links button:hover { background: rgba(17,17,17,.05); }
       .line-btn:hover, .copy-btn:hover, .icon-btn:hover { background: rgba(255,255,255,.08); }
       .intro .logo > * { height: 150px; }
       .intro-names { font-size: 46px; }
-    }
-    @media (min-width: 1440px) {
-      .page { grid-template-columns: minmax(0, 1fr) 640px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1719,8 +1698,13 @@
       var nm = document.createElement('span'); nm.className = 'gnum'; ce.appendChild(nm);
       gal.appendChild(ce);
       var cobj = { el: ce, num: nm, i: gi }; ce._c = cobj; cells.push(cobj);
-      gShow(cobj, gi);
     }
+    (function () {
+      var go = function () { cells.forEach(function (c, i) { gShow(c, i); }); };
+      if (!('IntersectionObserver' in window)) return go();
+      var gio = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { gio.disconnect(); go(); } }, { rootMargin: '150% 0px' });
+      gio.observe(gal);
+    })();
     gNext = G.length ? nCells % G.length : 0;
     var gVisible = false;
     if (nCells && G.length > nCells && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -1738,7 +1722,11 @@
     function drawAll() { slots.forEach(drawPlaceholder); }
     (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(drawAll);
     drawAll();
-    slots.forEach(loadSlot);
+    // 첫 화면(히어로)은 바로, 나머지는 화면 1.5개 앞에서 불러옴
+    var slotIo = 'IntersectionObserver' in window ? new IntersectionObserver(function (en) {
+      en.forEach(function (e) { if (e.isIntersecting) { slotIo.unobserve(e.target); loadSlot(e.target); } });
+    }, { rootMargin: '150% 0px' }) : null;
+    slots.forEach(function (f) { if (!slotIo || f.dataset.slot === 'hero') loadSlot(f); else slotIo.observe(f); });
     var rz; window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { drawAll(); drawMapPlaceholder(); }, 150); });
 
     /* 라이트박스 */
@@ -1983,7 +1971,13 @@
       drawMapPlaceholder();
       document.head.appendChild(sc);
     }
-    initMap();
+    (function () {
+      var loc = $('#location');
+      if (!loc || !('IntersectionObserver' in window)) return initMap();
+      drawMapPlaceholder();
+      var mio = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { mio.disconnect(); initMap(); } }, { rootMargin: '200% 0px' });
+      mio.observe(loc);
+    })();
 
 
     /* ── 본문 타입 인 / 타입 아웃 ── */
@@ -2095,7 +2089,9 @@
     })();
     function envMotion(vh) {
       if (!env) return;
-      var r = env.sec.getBoundingClientRect(), Wd = env.st.clientWidth, H = env.st.clientHeight;
+      var r = env.sec.getBoundingClientRect();
+      if (r.bottom < -50 || r.top > innerHeight + 50) return;
+      var Wd = env.st.clientWidth, H = env.st.clientHeight;
       var p = Math.min(Math.max(-r.top / Math.max(1, r.height - H), 0), 1);
       var cl = function (a, b) { return Math.min(Math.max((p - a) / (b - a), 0), 1); };
       var ez = function (t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
@@ -2110,7 +2106,8 @@
       var ew = Math.min(330, Wd - 44), eh = ew * 0.68;
       var lw = Math.min(360, Wd - 40), card = env.card;
       card.style.width = lw + 'px';
-      var lh = card.offsetHeight, s0 = (ew - 24) / lw, s1 = Math.min(1, (H - 48) / lh), L0 = lh * s0;
+      if (env.lw !== lw) { env.lw = lw; env.lh = card.offsetHeight; }
+      var lh = env.lh, s0 = (ew - 24) / lw, s1 = Math.min(1, (H - 48) / lh), L0 = lh * s0;
       var ey0 = H * 0.56 - eh / 2;
       // 편지를 충분히 꺼낼 수 있도록 b 동안 봉투가 조금 내려감
       var eyB = Math.max(ey0, Math.min(H - eh * 0.9, 24 + L0 - eh * 0.4));
@@ -2124,7 +2121,8 @@
       if (env.flap.parentNode !== fpar) fpar.appendChild(env.flap);
       env.flap.style.transform = 'rotateX(' + (-fa).toFixed(1) + 'deg)';
       env.flap.style.zIndex = fa > 90 ? 2 : 5;
-      env.flap.style.filter = 'brightness(' + (1 - a * 0.3).toFixed(3) + ') drop-shadow(0 3px 3px rgba(0,0,0,.32))';
+      var fb = (1 - a * 0.3).toFixed(2);
+      if (env.fb !== fb) { env.fb = fb; env.flap.style.filter = 'brightness(' + fb + ') drop-shadow(0 3px 3px rgba(0,0,0,.32))'; }
       env.seal.style.top = (eh * 0.62) + 'px';
       env.seal.style.transform = 'rotateX(' + (-fa).toFixed(1) + 'deg)';
       env.seal.style.opacity = fa > 80 ? 0 : 1;
@@ -2153,7 +2151,7 @@
 
     /* ── 패럴랙스 / 히어로 / 플로팅 버튼 (초안 모션) ── */
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var desktop = window.matchMedia('(min-width: 1024px)');
+    var desktop = { matches: false };   // PC 도 모바일과 같은 스크롤 연출 (좌측 고정 히어로 없음)
     var heroEl = $('.hero'), heroPh = $('.hero > .ph'), heroBottom = $('.hero-bottom'), heroShade = $('.hero-shade');
     var floatNav = $('#floatNav'), locEl = $('#location');
     var ticking = false;

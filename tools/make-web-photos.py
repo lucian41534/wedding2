@@ -1,5 +1,5 @@
 """사진 웹용 변환: assets/photos/web/ (원본·보정본, 직접 관리) → assets/photos/site/<번호>.jpg
-   - 긴 변 1800px, JPEG 84% (모바일 로딩용). 색은 그대로 두고 흑백은 config.js 의 photos.mono 로 CSS 처리
+   - 긴 변 1400px, JPEG 78% (모바일 로딩용 · 2026-11 최적화). 색은 그대로 두고 흑백은 config.js 의 photos.mono 로 CSS 처리
    - 실행: python tools/make-web-photos.py  →  node tools/gen.js"""
 import os
 from PIL import Image, ImageOps
@@ -27,9 +27,9 @@ for name in sorted(pick.values()):
         im = im.convert('RGBA')
         bg = Image.new('RGB', im.size, 'white'); bg.paste(im, mask=im.split()[3]); im = bg
     im = im.convert('RGB')
-    im.thumbnail((1800, 1800), Image.LANCZOS)
+    im.thumbnail((1400, 1400), Image.LANCZOS)
     out = os.path.join(OUT, os.path.splitext(name)[0] + '.jpg')
-    im.save(out, quality=84, optimize=True, progressive=True)
+    im.save(out, quality=78, optimize=True, progressive=True)
     total += os.path.getsize(out)
     print(f'{name:>10} -> {os.path.basename(out)}  {im.size[0]}x{im.size[1]}')
 print(f'ok  {total // 1024} KB')
