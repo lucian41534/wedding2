@@ -206,3 +206,4 @@ console.log('done · 최신시안 →', latest.dir);
 // B안 폰트 시안
 console.log('B 폰트 시안', require('./gen-bfonts.js')({ OUT, tpl, config, logos, G }), '종');
 require('./gen-invite.js')({ OUT });
+require('./gen-sections.js')({ OUT });

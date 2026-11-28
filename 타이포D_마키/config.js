@@ -62,7 +62,7 @@ window.WEDDING = {
       '2.jpg', '20.jpg', '6.jpg', '42.jpg', '12.jpg', '22.jpg', '8.jpg', '13.jpg',
       '25.jpg', '29.jpg', '18.jpg', '35.jpg', '36.jpg', '38.jpg', '41.jpg', '44.jpg', '45.jpg'
     ],
-    galleryCells: 6,                  // 갤러리 칸 수 (4~6)
+    galleryCells: 4,                  // 갤러리 칸 수 (4~6) · 확정 4칸
     galleryMs: 1700,                  // 한 칸씩 바뀌는 간격 (ms)
     mono: ['20', '22', '25', '42', '43']   // 흑백으로 보여줄 사진 번호 (나머지는 원본 색)
   },
@@ -111,6 +111,12 @@ window.WEDDING = {
   typo: 'd',   // 확정: B 버밀리언 포스터
   // Invitation 레이아웃: '1' 포스터 스택 | '2' 세로 타이틀 | '3' 인포 그리드 | '4' 센터 포엠 | '5' 레터 카드 (루트 Invitation시안.html)
   invite: '5',   // 확정: 레터 카드
+  // Gallery · Location · Contact 레이아웃 (루트 Gallery시안.html · Location시안.html · Contact시안.html)
+  gal: '1',
+  loc: '1',
+  con: '1',
+  fab: '1',     // 오시는 길 플로팅 버튼 (루트 Button시안.html)
+  badge: '1',   // Hand in hand 줄 배경 (루트 Badge시안.html)
   inviteStamp: 'logo/doodle-stamp.png',
   // Invitation 시안 6~13 손그림 소품 (레이아웃 번호별)
   inviteArt: {
