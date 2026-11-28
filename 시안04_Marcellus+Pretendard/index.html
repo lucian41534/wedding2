@@ -115,7 +115,7 @@
       margin: 0 auto;
       background: var(--paper);
       box-shadow: 0 0 80px rgba(0, 0, 0, 0.12);
-      overflow: hidden;
+      overflow: hidden; overflow: clip;
     }
     .sec { padding: 68px var(--gutter); position: relative; }
     .ink { background: var(--ink); color: var(--on-ink); }
@@ -610,6 +610,47 @@
     [data-invite="5"] .inv-sign { display: block; margin-top: 22px; text-align: right; font-size: 34px; color: var(--acc, var(--ink)); }
     [data-invite="5"] .couple { margin-top: 24px; }
 
+
+    /* 14 · 플립 레터: 스크롤하면 봉투 뒷면 → 편지 앞면으로 뒤집힘 (5안 카드 기반) */
+    .inv-back { display: none; }
+    [data-invite="14"] .about { background: var(--paper-2); min-height: 230vh; padding-bottom: 80px; }
+    [data-invite="14"] .about .head { display: none; }
+    [data-invite="14"] .about-block.reveal { opacity: 1; transition: none; }
+    [data-invite="14"] .about-block {
+      position: sticky; top: max(70px, calc(50vh - 330px)); padding: 34px 24px 28px;
+      transform-style: preserve-3d;
+      transform: perspective(1600px) rotateY(var(--flip, 180deg)) rotateZ(var(--tilt, -3deg)) scale(var(--fs, .94));
+      will-change: transform;
+    }
+    [data-invite="14"] .about-block::before {
+      content: ''; position: absolute; inset: 0; background: #FBFAF7; transform: translateZ(-1px); backface-visibility: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.14), 0 2px 6px rgba(0,0,0,.06);
+    }
+    [data-invite="14"] .about-block > * { backface-visibility: hidden; }
+    [data-invite="14"] .about-block > .inv-back {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
+      position: absolute; inset: 0; transform: rotateY(180deg) translateZ(1px);
+      background: var(--acc, var(--ink)); color: #fff; text-align: center; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,.18);
+    }
+    /* 봉투 덮개 선 */
+    [data-invite="14"] .inv-back::before, [data-invite="14"] .inv-back::after {
+      content: ''; position: absolute; left: 0; right: 0; height: 1.5px; background: rgba(255,255,255,.55); top: 0; transform-origin: 0 0;
+    }
+    [data-invite="14"] .inv-back::before { width: 72%; rotate: 34deg; }
+    [data-invite="14"] .inv-back::after { left: auto; right: 0; width: 72%; transform-origin: 100% 0; rotate: -34deg; }
+    [data-invite="14"] .inv-back .label { color: #fff; letter-spacing: .3em; position: relative; z-index: 1; }
+    [data-invite="14"] .inv-back-stamp { display: block; width: 150px; position: relative; z-index: 1; margin-top: 70px;
+      background: #FBFAF7; border-radius: 50%; padding: 8px; rotate: -8deg; box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+    [data-invite="14"] .inv-back-stamp img { display: block; width: 100%; height: auto; }
+    [data-invite="14"] .inv-back-from { font-size: 40px; line-height: 1; position: relative; z-index: 1; }
+    [data-invite="14"] .inv-back-hint { font-size: 10.5px; opacity: .85; animation: hintBob 1.6s ease-in-out infinite; }
+    [data-invite="14"] .inv-back-hint::after { content: ' ↓'; }
+    @keyframes hintBob { 50% { translate: 0 5px; } }
+    [data-invite="14"] .inv-stamp { display: block; position: absolute; top: -34px; right: -12px; width: 112px; rotate: 9deg; }
+    [data-invite="14"] .inv-dear { display: block; margin-bottom: 16px; color: var(--acc, var(--ink)); font-size: 12px; }
+    [data-invite="14"] .couple { margin-top: 24px; }
+    @media (prefers-reduced-motion: reduce) { [data-invite="14"] .about-block { --flip: 0deg !important; } }
     /* ── Invitation 시안 6~13 (손그림 소품 · assets/logo/inv-*.png) ── */
     .inv-art, .inv-ribbon, .inv-mast, .inv-mega, .inv-photo, .inv-stub { display: none; }
     .inv-art:not(:empty) { display: block; pointer-events: none; }
@@ -840,6 +881,12 @@
     <!-- 02. INVITATION -->
     <section class="sec about" id="invitation">
       <div class="about-block reveal">
+        <div class="inv-back" aria-hidden="true">
+          <span class="label">To. our beloved</span>
+          <span class="inv-back-stamp" data-inv-stamp></span>
+          <span class="display inv-back-from"><span data-bind="groom.en"></span> <span class="amp">&amp;</span> <span data-bind="bride.en"></span></span>
+          <span class="label inv-back-hint">Scroll to open</span>
+        </div>
         <span class="inv-art inv-art-bg" data-inv-art="bg" aria-hidden="true"></span>
         <div class="inv-ribbon" aria-hidden="true"><span>SAVE THE DATE &nbsp;✺&nbsp; <b data-bind="date.euro"></b> &nbsp;✺&nbsp; JUN &amp; YUNJI &nbsp;✺&nbsp; SAVE THE DATE &nbsp;✺&nbsp; <b data-bind="date.euro"></b> &nbsp;✺&nbsp; JUN &amp; YUNJI &nbsp;✺&nbsp;</span></div>
         <div class="inv-ribbon r2" aria-hidden="true"><span>WE ARE GETTING MARRIED &nbsp;✺&nbsp; WE ARE GETTING MARRIED &nbsp;✺&nbsp; WE ARE GETTING MARRIED &nbsp;✺&nbsp; WE ARE GETTING MARRIED &nbsp;✺&nbsp;</span></div>
@@ -904,10 +951,6 @@
 
     <!-- 03. WORDMARK + PHOTO -->
     <section class="duo">
-      <div class="duo-word reveal">
-        <p class="display"><span data-bind="groom.en"></span> <span class="amp">&amp;</span> <span data-bind="bride.en"></span></p>
-        <div class="rule-row"><span data-bind="ourDay.ruleL"></span><i></i><span data-bind="ourDay.ruleR"></span></div>
-      </div>
       <figure class="ph duo-photo" data-slot="couple" data-label-y="0.7" data-speed="0.22">
         <figcaption class="ph-cap">
           <span class="label" data-bind="ourDay.label"></span>
@@ -1519,6 +1562,7 @@
       }
     }
     var megaHeads = $$('.head h2.mega');
+    var flipSec = $('#invitation'), flipCard = W.invite === '14' && flipSec ? $('.about-block', flipSec) : null;
 
     /* ── 스크롤 모션 ── */
     var io = new IntersectionObserver(function (entries) {
@@ -1555,6 +1599,14 @@
         heroBottom.style.opacity = (1 - k).toFixed(3);
         heroShade.style.opacity = (1 + k * 0.6).toFixed(3);
       } else { heroBottom.style.transform = ''; heroBottom.style.opacity = ''; }
+      if (flipCard) {
+        var fr = flipSec.getBoundingClientRect();
+        var fp = Math.min(Math.max((-fr.top - vh * 0.05) / (vh * 0.8), 0), 1);   // 카드가 고정된 뒤부터 뒤집힘
+        var fe = fp < .5 ? 2 * fp * fp : 1 - Math.pow(-2 * fp + 2, 2) / 2;   // ease-in-out
+        flipCard.style.setProperty('--flip', (180 - fe * 180).toFixed(1) + 'deg');
+        flipCard.style.setProperty('--tilt', (-3 + fe * 1.6).toFixed(2) + 'deg');
+        flipCard.style.setProperty('--fs', (.94 + Math.sin(fe * Math.PI) * -.06 + fe * .06).toFixed(3));
+      }
       if (TY) {
         // PC(고정 히어로)에서는 이름이 옆으로 빠지지 않게 드리프트 끔
         heroEl.style.setProperty('--sx', matchMedia('(min-width: 1024px)').matches ? 0 : Math.min(y / vh, 1.4).toFixed(3));
