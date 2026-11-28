@@ -5,8 +5,12 @@ const OUT = path.resolve(__dirname, '..', 'assets', 'texture-ai');
 const MODEL = process.env.OPENAI_IMAGE_MODEL || 'gpt-image-2';
 const P = {
   letter: 'Seamless tileable flat scan of premium handmade cotton paper, warm off-white ivory color, visible soft cotton fibers and tiny flecks, very subtle uneven pulp texture, gentle natural tone variation, evenly lit from straight above, no shadows, no folds, no objects, no text, fills the entire frame edge to edge.',
-  envelope: 'Seamless tileable flat scan of thick textured envelope paper stock, light neutral grey-white, pronounced felt-like fibrous surface with laid lines and fine fibers, slight mottling, evenly lit from straight above, no shadows, no folds, no objects, no text, fills the entire frame edge to edge.'
+  envelope: 'Seamless tileable flat scan of thick textured envelope paper stock, light neutral grey-white, pronounced felt-like fibrous surface with laid lines and fine fibers, slight mottling, evenly lit from straight above, no shadows, no folds, no objects, no text, fills the entire frame edge to edge.',
+  // 15안 배경 (Our day 사진의 밤 공연장 연무 · 무대 조명과 이어지는 모노톤)
+  haze: 'Monochrome black and white photograph, empty dark night air above an outdoor concert, thick drifting stage haze and smoke lit from the upper left by several irregular soft volumetric light beams of different widths and intensities, beams fade and break up unevenly in the smoke, a few out-of-focus distant lights, fine floating dust specks, deep charcoal black lower half, analog film grain, moody editorial, no people, no stage, no objects, no text.',
+  smoke: 'Monochrome photograph of irregular wispy white smoke and haze tendrils drifting horizontally on a pure solid black background, soft uneven density, torn organic shapes, some areas sharp and some very diffuse, no beams, no objects, no text, fills the frame.'
 };
+const SIZE = { haze: '1024x1536', smoke: '1536x1024' };
 (async () => {
   const keys = process.argv.slice(2);
   if (!keys.length) { console.error('키 지정: ' + Object.keys(P).join(' ')); process.exit(1); }
@@ -14,7 +18,7 @@ const P = {
   const r = await Promise.allSettled(keys.map(async (k) => {
     const res = await fetch('https://api.openai.com/v1/images/generations', {
       method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + process.env.OPENAI_API_KEY },
-      body: JSON.stringify({ model: MODEL, prompt: P[k], size: '1024x1024', quality: 'high', output_format: 'png', n: 1 })
+      body: JSON.stringify({ model: MODEL, prompt: P[k], size: SIZE[k] || '1024x1024', quality: 'high', output_format: 'png', n: 1 })
     });
     const j = await res.json();
     if (!res.ok) throw new Error(k + ': ' + (j.error && j.error.message || res.status));

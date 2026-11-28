@@ -659,23 +659,24 @@
     [data-invite="15"] .about { padding: 0; min-height: 330vh; background: #0E0E0E; }
     [data-invite="15"] .about .head, [data-invite="15"] .inv-stamp { display: none; }
     .inv-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-    .inv-bg { position: absolute; inset: 0; overflow: hidden;
-      background: radial-gradient(ellipse 75% 50% at 50% 52%, #4A4A4A 0%, #222 40%, #0E0E0E 78%); }
+    .inv-bg { position: absolute; inset: 0; overflow: hidden; background: #0E0E0E; }
+    .inv-haze { position: absolute; inset: -8% -6%; background: url('../assets/texture/haze.jpg') 18% 0 / cover no-repeat; will-change: transform; }
+    .inv-smoke { position: absolute; left: -40%; width: 180%; height: 60%; background: url('../assets/texture/smoke.jpg') center / cover no-repeat;
+      mix-blend-mode: screen; will-change: transform; pointer-events: none; }
+    .inv-smoke.s1 { top: 8%; opacity: .26; }
+    .inv-smoke.s2 { top: 40%; opacity: .12; }
     .inv-bg::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .22; mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-    .inv-bokeh { position: absolute; border-radius: 50%; will-change: transform; pointer-events: none;
-      background: radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(255,255,255,.35) 45%, rgba(255,255,255,0) 70%); }
+    .inv-bokeh { position: absolute; border-radius: 50%; will-change: transform; pointer-events: none; background: #fff; }
     .inv-bg::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; z-index: 1;
       background: linear-gradient(180deg, rgba(14,14,14,0) 0%, rgba(14,14,14,.85) 70%, #0E0E0E 92%); }
     [data-invite="15"] .duo { background: #0E0E0E; margin-top: -1px; position: relative; }
     [data-invite="15"] .duo-photo { background: #0E0E0E; }
     [data-invite="15"] .duo::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12px; z-index: 6; background: linear-gradient(#0E0E0E 60%, rgba(14,14,14,0)); pointer-events: none; }
     [data-invite="15"] .duo-photo .ph-cap { background: linear-gradient(180deg, #0E0E0E 0%, rgba(0,0,0,.6) 14%, rgba(0,0,0,.25) 38%, rgba(0,0,0,0) 54%); }
-    .inv-spot { position: absolute; left: 50%; top: 56%; width: 140vmax; height: 140vmax; translate: -50% -50%; pointer-events: none;
-      background: repeating-conic-gradient(from 0deg, rgba(255,255,255,.06) 0deg 5deg, transparent 5deg 15deg);
-      mask-image: radial-gradient(circle, #000 0%, transparent 62%); -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 62%); }
 
-    .env { position: absolute; left: 50%; z-index: 2; translate: -50% 0; perspective: 1200px; }
+    .env { position: absolute; left: 50%; top: 0; z-index: 2; translate: -50% 0; perspective: 1200px; }
+    .env.env-front { z-index: 4; pointer-events: none; }
     .env-back, .env-pocket, .env-flap { position: absolute; left: 0; right: 0; }
     .env-paper { background-color: var(--acc, #EC4A26); background-image: url('../assets/texture/envelope.jpg'); background-size: 300px; background-blend-mode: multiply; }
     .env-back { inset: 0; border-radius: 3px; z-index: 1; box-shadow: 0 34px 70px rgba(0,0,0,.6), 0 4px 10px rgba(0,0,0,.4); }
@@ -1633,20 +1634,21 @@
     if (envSec) (function () {
       var card = $('.about-block', envSec);
       var st = document.createElement('div'); st.className = 'inv-stage';
-      // 밤거리 불빛 같은 보케 (x%, y%, 지름px, 투명도, 흐림px)
-      var bk = [[8, 12, 90, .16, 6], [82, 8, 46, .28, 2], [64, 22, 140, .08, 10], [18, 40, 34, .3, 1], [90, 46, 70, .14, 4], [4, 66, 120, .09, 8],
-                [74, 78, 40, .26, 2], [30, 84, 76, .12, 5], [52, 4, 26, .34, 0], [46, 62, 160, .06, 14], [94, 90, 100, .1, 6], [26, 20, 54, .18, 3]];
+      // 빛 속을 떠다니는 먼지 (불규칙 크기·밝기·흐림) (x%, y%, 지름px, 투명도, 흐림px)
+      var bk = [[22, 14, 3, .7, 0], [31, 22, 2, .5, 0], [12, 31, 5, .35, 1], [40, 9, 2, .6, 0], [27, 38, 9, .16, 3], [47, 27, 3, .4, 0], [18, 52, 2, .5, 0],
+                [58, 18, 14, .08, 5], [36, 46, 4, .3, 1], [9, 20, 2, .55, 0], [66, 34, 3, .25, 0], [52, 58, 6, .14, 2], [24, 66, 2, .3, 0], [44, 71, 18, .05, 7]];
       var bokeh = bk.map(function (q, i) {
         return '<span class="inv-bokeh" style="left:' + q[0] + '%;top:' + q[1] + '%;width:' + q[2] + 'px;height:' + q[2] + 'px;opacity:' + q[3] + ';filter:blur(' + q[4] + 'px)"></span>';
       }).join('');
-      st.innerHTML = '<div class="inv-bg" aria-hidden="true"><div class="inv-spot"></div>' + bokeh + '</div>' +
-        '<div class="env" aria-hidden="true"><div class="env-back env-paper"></div><div class="env-pocketw"><div class="env-pocket env-paper"></div></div><div class="env-flapw"><div class="env-flap env-paper"></div></div>' +
+      st.innerHTML = '<div class="inv-bg" aria-hidden="true"><div class="inv-haze"></div><div class="inv-smoke s1"></div><div class="inv-smoke s2"></div>' + bokeh + '</div>' +
+        '<div class="env env-rear" aria-hidden="true"><div class="env-back env-paper"></div></div>' +
+        '<div class="env env-front" aria-hidden="true"><div class="env-pocketw"><div class="env-pocket env-paper"></div></div><div class="env-flapw"><div class="env-flap env-paper"></div></div>' +
         '<span class="env-seal">' + (W.inviteStamp ? '<img src="' + W.inviteStamp + '" alt="" />' : '') + '</span>' +
         '<span class="env-to">To. our beloved</span></div><span class="inv-hint">Scroll to open ↓</span>';
       envSec.appendChild(st);
       st.appendChild(card);
-      env = { sec: envSec, st: st, card: card, box: $('.env', st), flap: $('.env-flapw', st), seal: $('.env-seal', st),
-              to: $('.env-to', st), hint: $('.inv-hint', st), bokeh: $$('.inv-bokeh', st), spot: $('.inv-spot', st) };
+      env = { sec: envSec, st: st, card: card, rear: $('.env-rear', st), front: $('.env-front', st), flap: $('.env-flapw', st), seal: $('.env-seal', st),
+              to: $('.env-to', st), hint: $('.inv-hint', st), bokeh: $$('.inv-bokeh', st), haze: $('.inv-haze', st), smoke: $$('.inv-smoke', st) };
     })();
     function envMotion(vh) {
       if (!env) return;
@@ -1654,38 +1656,49 @@
       var p = Math.min(Math.max(-r.top / Math.max(1, r.height - H), 0), 1);
       var cl = function (a, b) { return Math.min(Math.max((p - a) / (b - a), 0), 1); };
       var ez = function (t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
-      var a = ez(cl(0.04, 0.2)), b = ez(cl(0.22, 0.52)), c = ez(cl(0.56, 0.8));
-      // 배경: 보케가 깊이별로 다른 속도로 흐름
-      env.bokeh.forEach(function (el, i) { el.style.transform = 'translate3d(0,' + ((0.5 - p) * (40 + (i % 4) * 70)).toFixed(1) + 'px,0)'; });
-      env.spot.style.transform = 'rotate(' + (p * 120).toFixed(1) + 'deg)';
-      // 봉투 크기 · 위치
+      // a 덮개 열림 · b 편지가 주머니에서 올라옴 · c 봉투가 아래로 빠짐 · d 편지가 가운데로 펼쳐짐
+      var a = ez(cl(0.03, 0.17)), b = ez(cl(0.19, 0.48)), c = ez(cl(0.5, 0.7)), d = ez(cl(0.7, 0.86));
+      // 배경: 연무 · 연기 · 먼지가 서로 다른 속도로 흐름
+      env.haze.style.transform = 'translate3d(' + (p * -3).toFixed(2) + '%,' + (p * -5).toFixed(2) + '%,0) scale(' + (1.04 + p * .06).toFixed(3) + ')';
+      env.smoke[0].style.transform = 'translate3d(' + (p * 22 - 8).toFixed(2) + '%,' + (p * -40).toFixed(1) + 'px,0)';
+      env.smoke[1].style.transform = 'translate3d(' + (6 - p * 18).toFixed(2) + '%,' + (p * -90).toFixed(1) + 'px,0) scaleX(-1)';
+      env.bokeh.forEach(function (el, i) { el.style.transform = 'translate3d(' + (Math.sin(i * 2.3 + p * 6) * 10).toFixed(1) + 'px,' + ((0.5 - p) * (30 + (i * 37 % 5) * 45)).toFixed(1) + 'px,0)'; });
+      // 크기
       var ew = Math.min(330, Wd - 44), eh = ew * 0.68;
+      var lw = Math.min(360, Wd - 40), card = env.card;
+      card.style.width = lw + 'px';
+      var lh = card.offsetHeight, s0 = (ew - 24) / lw, s1 = Math.min(1, (H - 48) / lh), L0 = lh * s0;
       var ey0 = H * 0.56 - eh / 2;
-      var ey = ey0 + c * (H - ey0 + 60 + eh * 0.7);   // 열린 덮개까지 화면 밖으로
-      env.box.style.width = ew + 'px'; env.box.style.height = eh + 'px';
-      env.box.style.transform = 'translate3d(0,' + ey.toFixed(1) + 'px,0) rotate(' + (-2 + c * 8).toFixed(2) + 'deg)';
-      // 덮개 열림 (90° 지나면 편지 뒤로)
-      var fa = a * 178;
+      // 편지를 충분히 꺼낼 수 있도록 b 동안 봉투가 조금 내려감
+      var eyB = Math.max(ey0, Math.min(H - eh * 0.9, 24 + L0 - eh * 0.4));
+      var eyb = ey0 + (eyB - ey0) * b;
+      var ey = eyb + c * (H - eyb + 60 + eh * 0.7);    // 열린 덮개까지 화면 밖으로
+      var rot = -1.5 * (1 - d);
+      var et = 'translate3d(0,' + ey.toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg)';
+      [env.rear, env.front].forEach(function (el) { el.style.width = ew + 'px'; el.style.height = eh + 'px'; el.style.transform = et; });
+      // 덮개: 90° 지나면 편지 뒤(뒤판)로 옮김
+      var fa = a * 178, fpar = fa > 90 ? env.rear : env.front;
+      if (env.flap.parentNode !== fpar) fpar.appendChild(env.flap);
       env.flap.style.transform = 'rotateX(' + (-fa).toFixed(1) + 'deg)';
-      env.flap.style.zIndex = fa > 90 ? 0 : 5;
-      env.flap.style.filter = 'brightness(' + (1 - a * 0.25).toFixed(3) + ')';
+      env.flap.style.zIndex = fa > 90 ? 2 : 5;
+      env.flap.style.filter = 'brightness(' + (1 - a * 0.3).toFixed(3) + ') drop-shadow(0 3px 3px rgba(0,0,0,.32))';
       env.seal.style.top = (eh * 0.62) + 'px';
       env.seal.style.transform = 'rotateX(' + (-fa).toFixed(1) + 'deg)';
       env.seal.style.opacity = fa > 80 ? 0 : 1;
       env.to.style.opacity = (1 - a).toFixed(3);
-      env.hint.style.opacity = (1 - cl(0, 0.08)).toFixed(3);
-      // 편지: 봉투 안 → 위로 꺼냄 → 가운데로, 크기 1
-      var lw = Math.min(360, Wd - 40), card = env.card;
-      card.style.width = lw + 'px';
-      var lh = card.offsetHeight;
-      var s0 = (ew - 26) / lw, s1 = Math.min(1, (H - 48) / lh);
-      var sc = s0 + (s1 - s0) * c;
-      var yIn = ey0 + 12, yOut = ey0 + eh * 0.42 - lh * s0, yEnd = (H - lh * s1) / 2;
-      var y = c > 0 ? yOut + (yEnd - yOut) * c : yIn + (yOut - yIn) * b;
-      card.style.transform = 'translate3d(-50%,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(4) + ') rotate(' + ((1 - c) * -1.5).toFixed(2) + 'deg)';
-      var over = y + lh * sc - (ey + eh - 4);
-      card.style.clipPath = over > 0 ? 'inset(0 0 ' + (over / sc).toFixed(1) + 'px 0)' : 'none';
-      card.style.visibility = a > 0.35 ? 'visible' : 'hidden';
+      env.hint.style.opacity = (1 - cl(0, 0.06)).toFixed(3);
+      // 편지: 주머니 속(앞판 뒤) → 위로 꺼냄 → 봉투가 빠지며 드러남 → 가운데로, 크기 1
+      var yIn = eyb + 10;
+      var yOut = Math.max(24, eyb + eh * 0.4 - L0);
+      var y0 = yIn + (yOut - yIn) * b;
+      var sc = s0 + (s1 - s0) * d, yEnd = (H - lh * s1) / 2;
+      var y = y0 + (yEnd - y0) * d;
+      card.style.transform = 'translate3d(-50%,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(4) + ') rotate(' + rot.toFixed(2) + 'deg)';
+      // 봉투 아래변 밖으로 나온 부분은 잘라냄
+      var over = y + lh * sc - (ey + eh - 3);
+      card.style.clipPath = over > 0 && c < 1 ? 'inset(0 0 ' + (over / sc).toFixed(1) + 'px 0)' : 'none';
+      card.style.zIndex = d > 0 ? 5 : 3;
+      card.style.visibility = a > 0.5 ? 'visible' : 'hidden';
     }
     var flipSec = $('#invitation'), flipCard = W.invite === '14' && flipSec ? $('.about-block', flipSec) : null;
 
