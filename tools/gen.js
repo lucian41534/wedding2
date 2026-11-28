@@ -69,3 +69,7 @@ fs.writeFileSync(path.join(OUT, 'images', 'README.txt'), imagesReadme);
 fs.writeFileSync(path.join(OUT, 'images', '.gitkeep'), '');
 
 console.log('done · index.html (확정본)');
+
+// 시안 (시안/ 폴더 한 곳에만)
+console.log('한글 폰트 시안', require('./gen-kfonts.js')({ OUT }), '종');
+require('./gen-sections.js')({ OUT });

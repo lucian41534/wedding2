@@ -702,6 +702,172 @@
     [data-con="8"] .al-num { display: block; margin: 6px 0 10px; font-size: 12.5px; }
     [data-con="8"] .al-row .copy-btn { border-color: rgba(255,255,255,.7); color: #fff; padding: 6px 10px; }
 
+
+    /* ═══ Location 9~16 · Contact 9~16 (2차 부록 시안) ═══ */
+    .cs-sheet, .loc-meta { display: none; }
+    /* L9 · 지도 썸네일 + 주소 두 칸 */
+    [data-loc="9"] #location { display: grid; grid-template-columns: 44% 1fr; column-gap: 16px; align-items: start; }
+    [data-loc="9"] #location > .head, [data-loc="9"] .map-links, [data-loc="9"] .transport { grid-column: 1 / -1; }
+    [data-loc="9"] .map-wrap { grid-column: 1; grid-row: 2; }
+    [data-loc="9"] .venue { grid-column: 2; grid-row: 2; align-self: center; }
+    [data-loc="9"] .map { margin: 0; aspect-ratio: 1; border-radius: 6px; }
+    [data-loc="9"] .venue-name { font-size: 17px; } [data-loc="9"] .venue-addr { font-size: 12.5px; line-height: 1.65; }
+    [data-loc="9"] .map-links { margin-top: 18px; border-top: 1px solid var(--line); }
+    [data-loc="9"] .transport { grid-template-columns: 1fr 1fr; gap: 16px 14px; margin-top: 20px; }
+    [data-loc="9"] .transport dd { font-size: 12.5px; line-height: 1.65; }
+
+    /* L10 · 작은 티켓 (날짜 · 시간 · 층) */
+    [data-loc="10"] .loc-meta { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 0 14px; border: 1px solid var(--ink); }
+    [data-loc="10"] .loc-meta > div { padding: 10px 12px; } [data-loc="10"] .loc-meta > div + div { border-left: 1px dashed rgba(17,17,17,.4); }
+    [data-loc="10"] .loc-meta .label { display: block; font-size: 9px; color: var(--muted); margin-bottom: 4px; }
+    [data-loc="10"] .loc-meta b { font-size: 14px; font-weight: 600; }
+    [data-loc="10"] .map { margin: 16px 0 0; aspect-ratio: 1 / .75; }
+    [data-loc="10"] .transport { gap: 12px; }
+
+    /* L11 · 큰 지도 위 작은 정보 카드 (흐림 유리) */
+    [data-loc="11"] #location { display: flex; flex-direction: column; }
+    [data-loc="11"] #location > .head { order: 0; } [data-loc="11"] .map-wrap { order: 1; } [data-loc="11"] .map-links { order: 3; } [data-loc="11"] .transport { order: 4; }
+    [data-loc="11"] .map { margin-top: 0; aspect-ratio: 4 / 5; }
+    [data-loc="11"] .venue { order: 2; position: relative; z-index: 3; margin: -96px 12px 0 auto; width: 62%; padding: 14px 14px 12px; background: rgba(251,250,247,.82);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,.12); }
+    [data-loc="11"] .venue-name { font-size: 15px; } [data-loc="11"] .venue-addr { font-size: 11.5px; line-height: 1.55; margin-top: 4px; }
+    [data-loc="11"] .map-links { margin-top: 22px; }
+
+    /* L12 · 버밀리언 섹션 */
+    [data-loc="12"] #location { background: var(--acc, #EC4A26); color: #fff; --line: rgba(255,255,255,.4); --muted: rgba(255,255,255,.8); }
+    [data-loc="12"] #location > .head h2 { color: #fff !important; }
+    [data-loc="12"] .venue-addr, [data-loc="12"] .transport dd { color: rgba(255,255,255,.88); }
+    [data-loc="12"] .transport dt { color: #fff !important; }
+    [data-loc="12"] .map { margin-top: 18px; outline: 6px solid #fff; outline-offset: -6px; aspect-ratio: 1 / .85; }
+    [data-loc="12"] .map-links { border-color: rgba(255,255,255,.4); } [data-loc="12"] .map-links > * + * { border-color: rgba(255,255,255,.4); }
+    [data-loc="12"] .map-links a, [data-loc="12"] .map-links button { color: #fff; }
+    [data-loc="12"] .transport { gap: 14px; }
+
+    /* L13 · 봉투 주소란 */
+    [data-loc="13"] .venue { position: relative; padding: 22px 20px 20px; background: #FBFAF7; box-shadow: 0 10px 26px rgba(0,0,0,.08); }
+    [data-loc="13"] .venue::before { content: 'To.'; display: block; font-size: 11px; color: var(--acc, var(--ink)); margin-bottom: 6px; letter-spacing: .1em; }
+    [data-loc="13"] .venue::after { content: ''; position: absolute; right: 16px; top: 16px; width: 44px; height: 54px; border: 1.5px dashed rgba(236,74,38,.6); }
+    [data-loc="13"] .venue-name { font-size: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line); margin-right: 64px; }
+    [data-loc="13"] .venue-addr { padding: 8px 0; border-bottom: 1px solid var(--line); margin: 0; }
+    [data-loc="13"] .map { margin: 16px 0 0; aspect-ratio: 1 / .7; }
+    [data-loc="13"] .transport { gap: 12px; }
+
+    /* L14 · 가로로 넘기는 길 안내 카드 */
+    [data-loc="14"] .map { aspect-ratio: 1 / .8; }
+    [data-loc="14"] .transport { display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 20px calc(var(--gutter) * -1) 0; padding: 0 var(--gutter) 6px; scrollbar-width: none; counter-reset: st; }
+    [data-loc="14"] .transport::-webkit-scrollbar { display: none; }
+    [data-loc="14"] .transport > div { flex: 0 0 64%; scroll-snap-align: start; padding: 14px; background: #FBFAF7; border-radius: 10px; counter-increment: st; }
+    [data-loc="14"] .transport > div::before { content: counter(st, decimal-leading-zero); display: block; font-family: var(--f-label); font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+    [data-loc="14"] .transport dd { font-size: 12.5px; line-height: 1.65; }
+
+    /* L15 · 세로 라벨 + 본문 */
+    [data-loc="15"] #location { display: grid; grid-template-columns: 28px 1fr; column-gap: 14px; }
+    [data-loc="15"] #location > * { grid-column: 2; }
+    [data-loc="15"] #location > .head { grid-column: 1; grid-row: 1 / span 6; writing-mode: vertical-rl; border: 0; border-right: 1px solid currentColor; padding: 0 10px 0 0; margin: 0;
+      display: flex !important; align-items: center; justify-content: flex-start; gap: 14px; }
+    [data-loc="15"] #location > .head .head-kr { justify-self: auto; }
+    [data-loc="15"] .map { margin: 16px 0 0; aspect-ratio: 1 / .85; }
+    [data-loc="15"] .transport { gap: 12px; }
+
+    /* L16 · 벤토 그리드 */
+    [data-loc="16"] #location { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    [data-loc="16"] #location > .head { grid-column: 1 / -1; }
+    [data-loc="16"] .venue { grid-column: 1 / -1; padding: 16px; background: #FBFAF7; border-radius: 12px; }
+    [data-loc="16"] .map-wrap { grid-column: 1 / -1; }
+    [data-loc="16"] .map { margin: 0; border-radius: 12px; aspect-ratio: 1 / .8; }
+    [data-loc="16"] .map-links { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; border: 0; }
+    [data-loc="16"] .map-links > * { border: 0 !important; background: #FBFAF7; border-radius: 12px; }
+    [data-loc="16"] .transport { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; }
+    [data-loc="16"] .transport > div { padding: 14px; background: #FBFAF7; border-radius: 12px; }
+    [data-loc="16"] .transport dd { font-size: 12.5px; line-height: 1.6; }
+
+    /* C9 · 벤토 (연락처 2 + 계좌 2) */
+    [data-con="9"] #parties { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    [data-con="9"] .party { border: 0 !important; padding: 14px; background: rgba(255,255,255,.06); border-radius: 12px; }
+    [data-con="9"] .party-top { flex-direction: column; align-items: flex-start; gap: 12px; }
+    [data-con="9"] .party .acct { margin: 0; }
+    [data-con="9"] .party .acct summary { display: none; }
+    [data-con="9"] .party .acct > .acct-body { display: block; margin: 12px -14px -14px; padding: 12px 14px; border-radius: 0 0 12px 12px; background: rgba(255,255,255,.05); }
+    [data-con="9"] .acct-body .num { font-size: 12.5px; } [data-con="9"] .copy-btn { margin-top: 8px; padding: 6px 10px; }
+
+    /* C10 · 문장형 (텍스트 링크) */
+    [data-con="10"] .party { border: 0 !important; padding: 0 0 16px; }
+    [data-con="10"] .party-top { display: block; font-size: 15px; line-height: 1.8; }
+    [data-con="10"] .party-top > div { display: inline; }
+    [data-con="10"] .party .label { display: inline; font-family: var(--f-kr); font-size: 13px; letter-spacing: 0; text-transform: none; margin-right: 6px; }
+    [data-con="10"] .party-name { display: inline; font-size: 16px; }
+    [data-con="10"] .party-name::after { content: '에게'; font-weight: 400; margin-right: 8px; opacity: .7; }
+    [data-con="10"] .party-btns { display: inline-flex !important; flex-direction: row; gap: 12px; vertical-align: baseline; }
+    [data-con="10"] .icon-btn { display: inline-block; width: auto; height: auto; border: 0; border-radius: 0; text-decoration: underline; text-underline-offset: 4px; font-size: 14px; }
+    [data-con="10"] .icon-btn svg { display: none; }
+    [data-con="10"] .icon-btn[aria-label="전화"]::before { content: '전화'; } [data-con="10"] .icon-btn[aria-label="문자"]::before { content: '문자'; }
+    [data-con="10"] .acct { margin-top: 6px; } [data-con="10"] .acct summary { font-size: 12.5px; }
+
+    /* C11 · 버밀리언 섹션 */
+    [data-con="11"] #contact { background: var(--acc, #EC4A26); color: #fff; --line-ink: rgba(255,255,255,.4); --on-ink-muted: rgba(255,255,255,.85); }
+    [data-con="11"] #contact > .head h2, [data-con="11"] #contact .head p, [data-con="11"] .party .label { color: #fff !important; }
+    [data-con="11"] .icon-btn { border-color: rgba(255,255,255,.6); }
+    [data-con="11"] .acct-body { background: rgba(255,255,255,.14); }
+    [data-con="11"] .copy-btn { border-color: #fff; }
+
+    /* C12 · 원형 이니셜 */
+    [data-con="12"] .party { border: 0 !important; padding: 12px 0; display: block; }
+    [data-con="12"] .party-top { display: grid; grid-template-columns: 46px 1fr auto; gap: 14px; align-items: center; }
+    [data-con="12"] .party-top::before { content: attr(data-ini); display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--acc, #EC4A26); color: #fff; font-size: 17px; font-weight: 600; }
+    [data-con="12"] .party-tel { display: block; font-size: 12px; color: var(--on-ink-muted); margin-top: 2px; }
+    [data-con="12"] .acct { margin: 10px 0 0 60px; }
+
+    /* C13 · 표 (구분 · 이름 · 연락 · 계좌) */
+    [data-con="13"] #parties { border-top: 1px solid var(--on-ink); }
+    [data-con="13"] #parties::before { content: '구분　　이름　　　　　　연락'; display: block; padding: 8px 0; font-size: 10.5px; color: var(--on-ink-muted); border-bottom: 1px solid var(--line-ink); white-space: pre; }
+    [data-con="13"] .party { padding: 12px 0; }
+    [data-con="13"] .party-top > div { display: grid; grid-template-columns: 42px 1fr; align-items: baseline; }
+    [data-con="13"] .party .label { font-family: var(--f-kr); font-size: 12px; letter-spacing: 0; text-transform: none; }
+    [data-con="13"] .party .label { font-size: 0; } [data-con="13"] .party .label::before { font-size: 12px; content: attr(data-s); }
+    [data-con="13"] .party-name { margin: 0; font-size: 15px; }
+    [data-con="13"] .icon-btn { width: 32px; height: 32px; }
+    [data-con="13"] .acct { margin: 8px 0 0 42px; } [data-con="13"] .acct summary { font-size: 12px; }
+
+    /* C14 · 버튼 두 개 → 아래에서 올라오는 시트 */
+    [data-con="14"] #parties { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    [data-con="14"] .party { display: none; }
+    [data-con="14"] .cs-open { display: block; padding: 16px 0; border: 1px solid var(--line-ink); border-radius: 12px; font-size: 14px; text-align: center; }
+    [data-con="14"] .cs-open small { display: block; font-size: 11px; color: var(--on-ink-muted); margin-top: 4px; }
+    .cs-open { display: none; }
+    [data-con="14"] .cs-sheet { display: block; position: fixed; z-index: 80; inset: 0; background: rgba(0,0,0,.45); opacity: 0; pointer-events: none; transition: opacity .25s; }
+    [data-con="14"] .cs-sheet.open { opacity: 1; pointer-events: auto; }
+    [data-con="14"] .cs-panel { position: absolute; left: 50%; bottom: 0; width: min(100%, var(--max)); translate: -50% 100%; transition: translate .35s cubic-bezier(.2,.8,.2,1);
+      background: var(--ink); color: var(--on-ink); border-radius: 18px 18px 0 0; padding: 14px var(--gutter) calc(env(safe-area-inset-bottom) + 26px); }
+    [data-con="14"] .cs-sheet.open .cs-panel { translate: -50% 0; }
+    [data-con="14"] .cs-panel::before { content: ''; display: block; width: 40px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.3); margin: 0 auto 16px; }
+    [data-con="14"] .cs-panel .party { display: block; border: 0 !important; padding: 0; }
+    [data-con="14"] .cs-panel .acct summary { display: none; } [data-con="14"] .cs-panel .acct > .acct-body { display: flex; }
+
+    /* C15 · 작은 엽서 두 장 */
+    [data-con="15"] #parties { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding-top: 6px; }
+    [data-con="15"] .party { border: 0 !important; padding: 14px 12px; background: #FBFAF7; color: var(--ink); box-shadow: 0 10px 22px rgba(0,0,0,.35); }
+    [data-con="15"] .party[data-side="0"] { rotate: -1.5deg; } [data-con="15"] .party[data-side="1"] { rotate: 1.5deg; }
+    [data-con="15"] .party-top { flex-direction: column; align-items: flex-start; gap: 10px; }
+    [data-con="15"] .party-name { font-size: 16px; }
+    [data-con="15"] .party-tel { display: block; font-size: 11.5px; color: var(--muted); }
+    [data-con="15"] .icon-btn { width: 32px; height: 32px; border-color: rgba(17,17,17,.25); }
+    [data-con="15"] .acct summary { color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); padding-top: 8px; }
+    [data-con="15"] .acct-body { flex-direction: column; align-items: flex-start; padding: 10px; background: rgba(17,17,17,.05); }
+    [data-con="15"] .acct-body .num { font-size: 12px; } [data-con="15"] .acct-body .num small { color: var(--muted); }
+    [data-con="15"] .copy-btn { border-color: rgba(17,17,17,.3); padding: 5px 10px; }
+
+    /* C16 · 도서 대출카드 (줄 쳐진 카드 · 타자기 글씨) */
+    [data-con="16"] #parties { background: #F4EFE3; color: #2a2a2a; padding: 16px 16px 6px; font-family: 'Courier New', ui-monospace, monospace;
+      background-image: repeating-linear-gradient(180deg, transparent 0 27px, rgba(60,90,160,.22) 27px 28px); border-top: 3px solid var(--acc, #EC4A26); }
+    [data-con="16"] .party { border: 0 !important; padding: 0 0 14px; }
+    [data-con="16"] .party .label { color: var(--acc, #EC4A26); font-family: inherit; font-size: 11px; }
+    [data-con="16"] .party-name { font-size: 15px; line-height: 28px; margin: 0; }
+    [data-con="16"] .party-tel { display: block; font-size: 12.5px; line-height: 28px; }
+    [data-con="16"] .icon-btn { width: 30px; height: 30px; border-radius: 0; border-color: #2a2a2a; }
+    [data-con="16"] .acct summary { color: #2a2a2a; font-size: 12px; }
+    [data-con="16"] .acct-body { background: transparent; border: 1px dashed #888; }
+    [data-con="16"] .acct-body .num small { color: #666; } [data-con="16"] .copy-btn { border-color: #2a2a2a; font-family: inherit; }
+
     /* ═══ 오시는 길 버튼 시안 (data-fab) ═══ */
     .float-nav { display: flex; align-items: center; gap: 8px; }
     .float-nav .fn-ring, .float-nav .fn-ic, .float-nav .fn-stamp, .float-nav .fn-venue, .float-nav .fn-arrow { display: none; }
@@ -1420,6 +1586,11 @@
       <div class="head reveal">
         <h2 class="display">Location</h2><span class="illu" data-illu="arch"></span><span class="head-kr">오시는 길</span>
       </div>
+      <div class="loc-meta" aria-hidden="true">
+        <div><span class="label">Date</span><b data-bind="date.euro"></b></div>
+        <div><span class="label">Time</span><b class="lm-time"></b></div>
+        <div><span class="label">Floor</span><b>B1</b></div>
+      </div>
       <div class="venue reveal">
         <p class="venue-name" data-bind="venue.name"></p>
         <p class="venue-addr" data-bind="venue.address"></p>
@@ -1487,6 +1658,20 @@
   (function () {
     var W = window.WEDDING;
     var Q = new URLSearchParams(location.search);
+    // 한글 폰트 미리보기: ?kf=패밀리명&ks=(woff 주소 | css:스타일시트 주소 | 비우면 구글 폰트)
+    if (Q.has('kf')) (function () {
+      var fam = Q.get('kf'), src = Q.get('ks') || '';
+      var setF = function () { document.documentElement.style.setProperty('--f-kr', "'" + fam + "', 'Apple SD Gothic Neo', 'Malgun Gothic', serif"); };
+      if (/\.woff2?(\?.*)?$/.test(src)) {
+        var ff = new FontFace(fam, 'url(' + src + ')');
+        ff.load().then(function (f) { document.fonts.add(f); setF(); }).catch(setF);
+      } else {
+        var ln = document.createElement('link'); ln.rel = 'stylesheet';
+        ln.href = /^css:/.test(src) ? src.slice(4) : 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fam).replace(/%20/g, '+') + ':wght@100..900&display=swap';
+        ln.onerror = function () { ln.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fam).replace(/%20/g, '+') + '&display=swap'; };
+        document.head.appendChild(ln); setF();
+      }
+    })();
     ['typo', 'invite', 'logo', 'gal', 'loc', 'con', 'fab', 'badge'].forEach(function (k) { if (Q.has(k)) W[k] = Q.get(k); });
     document.body.dataset.invite = W.invite || '1';
     document.body.dataset.gal = W.gal || '1';
@@ -1890,6 +2075,25 @@
         var b = $('.copy-btn', r); b.dataset.copy = c.bank + ' ' + c.account.replace(/\D/g, ''); b.dataset.copyMsg = '계좌번호가 복사되었습니다';
         al.appendChild(r);
       });
+      var lmt = $('.lm-time'); if (lmt) lmt.textContent = pad(W.date.hour) + ':' + pad(W.date.minute);
+      ps.forEach(function (x, i) {
+        var t = $('.party-top', x); if (t) t.dataset.ini = (W.contacts[i].name || '').slice(-1);
+        var lb = $('.party .label', x) || $('.label', x); if (lb) lb.dataset.s = side(i);
+      });
+      if (B.con === '9' || B.con === '14') $$('#parties .acct').forEach(function (d) { d.open = true; });
+      if (B.con === '14') {
+        var box = $('#parties'), sh = document.createElement('div'); sh.className = 'cs-sheet';
+        sh.innerHTML = '<div class="cs-panel"></div>'; document.body.appendChild(sh);
+        var pn = $('.cs-panel', sh);
+        ps.forEach(function (x, i) {
+          var b = document.createElement('button'); b.type = 'button'; b.className = 'cs-open';
+          b.innerHTML = (side(i) ? side(i) + '측' : W.contacts[i].role) + '<small></small>'; $('small', b).textContent = W.contacts[i].name;
+          b.addEventListener('click', function () { pn.innerHTML = ''; var c = x.cloneNode(true); c.classList.add('in'); pn.appendChild(c);
+            $$('details', c).forEach(function (d) { d.open = true; }); sh.classList.add('open'); });
+          box.appendChild(b);
+        });
+        sh.addEventListener('click', function (e) { if (e.target === sh) sh.classList.remove('open'); });
+      }
       if (B.con === '3' || B.con === '5' || B.con === '7') $$('#parties .acct').forEach(function (d) { d.open = true; });
       if (B.con === '3') tabs($('.con-tabs'), ps.map(function (x) { return [x]; }), ps.map(function (x, i) { return side(i) ? side(i) + '측' : (W.contacts[i].role || ''); }));
       if (B.con === '5') ps.forEach(function (x, i) {

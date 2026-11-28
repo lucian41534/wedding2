@@ -1,0 +1,762 @@
+{
+"google": [
+{
+"family": "Asta Sans",
+"cat": "Sans Serif",
+"w": [
+"300",
+"400",
+"500",
+"600",
+"700",
+"800"
+]
+},
+{
+"family": "Bagel Fat One",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Black And White Picture",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Black Han Sans",
+"cat": "Sans Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Cute Font",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Diphylleia",
+"cat": "Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Do Hyeon",
+"cat": "Sans Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Dokdo",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Dongle",
+"cat": "Sans Serif",
+"w": [
+"300",
+"400",
+"700"
+]
+},
+{
+"family": "East Sea Dokdo",
+"cat": "Handwriting",
+"w": [
+"400"
+]
+},
+{
+"family": "Gaegu",
+"cat": "Handwriting",
+"w": [
+"300",
+"400",
+"700"
+]
+},
+{
+"family": "Gamja Flower",
+"cat": "Handwriting",
+"w": [
+"400"
+]
+},
+{
+"family": "Gasoek One",
+"cat": "Sans Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Gothic A1",
+"cat": "Sans Serif",
+"w": [
+"100",
+"200",
+"300",
+"400",
+"500",
+"600",
+"700",
+"800",
+"900"
+]
+},
+{
+"family": "Gowun Batang",
+"cat": "Serif",
+"w": [
+"400",
+"700"
+]
+},
+{
+"family": "Gowun Dodum",
+"cat": "Sans Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Grandiflora One",
+"cat": "Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Gugi",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Hahmlet",
+"cat": "Serif",
+"w": [
+"100",
+"200",
+"300",
+"400",
+"500",
+"600",
+"700",
+"800",
+"900"
+]
+},
+{
+"family": "Hi Melody",
+"cat": "Handwriting",
+"w": [
+"400"
+]
+},
+{
+"family": "IBM Plex Sans KR",
+"cat": "Sans Serif",
+"w": [
+"100",
+"200",
+"300",
+"400",
+"500",
+"600",
+"700"
+]
+},
+{
+"family": "Jua",
+"cat": "Sans Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Kirang Haerang",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Moirai One",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Nanum Brush Script",
+"cat": "Handwriting",
+"w": [
+"400"
+]
+},
+{
+"family": "Nanum Gothic",
+"cat": "Sans Serif",
+"w": [
+"400",
+"700",
+"800"
+]
+},
+{
+"family": "Nanum Gothic Coding",
+"cat": "Handwriting",
+"w": [
+"400",
+"700"
+]
+},
+{
+"family": "Nanum Myeongjo",
+"cat": "Serif",
+"w": [
+"400",
+"700",
+"800"
+]
+},
+{
+"family": "Nanum Pen Script",
+"cat": "Handwriting",
+"w": [
+"400"
+]
+},
+{
+"family": "Noto Sans KR",
+"cat": "Sans Serif",
+"w": [
+"100",
+"200",
+"300",
+"400",
+"500",
+"600",
+"700",
+"800",
+"900"
+]
+},
+{
+"family": "Noto Serif KR",
+"cat": "Serif",
+"w": [
+"200",
+"300",
+"400",
+"500",
+"600",
+"700",
+"800",
+"900"
+]
+},
+{
+"family": "Orbit",
+"cat": "Sans Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Poor Story",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Single Day",
+"cat": "Display",
+"w": [
+"400"
+]
+},
+{
+"family": "Song Myung",
+"cat": "Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Stylish",
+"cat": "Sans Serif",
+"w": [
+"400"
+]
+},
+{
+"family": "Sunflower",
+"cat": "Sans Serif",
+"w": [
+"300",
+"500",
+"700"
+]
+},
+{
+"family": "Yeon Sung",
+"cat": "Display",
+"w": [
+"400"
+]
+}
+],
+"naver": [
+[
+"01",
+"Ainmom.woff"
+],
+[
+"01",
+"Amsterdam.woff"
+],
+[
+"01",
+"Anssang.woff"
+],
+[
+"01",
+"Baby_love.woff"
+],
+[
+"01",
+"Bareun_hipi.woff"
+],
+[
+"01",
+"Bareun_mental.woff"
+],
+[
+"01",
+"Bbang_gunimom.woff"
+],
+[
+"01",
+"Beakeumrye.woff"
+],
+[
+"01",
+"Become_one.woff"
+],
+[
+"01",
+"Beeunhye.woff"
+],
+[
+"02",
+"Bisang.woff"
+],
+[
+"02",
+"Bud_tree.woff"
+],
+[
+"02",
+"Bujangnim_nunchi.woff"
+],
+[
+"02",
+"Bumsom.woff"
+],
+[
+"02",
+"Choding_hope.woff"
+],
+[
+"02",
+"Chulpil_writing.woff"
+],
+[
+"02",
+"Coco.woff"
+],
+[
+"02",
+"Cut_siu.woff"
+],
+[
+"02",
+"Dache_love.woff"
+],
+[
+"02",
+"Daheng.woff"
+],
+[
+"03",
+"Dajin.woff"
+],
+[
+"03",
+"Daughter_handwriting.woff"
+],
+[
+"03",
+"Ddakdandan.woff"
+],
+[
+"03",
+"Ddobakddobak.woff"
+],
+[
+"03",
+"Deagwang_mirror.woff"
+],
+[
+"03",
+"Doing_well.woff"
+],
+[
+"03",
+"Dot_font.woff"
+],
+[
+"03",
+"Fairytale_ddobak.woff"
+],
+[
+"03",
+"Father_handwriting.woff"
+],
+[
+"03",
+"Father_loveletter.woff"
+],
+[
+"04",
+"Fighting_hyonam.woff"
+],
+[
+"04",
+"Firefighter_prayer.woff"
+],
+[
+"04",
+"Flower_tree.woff"
+],
+[
+"04",
+"Future_tree.woff"
+],
+[
+"04",
+"Galmetgol.woff"
+],
+[
+"04",
+"Garam.woff"
+],
+[
+"04",
+"Geumeunbohwa.woff"
+],
+[
+"04",
+"Ggeuteumuri.woff"
+],
+[
+"04",
+"GibbemBalgeum.woff"
+],
+[
+"04",
+"Global_Hangul.woff"
+],
+[
+"05",
+"Gomsin.woff"
+],
+[
+"05",
+"Gootneaeum.woff"
+],
+[
+"05",
+"Gothic_Goding.woff"
+],
+[
+"05",
+"Grandma_wring.woff"
+],
+[
+"05",
+"Grandpa_sharing.woff"
+],
+[
+"05",
+"Hana_handwriting.woff"
+],
+[
+"05",
+"Handletter.woff"
+],
+[
+"05",
+"Hanyoon.woff"
+],
+[
+"05",
+"Happy_dobi.woff"
+],
+[
+"05",
+"Haram.woff"
+],
+[
+"06",
+"Hardworking.woff"
+],
+[
+"06",
+"Hardworking_donghee.woff"
+],
+[
+"06",
+"Hope_nuri.woff"
+],
+[
+"06",
+"Hyejun.woff"
+],
+[
+"06",
+"Hyukee.woff"
+],
+[
+"06",
+"I_survive.woff"
+],
+[
+"06",
+"Jayoo.woff"
+],
+[
+"06",
+"Jungeun.woff"
+],
+[
+"06",
+"Kalguksu.woff"
+],
+[
+"06",
+"Kangbujang.woff"
+],
+[
+"07",
+"Kanginhan.woff"
+],
+[
+"07",
+"Kimjuim.woff"
+],
+[
+"07",
+"Kimyooyee.woff"
+],
+[
+"07",
+"Korea_hero.woff"
+],
+[
+"07",
+"Koreageulggol.woff"
+],
+[
+"07",
+"Kyuri_diary.woff"
+],
+[
+"07",
+"Love_mom.woff"
+],
+[
+"07",
+"Love_son.woff"
+],
+[
+"07",
+"Mago.woff"
+],
+[
+"07",
+"Meaningful_hanguel.woff"
+],
+[
+"08",
+"Middleschool_student.woff"
+],
+[
+"08",
+"Mingyung.woff"
+],
+[
+"08",
+"Mini_handwriting.woff"
+],
+[
+"08",
+"mom_to_daughter.woff"
+],
+[
+"08",
+"Mongdol.woff"
+],
+[
+"08",
+"Mugunghwa.woff"
+],
+[
+"08",
+"Mujinjang.woff"
+],
+[
+"08",
+"My_wife_writing.woff"
+],
+[
+"08",
+"Newly_married.woff"
+],
+[
+"08",
+"Okbi.woff"
+],
+[
+"09",
+"Orbit_of_moon.woff"
+],
+[
+"09",
+"Parkgyunga.woff"
+],
+[
+"09",
+"Polar_Star.woff"
+],
+[
+"09",
+"Pretty_Left_handed.woff"
+],
+[
+"09",
+"Pride_jiu.woff"
+],
+[
+"09",
+"Restart.woff"
+],
+[
+"09",
+"Rose.woff"
+],
+[
+"09",
+"Round_destiny.woff"
+],
+[
+"09",
+"Sanghea_chanmi.woff"
+],
+[
+"09",
+"Saying_tobe_strong.woff"
+],
+[
+"10",
+"Se-a.woff"
+],
+[
+"10",
+"Se-hwa.woff"
+],
+[
+"10",
+"Shining_star.woff"
+],
+[
+"10",
+"Shy_college_student.woff"
+],
+[
+"10",
+"SlowSlow.woff"
+],
+[
+"10",
+"Somi.woff"
+],
+[
+"10",
+"Summer_letter.woff"
+],
+[
+"10",
+"Sungsil.woff"
+],
+[
+"10",
+"Syning_19.woff"
+],
+[
+"10",
+"Treegarden.woff"
+],
+[
+"11",
+"Unggungqui.woff"
+],
+[
+"11",
+"Warm_farewell.woff"
+],
+[
+"11",
+"White_angel.woff"
+],
+[
+"11",
+"White_kkorisuri.woff"
+],
+[
+"11",
+"Wild.woff"
+],
+[
+"11",
+"Yammy.woff"
+],
+[
+"11",
+"Yedang.woff"
+],
+[
+"11",
+"Yuni_ddingddang.woff"
+],
+[
+"11",
+"Yunji.woff"
+]
+]
+}
