@@ -110,7 +110,7 @@ window.WEDDING = {
   heroLimit: 0.425,   // 메인 이름 타이포 아래 한계선 (히어로 사진 높이 대비 · 얼굴 머리끝 ≈ 0.445)
   typo: 'b',   // 확정: B 버밀리언 포스터
   // Invitation 레이아웃: '1' 포스터 스택 | '2' 세로 타이틀 | '3' 인포 그리드 | '4' 센터 포엠 | '5' 레터 카드 (루트 Invitation시안.html)
-  invite: '5',   // 확정: 레터 카드
+  invite: '15',  // 확정: 봉투에서 꺼내는 편지 (15안)
   // Gallery · Location · Contact 레이아웃 (루트 Gallery시안.html · Location시안.html · Contact시안.html)
   gal: '5',     // 확정: 매거진
   loc: '0',     // '0' 기존 · 1~8 부록 시안 (Location시안.html)
