@@ -53,7 +53,8 @@ async function gen(key) {
 (async () => {
   if (!process.env.OPENAI_API_KEY) { console.error('OPENAI_API_KEY 가 없습니다.'); process.exit(1); }
   fs.mkdirSync(OUT, { recursive: true });
-  const keys = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(P);
+  const keys = process.argv.slice(2);   // 덮어쓰기 방지: 키를 반드시 지정 (예: node tools/gen-logo-doodle.js inv-peek)
+  if (!keys.length) { console.error('생성할 키를 지정하세요: ' + Object.keys(P).join(' ')); process.exit(1); }
   const results = await Promise.allSettled(keys.map(gen));
   results.forEach((r, i) => console.log(r.status === 'fulfilled' ? 'OK   ' + keys[i] : 'FAIL ' + r.reason.message));
 })();

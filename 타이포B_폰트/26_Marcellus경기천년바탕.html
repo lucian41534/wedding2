@@ -656,34 +656,42 @@
     @media (prefers-reduced-motion: reduce) { [data-invite="14"] .about-block { --flip: 0deg !important; } }
 
     /* 15 · 봉투에서 꺼내지는 편지 + 화려한 모노톤 배경 (스크롤 연동) */
-    [data-invite="15"] .about { padding: 0; min-height: 330vh; background: #0D0D0D; }
+    [data-invite="15"] .about { padding: 0; min-height: 330vh; background: #0E0E0E; }
     [data-invite="15"] .about .head, [data-invite="15"] .inv-stamp { display: none; }
     .inv-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
     .inv-bg { position: absolute; inset: 0; overflow: hidden;
-      background: radial-gradient(ellipse 70% 55% at 50% 56%, #3A3A3A 0%, #161616 55%, #080808 100%); }
+      background: radial-gradient(ellipse 75% 50% at 50% 52%, #4A4A4A 0%, #222 40%, #0E0E0E 78%); }
     .inv-bg::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .22; mix-blend-mode: overlay;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
-    .inv-rows { position: absolute; inset: -6% -40%; display: flex; flex-direction: column; justify-content: space-between; rotate: -8deg; }
-    .inv-row { white-space: nowrap; font-family: var(--f-display); font-weight: var(--display-weight); line-height: .86;
-      font-size: clamp(96px, 30vw, 170px); text-transform: uppercase; letter-spacing: -.01em; will-change: transform; }
-    .inv-row:nth-child(odd) { color: transparent; -webkit-text-stroke: 1.4px rgba(255,255,255,.34); }
-    .inv-row:nth-child(even) { color: rgba(255,255,255,.075); }
-    .inv-row:nth-child(3) { color: rgba(255,255,255,.9); -webkit-text-stroke: 0; mix-blend-mode: overlay; }
-    .inv-dood { position: absolute; width: 22%; max-width: 130px; opacity: .2; filter: brightness(0) invert(1); will-change: transform; }
-    .inv-dood img { display: block; width: 100%; }
+    .inv-bokeh { position: absolute; border-radius: 50%; will-change: transform; pointer-events: none;
+      background: radial-gradient(circle, rgba(255,255,255,.9) 0%, rgba(255,255,255,.35) 45%, rgba(255,255,255,0) 70%); }
+    .inv-bg::before { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; z-index: 1;
+      background: linear-gradient(180deg, rgba(14,14,14,0) 0%, rgba(14,14,14,.85) 70%, #0E0E0E 92%); }
+    [data-invite="15"] .duo { background: #0E0E0E; margin-top: -1px; position: relative; }
+    [data-invite="15"] .duo-photo { background: #0E0E0E; }
+    [data-invite="15"] .duo::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 12px; z-index: 6; background: linear-gradient(#0E0E0E 60%, rgba(14,14,14,0)); pointer-events: none; }
+    [data-invite="15"] .duo-photo .ph-cap { background: linear-gradient(180deg, #0E0E0E 0%, rgba(0,0,0,.6) 14%, rgba(0,0,0,.25) 38%, rgba(0,0,0,0) 54%); }
     .inv-spot { position: absolute; left: 50%; top: 56%; width: 140vmax; height: 140vmax; translate: -50% -50%; pointer-events: none;
-      background: repeating-conic-gradient(from 0deg, rgba(255,255,255,.055) 0deg 6deg, transparent 6deg 18deg);
+      background: repeating-conic-gradient(from 0deg, rgba(255,255,255,.06) 0deg 5deg, transparent 5deg 15deg);
       mask-image: radial-gradient(circle, #000 0%, transparent 62%); -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 62%); }
 
     .env { position: absolute; left: 50%; z-index: 2; translate: -50% 0; perspective: 1200px; }
     .env-back, .env-pocket, .env-flap { position: absolute; left: 0; right: 0; }
-    .env-back { inset: 0; background: #C93A1C; border-radius: 4px; z-index: 1; box-shadow: 0 30px 70px rgba(0,0,0,.55); }
-    .env-pocket { inset: 0; z-index: 4; background: var(--acc, #EC4A26); border-radius: 4px;
-      clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%); }
-    .env-pocket::before { content: ''; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(255,255,255,.12), rgba(0,0,0,.12)); }
-    .env-pocket::after { content: ''; position: absolute; left: 16px; bottom: 14px; font: 500 9.5px/1 var(--f-label); letter-spacing: .32em; color: rgba(255,255,255,.85); }
-    .env-flap { top: 0; height: 62%; z-index: 5; transform-origin: 50% 0; background: #F05A36;
-      clip-path: polygon(0 0, 100% 0, 50% 100%); }
+    .env-paper { background-color: var(--acc, #EC4A26); background-image: url('../assets/texture/envelope.jpg'); background-size: 300px; background-blend-mode: multiply; }
+    .env-back { inset: 0; border-radius: 3px; z-index: 1; box-shadow: 0 34px 70px rgba(0,0,0,.6), 0 4px 10px rgba(0,0,0,.4); }
+    .env-back::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.12) 60%); }
+    .env-pocketw { position: absolute; inset: 0; z-index: 4; filter: drop-shadow(0 -2px 3px rgba(0,0,0,.28)); }
+    .env-pocket { inset: 0; border-radius: 3px; clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%); }
+    /* 좌우 날개 · 아래 날개 접힌 면 */
+    .env-pocket::before { content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(to top right, rgba(0,0,0,0) calc(50% - 1px), rgba(0,0,0,.16) 50%, rgba(255,255,255,.05) calc(50% + 2px)) left bottom / 50% 100% no-repeat,
+        linear-gradient(to top left, rgba(0,0,0,0) calc(50% - 1px), rgba(0,0,0,.16) 50%, rgba(255,255,255,.05) calc(50% + 2px)) right bottom / 50% 100% no-repeat,
+        linear-gradient(165deg, rgba(255,255,255,.1), rgba(0,0,0,.14)); }
+    .env-flapw { position: absolute; left: 0; right: 0; top: 0; height: 62%; z-index: 5; transform-origin: 50% 0;
+      filter: drop-shadow(0 3px 3px rgba(0,0,0,.32)); }
+    .env-flap { inset: 0; height: 100%; clip-path: polygon(0 0, 100% 0, 50% 100%); }
+    .env-flap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(0,0,0,.08)); }
     .env-seal { position: absolute; z-index: 6; left: 50%; width: 30%; max-width: 104px; translate: -50% -50%; transform-origin: 50% 0;
       background: #FBFAF7; border-radius: 50%; padding: 6px; box-shadow: 0 6px 16px rgba(0,0,0,.3); }
     .env-seal img { display: block; width: 100%; }
@@ -691,8 +699,17 @@
       font-family: var(--f-label); font-size: 10px; letter-spacing: .34em; text-transform: uppercase; }
     [data-invite="15"] .inv-stage > .about-block {
       position: absolute; left: 50%; top: 0; z-index: 3; margin: 0; max-width: none;
-      background: #FBFAF7; padding: 30px 22px 26px; transform-origin: 50% 0; opacity: 1; transition: none;
-      box-shadow: 0 30px 80px rgba(0,0,0,.45);
+      padding: 30px 22px 26px; transform-origin: 50% 0; opacity: 1; transition: none;
+      box-shadow: 0 30px 80px rgba(0,0,0,.5), 0 2px 6px rgba(0,0,0,.3);
+    }
+    [data-invite="5"] .about-block, [data-invite="14"] .about-block::before, [data-invite="15"] .inv-stage > .about-block {
+      background-color: #FBFAF7;
+      background-image:
+        linear-gradient(180deg, rgba(0,0,0,0) calc(33.3% - 1px), rgba(0,0,0,.07) 33.3%, rgba(255,255,255,.6) calc(33.3% + 1px), rgba(0,0,0,0) calc(33.3% + 6px)),
+        linear-gradient(180deg, rgba(0,0,0,0) calc(66.6% - 1px), rgba(0,0,0,.07) 66.6%, rgba(255,255,255,.6) calc(66.6% + 1px), rgba(0,0,0,0) calc(66.6% + 6px)),
+        radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0) 60%, rgba(120,100,70,.08) 100%),
+        url('../assets/texture/letter.jpg');
+      background-size: auto, auto, auto, 360px;
     }
     [data-invite="15"] .inv-dear { display: block; margin-bottom: 14px; color: var(--acc, var(--ink)); font-size: 12px; }
     [data-invite="15"] .inv-sign { display: block; margin-top: 18px; text-align: right; font-size: 30px; color: var(--acc, var(--ink)); }
@@ -1616,22 +1633,20 @@
     if (envSec) (function () {
       var card = $('.about-block', envSec);
       var st = document.createElement('div'); st.className = 'inv-stage';
-      var row = (W.groom.en + ' & ' + W.bride.en + ' ✺ Invitation ✺ ').toUpperCase();
-      var rows = ['', '', '', '', ''].map(function () { return '<div class="inv-row">' + row + row + row + '</div>'; }).join('');
-      var dsrc = ['logo/doodle-umbrella.png', 'logo/doodle-sticker.png', 'logo/doodle-carry.png', 'logo/doodle-toast.png', 'logo/inv-bouquet.png', 'logo/inv-peek.png'];
-      var base = (W.logo || '').replace(/doodle-umbrella\.png$/, '');
-      var dpos = [[4, 8, -14], [70, 4, 12], [76, 70, -8], [2, 74, 10], [40, 86, -4], [36, 1, 6]];
-      var doods = dpos.map(function (q, i) {
-        return '<span class="inv-dood" data-d="' + i + '" style="left:' + q[0] + '%;top:' + q[1] + '%;rotate:' + q[2] + 'deg"><img src="' + base + dsrc[i].replace('logo/', '') + '" alt="" /></span>';
+      // 밤거리 불빛 같은 보케 (x%, y%, 지름px, 투명도, 흐림px)
+      var bk = [[8, 12, 90, .16, 6], [82, 8, 46, .28, 2], [64, 22, 140, .08, 10], [18, 40, 34, .3, 1], [90, 46, 70, .14, 4], [4, 66, 120, .09, 8],
+                [74, 78, 40, .26, 2], [30, 84, 76, .12, 5], [52, 4, 26, .34, 0], [46, 62, 160, .06, 14], [94, 90, 100, .1, 6], [26, 20, 54, .18, 3]];
+      var bokeh = bk.map(function (q, i) {
+        return '<span class="inv-bokeh" style="left:' + q[0] + '%;top:' + q[1] + '%;width:' + q[2] + 'px;height:' + q[2] + 'px;opacity:' + q[3] + ';filter:blur(' + q[4] + 'px)"></span>';
       }).join('');
-      st.innerHTML = '<div class="inv-bg" aria-hidden="true"><div class="inv-spot"></div><div class="inv-rows">' + rows + '</div>' + doods + '</div>' +
-        '<div class="env" aria-hidden="true"><div class="env-back"></div><div class="env-pocket"></div><div class="env-flap"></div>' +
+      st.innerHTML = '<div class="inv-bg" aria-hidden="true"><div class="inv-spot"></div>' + bokeh + '</div>' +
+        '<div class="env" aria-hidden="true"><div class="env-back env-paper"></div><div class="env-pocketw"><div class="env-pocket env-paper"></div></div><div class="env-flapw"><div class="env-flap env-paper"></div></div>' +
         '<span class="env-seal">' + (W.inviteStamp ? '<img src="' + W.inviteStamp + '" alt="" />' : '') + '</span>' +
         '<span class="env-to">To. our beloved</span></div><span class="inv-hint">Scroll to open ↓</span>';
       envSec.appendChild(st);
       st.appendChild(card);
-      env = { sec: envSec, st: st, card: card, box: $('.env', st), flap: $('.env-flap', st), seal: $('.env-seal', st),
-              to: $('.env-to', st), hint: $('.inv-hint', st), rows: $$('.inv-row', st), doods: $$('.inv-dood', st), spot: $('.inv-spot', st) };
+      env = { sec: envSec, st: st, card: card, box: $('.env', st), flap: $('.env-flapw', st), seal: $('.env-seal', st),
+              to: $('.env-to', st), hint: $('.inv-hint', st), bokeh: $$('.inv-bokeh', st), spot: $('.inv-spot', st) };
     })();
     function envMotion(vh) {
       if (!env) return;
@@ -1640,14 +1655,13 @@
       var cl = function (a, b) { return Math.min(Math.max((p - a) / (b - a), 0), 1); };
       var ez = function (t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; };
       var a = ez(cl(0.04, 0.2)), b = ez(cl(0.22, 0.52)), c = ez(cl(0.56, 0.8));
-      // 배경: 대형 타이포 줄이 엇갈려 흐르고, 낙서가 떠다님
-      env.rows.forEach(function (el, i) { el.style.transform = 'translate3d(' + ((i % 2 ? -1 : 1) * (p * 46 - 23) - 10) + '%,0,0)'; });
-      env.doods.forEach(function (el, i) { el.style.transform = 'translate3d(0,' + ((0.5 - p) * (60 + i * 26)).toFixed(1) + 'px,0) rotate(' + (p * (i % 2 ? 40 : -40)).toFixed(1) + 'deg)'; });
+      // 배경: 보케가 깊이별로 다른 속도로 흐름
+      env.bokeh.forEach(function (el, i) { el.style.transform = 'translate3d(0,' + ((0.5 - p) * (40 + (i % 4) * 70)).toFixed(1) + 'px,0)'; });
       env.spot.style.transform = 'rotate(' + (p * 120).toFixed(1) + 'deg)';
       // 봉투 크기 · 위치
       var ew = Math.min(330, Wd - 44), eh = ew * 0.68;
       var ey0 = H * 0.56 - eh / 2;
-      var ey = ey0 + c * (H - ey0 + 40);
+      var ey = ey0 + c * (H - ey0 + 60 + eh * 0.7);   // 열린 덮개까지 화면 밖으로
       env.box.style.width = ew + 'px'; env.box.style.height = eh + 'px';
       env.box.style.transform = 'translate3d(0,' + ey.toFixed(1) + 'px,0) rotate(' + (-2 + c * 8).toFixed(2) + 'deg)';
       // 덮개 열림 (90° 지나면 편지 뒤로)
