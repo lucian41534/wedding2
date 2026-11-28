@@ -17,9 +17,10 @@ module.exports = function ({ OUT }) {
     ['11', 'Collage', 'NEW · 테이프 붙인 폴라로이드 사진 + 카드 + 꽃다발 + 스탬프 콜라주.'],
     ['12', 'Newspaper', 'NEW · THE JUN & YUNJI TIMES 신문 1면. 헤드라인, 사진, 2단 본문.'],
     ['13', 'Ribbon', 'NEW · 교차하는 SAVE THE DATE 띠가 흐르고, 아래 한 줄 위를 걷는 두 사람.'],
-    ['14', 'Flip Letter', 'NEW · 스크롤하면 버밀리언 봉투 뒷면(스탬프 · To. our beloved)이 뒤집히며 편지(5안 카드)가 나타남. 위에서 천천히 스크롤해 보세요.']
+    ['14', 'Flip Letter', 'NEW · 스크롤하면 버밀리언 봉투 뒷면(스탬프 · To. our beloved)이 뒤집히며 편지(5안 카드)가 나타남. 위에서 천천히 스크롤해 보세요.'],
+    ['15', 'Envelope Pull', 'NEW · 화려한 모노톤 배경(흐르는 대형 타이포 · 회전 광선 · 흰 낙서) 위 버밀리언 봉투. 스크롤하면 덮개가 열리고 편지가 꺼내져 화면 가운데로.']
   ];
-  const src = (n) => encodeURI('타이포B_버밀리언/index.html') + `?invite=${n}&nointro=1` + (n === '14' ? '#top' : '#invitation');
+  const src = (n) => encodeURI('타이포B_버밀리언/index.html') + `?invite=${n}&nointro=1` + (n === '14' || n === '15' ? '#top' : '#invitation');
   fs.writeFileSync(path.join(OUT, 'Invitation시안.html'), `<!DOCTYPE html>
 <html lang="ko"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Invitation 레이아웃 시안</title>
@@ -34,7 +35,7 @@ module.exports = function ({ OUT }) {
   h2 { font-size: 14px; font-weight: 600; margin: 22px 0 6px; } p { font-size: 13px; color: rgba(242,241,238,.6); margin: 0 0 10px; line-height: 1.6; }
   a { color: #F2F1EE; font-size: 12px; }
 </style></head>
-<body><header><h1>INVITATION LAYOUT DRAFTS · 14</h1><p>B안(버밀리언 포스터) 기준, 첫 화면 바로 아래 Invitation 섹션만 바꾼 시안입니다. 각 화면은 Invitation 위치에서 시작합니다.<br>적용은 config.js 의 invite 값 한 줄.</p></header>
+<body><header><h1>INVITATION LAYOUT DRAFTS · 15</h1><p>B안(버밀리언 포스터) 기준, 첫 화면 바로 아래 Invitation 섹션만 바꾼 시안입니다. 각 화면은 Invitation 위치에서 시작합니다.<br>적용은 config.js 의 invite 값 한 줄.</p></header>
 <main>${L.map(([n, name, mood]) => `
   <article>
     <iframe src="${src(n)}" title="${name}"></iframe>
