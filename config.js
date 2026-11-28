@@ -112,11 +112,11 @@ window.WEDDING = {
   // Invitation 레이아웃: '1' 포스터 스택 | '2' 세로 타이틀 | '3' 인포 그리드 | '4' 센터 포엠 | '5' 레터 카드 (루트 Invitation시안.html)
   invite: '5',   // 확정: 레터 카드
   // Gallery · Location · Contact 레이아웃 (루트 Gallery시안.html · Location시안.html · Contact시안.html)
-  gal: '1',
-  loc: '1',
-  con: '1',
-  fab: '1',     // 오시는 길 플로팅 버튼 (루트 Button시안.html)
-  badge: '1',   // Hand in hand 줄 배경 (루트 Badge시안.html)
+  gal: '5',     // 확정: 매거진
+  loc: '0',     // '0' 기존 · 1~8 부록 시안 (Location시안.html)
+  con: '0',     // '0' 기존 · 1~8 부록 시안 (Contact시안.html)
+  fab: '7',     // 확정: 티켓 (오시는 길)
+  badge: '3',   // 확정: 버밀리언
   inviteStamp: 'assets/logo/doodle-stamp.png',
   // Invitation 시안 6~13 손그림 소품 (레이아웃 번호별)
   inviteArt: {
